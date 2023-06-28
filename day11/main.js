@@ -1,15 +1,40 @@
-function calc(operation = 'mul', firstNumber = 0, secondNumber = 1){
-    switch(operation){
-        case 'sum':
-            return firstNumber + secondNumber;
-        case 'mul':
-            return firstNumber * secondNumber;
-        case 'del':
-            return firstNumber/secondNumber;
-        case 'min':
-            return firstNumber - secondNumber;
+const ACTIONS = {
+    ADD: 'sum',
+    DIF: 'dif',
+    DIV: 'div',
+    MUL: 'mul',
+    ERROR_MESSAGE_0: 'zero division',
+    ERROR_MESSAGE_1: 'number error'
+}
+
+
+function chekNumberIsNumber(firstNumber, secondNumber){
+    return (!(isNaN(firstNumber)) && !(isNaN(secondNumber)))
+}
+
+function returnTrueDivision(firstNumber, secondNumber){
+    if(secondNumber != 0){
+        return firstNumber/secondNumber;
+    }else{
+        return ACTIONS.ERROR_MESSAGE_0
     }
 }
 
-result = calc('sum', 1000, 4)
-console.log(result)
+
+function calc(operation = ACTIONS.ADD, firstNumber = 0, secondNumber = 0){
+    if(chekNumberIsNumber(firstNumber, secondNumber)){
+        switch(operation){
+            case ACTIONS.ADD:
+                return firstNumber + secondNumber;
+            case ACTIONS.MUL:
+                return firstNumber * secondNumber;
+            case ACTIONS.DIV:
+                return returnTrueDivision(firstNumber, secondNumber);
+            case ACTIONS.DIF:
+                return firstNumber - secondNumber;
+        }
+    }else{
+        return ACTIONS.ERROR_MESSAGE_1
+    }
+    
+}
