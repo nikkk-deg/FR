@@ -6,7 +6,8 @@ const STATUSES = {
 const ERRORS = {
     NOT_TASK_YET: '\tThis list has not this task',
     NOT_THIS_STATUS: '\tThere is not tasks with this status',
-    WRONG_STATUS: '\tWrong status: only To do, In progress, Done'
+    WRONG_STATUS: '\tWrong status: only To do, In progress, Done',
+    TASK_CANNOT_BE_ADDED: 'Task can not be added or chacnged. ',
 }
 
 const toDo = {
@@ -22,7 +23,7 @@ const toDo = {
                 return true;
             }
         }
-        console.log('Task can not be added or chacnged. ' + ERRORS.WRONG_STATUS)
+        console.log(ERRORS.TASK_CANNOT_BE_ADDED + ERRORS.WRONG_STATUS)
         return false;
     },
 
@@ -69,8 +70,8 @@ const toDo = {
         this.showOneStatusTasks(STATUSES.IN_PROGRESS);
         this.showOneStatusTasks(STATUSES.DONE);
     },
-}
-
+},
+//example of run code To Do
 // notes = toDo;
 // notes.addTask('sleep', 'сделать');
 // notes.addTask('sleep2', 'To do');
