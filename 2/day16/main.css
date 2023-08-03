@@ -2,7 +2,7 @@ body {
     background-color: #E0EBFF;
 }
 
-div#main_content_ID {
+#mainContent {
     margin: 100px auto;
     width: 476px;
     height: 340px;
@@ -10,14 +10,14 @@ div#main_content_ID {
     border: solid 1px #000000 ;
 }
 
-div.priority_article {
+.priorityArticle {
     width: 43px;;
     height: 21px;
     margin: 50px auto 12px auto;
     color: #000000;
 }
 
-.input_field {
+.inputField, .newTask{
     width: 405px;
     font-size: 18px;
     height: 45px;
@@ -27,11 +27,25 @@ div.priority_article {
     margin: auto;
 }
 
-.add_button {
+.addButton{
+    background-image: url(images/plus_icon.png);
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    border: none;
+    background-color:#FFFFFF;
     position: absolute;
     margin-left: 410px;
     margin-top: -36px;
     cursor: pointer;
 }
 
+.newTask{
+    margin-top: 5px;
+}
 
+p{
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: x-large;
+}
