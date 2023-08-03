@@ -1,0 +1,51 @@
+body {
+    background-color: #E0EBFF;
+}
+
+#mainContent {
+    margin: 100px auto;
+    width: 476px;
+    height: 340px;
+    background-color: #FFFFFF;
+    border: solid 1px #000000 ;
+}
+
+.priorityArticle {
+    width: 43px;;
+    height: 21px;
+    margin: 50px auto 12px auto;
+    color: #000000;
+}
+
+.inputField, .newTask{
+    width: 405px;
+    font-size: 18px;
+    height: 45px;
+    border: #989898 solid 1px;
+    border-radius: 6px;
+    display: block;
+    margin: auto;
+}
+
+.addButton{
+    background-image: url(images/plus_icon.png);
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    border: none;
+    background-color:#FFFFFF;
+    position: absolute;
+    margin-left: 410px;
+    margin-top: -36px;
+    cursor: pointer;
+}
+
+.newTask{
+    margin-top: 5px;
+}
+
+p{
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: x-large;
+}
