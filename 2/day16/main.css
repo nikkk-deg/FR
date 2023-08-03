@@ -49,3 +49,9 @@ p{
     margin-left: 10px;
     font-size: x-large;
 }
+
+.checkbox{
+    background-image: url(images/plus_icon.png);
+    width: 100px;
+    height: 100px;
+}
