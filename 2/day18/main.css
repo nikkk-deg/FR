@@ -5,7 +5,7 @@ body {
 #mainContent {
     margin: 100px auto;
     width: 476px;
-    height: 350px;
+    height: 250px;
     background-color: #FFFFFF;
     border: solid 1px #000000 ;
 }
@@ -13,7 +13,7 @@ body {
 .priorityArticle {
     width: 43px;;
     height: 21px;
-    margin: 50px auto 12px auto;
+    margin: 30px auto 12px auto;
     color: #000000;
 }
 
@@ -78,4 +78,8 @@ input[type="checkbox"]{
     position: absolute;
     margin-top: -31px;
     margin-left: 370px;
+}
+
+.labelform{
+    margin-top: -50px;
 }

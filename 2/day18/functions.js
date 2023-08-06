@@ -1,6 +1,6 @@
 import { UI_ElEMENTS } from "./view.js";
 
-let height_mainContent = 350;
+let height_mainContent = 250;
 
 function createText(value){
     let text = document.createElement('p');
