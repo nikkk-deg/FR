@@ -2,8 +2,22 @@ import { UI_ElEMENTS } from "./view.js";
 
 let height_mainContent = 250;
 
+function stringCoverter(str){
+    if (str.length < 3) {
+        throw new Error("Строка слишком короткая");
+    }
+    if (str.length > 30) {
+        throw new Error("Строка слишком длинная");
+    }
+}
 function createText(value){
     let text = document.createElement('p');
+    
+    try{
+        stringCoverter(value);
+    }catch {
+        alert('недопусимое количество символов!');
+    }
     text.textContent = value;
     return text;
 }
