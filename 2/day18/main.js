@@ -10,3 +10,6 @@ UI_ElEMENTS.LOW_ADD_BUTTON.addEventListener('click', (event)=>{
     event.preventDefault();
     addLowTask(UI_ElEMENTS.LOW_INPUT_FIELD.value);
 })
+
+
+
