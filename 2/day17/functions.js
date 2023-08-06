@@ -1,7 +1,6 @@
 import { UI_ElEMENTS } from "./view.js";
 
-let checkboxCount = 0;
-
+let height_mainContent = 350;
 
 function createText(value){
     let text = document.createElement('p');
@@ -11,8 +10,14 @@ function createText(value){
 
 function createDeleteButton(){
     let deleteButton = document.createElement('input');
+    deleteButton.className = "deleteButton";
     deleteButton.type = 'image';
     deleteButton.src = "images/close_icon.png"
+    deleteButton.addEventListener('click', ()=>{
+        deleteButton.parentElement.remove();
+        height_mainContent -= 52;
+        UI_ElEMENTS.MAIN_CONTENT.style.height = `${height_mainContent}px`;
+    })
     return deleteButton;
 }
 
@@ -21,10 +26,16 @@ function createCheckbox(){
     let checkbox = document.createElement('input');
     let spanElement = document.createElement('span');
     checkbox.type = 'checkbox';
-    checkbox.setAttribute('id', `checkbox${checkboxCount}`);
-    checkboxCount++;
+    checkbox.className = 'checkbox';
     customCheckbox.append(checkbox);
     customCheckbox.append(spanElement);
+    customCheckbox.addEventListener('change', ()=>{
+        if(checkbox.checked){
+            customCheckbox.parentElement.style = `background: #DDDDDD`;
+        }else{
+            customCheckbox.parentElement.style = `background: white`;
+        }
+    })
     return customCheckbox;
 }
 
@@ -40,9 +51,18 @@ function createElement(value){
     return newTask;
 }
 
-
-export function addTask(value){
+export function addHighTask(value){
     let newTask = createElement(value);
-    UI_ElEMENTS.HIGH_INPUT_CONTEINER.append(newTask)
+    UI_ElEMENTS.HIGH_NEW_TASK_CONTEINER.append(newTask);
     UI_ElEMENTS.HIGH_INPUT_FIELD.value = "";
+    height_mainContent += 52;
+    UI_ElEMENTS.MAIN_CONTENT.style.height = `${height_mainContent}px`;
+}
+
+export function addLowTask(value){
+    let newTask = createElement(value);
+    UI_ElEMENTS.LOW_NEW_TASK_CONTEINER.append(newTask);
+    UI_ElEMENTS.LOW_INPUT_FIELD.value = "";
+    height_mainContent += 52;
+    UI_ElEMENTS.MAIN_CONTENT.style.height = `${height_mainContent}px`;
 }

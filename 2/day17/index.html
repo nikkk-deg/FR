@@ -10,15 +10,17 @@
                 <div class="priorityArticle" id="h_article">HIGH</div>
         <form id="h_inputConteiner">
             <label for="task"></label>
-            <input class="inputField" id="h_inputField"  type="text" name="task" placeholder="Добавить важных дел" required>
+            <input class="inputField" id="h_inputField"  type="text" name="task" placeholder="Добавить важных дел" required maxlength="25">
             <button class="addButton" id="h_addButton"></button>
         </form>
+        <div id="highNewTaskConteiner"></div>
         <div class="priorityArticle" id="l_article">LOW</div>
         <form id="l_inputConteiner">
             <label for="task"></label>
-            <input class="inputField" id="l_inputField"  type="text" name="task" placeholder="Добавить дел" required>
+            <input class="inputField" id="l_inputField"  type="text" name="task" placeholder="Добавить дел" required maxlength="25">
             <button class="addButton" id="l_addButton"></button>
         </form>
+        <div id="lowNewTaskConteiner"></div>
            </div>
     <script type="module" src="main.js"></script>
     <script type="module" src="view.js"></script>

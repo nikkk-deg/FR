@@ -1,8 +1,15 @@
 import { UI_ElEMENTS } from "./view.js";
-import {addTask} from "./functions.js";
-
+import {addHighTask, addLowTask} from "./functions.js";
 
 UI_ElEMENTS.HIGH_INPUT_CONTEINER.addEventListener('submit', (event)=>{
     event.preventDefault();
-    addTask(UI_ElEMENTS.HIGH_INPUT_FIELD.value);
+    addHighTask(UI_ElEMENTS.HIGH_INPUT_FIELD.value);
 })
+
+UI_ElEMENTS.LOW_ADD_BUTTON.addEventListener('click', (event)=>{
+    event.preventDefault();
+    addLowTask(UI_ElEMENTS.LOW_INPUT_FIELD.value);
+})
+
+
+

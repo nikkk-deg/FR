@@ -5,7 +5,7 @@ body {
 #mainContent {
     margin: 100px auto;
     width: 476px;
-    height: 340px;
+    height: 350px;
     background-color: #FFFFFF;
     border: solid 1px #000000 ;
 }
@@ -45,11 +45,14 @@ body {
 }
 
 p{
-    margin-top: 10px;
-    margin-left: 30px;
-    font-size: x-large;
+    position: absolute;
+    margin-top: -34px;
+    margin-left: 35px;
+    font-size: large;
 }
 label {
+    top: 21%;
+    left: 5px;
     width: 40px;
     height: 40px;
     display: block;
@@ -71,3 +74,8 @@ input[type="checkbox"]{
     display: none;
 }
 
+.deleteButton{
+    position: absolute;
+    margin-top: -31px;
+    margin-left: 370px;
+}
