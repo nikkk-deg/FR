@@ -1,28 +1,26 @@
 {
-    "users": [
+    "tasks": [
       {
-        "firstName": "Dennis",
-        "lastName": "Ritchie",
-        "dateOfBirth": "September 9, 1941",
-        "knowsAs": "created the C programming language"
+        "name": "Помыть посуду",
+        "priority": "high",
+        "progress": "done"
       },
       {
-        "firstName": "Steve",
-        "lastName": "Jobs",
-        "dateOfBirth": "February 24, 1955",
-        "knowsAs": "co-founder of Apple Inc, Next, Pixar"
-      },
-      {
-        "firstName": "Bill",
-        "lastName": "Gates",
-        "dateOfBirth": "February 24, 1955",
-        "knowsAs": "co-founder of Microsoft"
-      },
-      {
-        "firstName": "Alan",
-        "lastName": "Turing",
-        "dateOfBirth": "June 23, 1912",
-        "knowsAs": "developed the first modern computer"
+        "name": "Погулять с собакой",
+        "priority": "low",
+        "progress": "todo"
+      },{
+        "name": "Встретиться с девушкой",
+        "priority": "high",
+        "progress": "todo"
+      },{
+        "name": "Заточить нож",
+        "priority": "low",
+        "progress": "todo"
+      },{
+        "name": "Сходить на тренировку",
+        "priority": "high",
+        "progress": "done"
       }
     ]
   }
