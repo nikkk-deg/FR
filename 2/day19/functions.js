@@ -80,3 +80,13 @@ export function addLowTask(value){
     height_mainContent += 52;
     UI_ElEMENTS.MAIN_CONTENT.style.height = `${height_mainContent}px`;
 }
+
+
+
+export function addTask(value, priority){
+    if (priority == 'high'){
+        addHighTask(value);
+    }else{
+        addLowTask(value);
+    }
+}
