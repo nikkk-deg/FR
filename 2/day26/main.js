@@ -1,6 +1,6 @@
 import { UI_ELEMENTS, PERMANENTS } from "./view.js";
 
-
+let isAddButtonPress = false;
 const getURL = cityName =>`${PERMANENTS.SERVER_URL}?q=${cityName}&appid=${PERMANENTS.API_KEY}`;
 
 const changeToFdegrees = degrees => Math.round(degrees-273);
@@ -27,14 +27,25 @@ const getJSON = url => fetch(url)
         changeCurrentFavCity(data.name);
         changeWeatherIcon(data);        
         UI_ELEMENTS.SС_FIELD.value = "";
+        UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', './images/favourites_icon.png');
+        isAddButtonPress = false;
 
     })
     .catch(error => alert(error));
-// https://openweathermap.org/img/wn/04d@2x.png
 
 UI_ELEMENTS.SC_FORM.addEventListener('submit', event => {
     event.preventDefault();
-    getJSON(getURL(UI_ELEMENTS.SС_FIELD.value));
+    getJSON(getURL(UI_ELEMENTS.SС_FIELD.value));    
+})
+
+UI_ELEMENTS.ADD_TO_FAV.addEventListener('click', ()=>{
+    if (!isAddButtonPress){
+        UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', './images/favourites_icon_red.png');
+        isAddButtonPress = true;
+    }else{
+        UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', './images/favourites_icon.png');
+        isAddButtonPress = false;
+    }
     
 })
 
