@@ -84,4 +84,12 @@ p#P_article_favourites_cities{
 .saved_city{
     margin-top: 15px;
     margin-left: 17px;
+    cursor: pointer;
+}
+
+.delete_button{
+    display: inline;
+    float: right;
+    margin-right: 20px;
+    cursor: pointer;
 }
