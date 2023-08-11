@@ -81,11 +81,7 @@ p#P_article_favourites_cities{
     float: right;
     
 }
-ul {
-    list-style-type: none;
-}
-li{
+.saved_city{
     margin-top: 15px;
-    margin-left: -25px;   
+    margin-left: 17px;
 }
-

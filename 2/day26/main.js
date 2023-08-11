@@ -1,4 +1,5 @@
 import { UI_ELEMENTS, PERMANENTS } from "./view.js";
+import { writeSavedCities } from "./main.mjs";
 
 let isAddButtonPress = false;
 const getURL = cityName =>`${PERMANENTS.SERVER_URL}?q=${cityName}&appid=${PERMANENTS.API_KEY}`;
@@ -33,9 +34,11 @@ const getJSON = url => fetch(url)
     })
     .catch(error => alert(error));
 
+    
 UI_ELEMENTS.SC_FORM.addEventListener('submit', event => {
     event.preventDefault();
-    getJSON(getURL(UI_ELEMENTS.SС_FIELD.value));    
+    getJSON(getURL(UI_ELEMENTS.SС_FIELD.value));
+  
 })
 
 UI_ELEMENTS.ADD_TO_FAV.addEventListener('click', ()=>{
@@ -48,5 +51,7 @@ UI_ELEMENTS.ADD_TO_FAV.addEventListener('click', ()=>{
     }
     
 })
+
+writeSavedCities();   
 
 

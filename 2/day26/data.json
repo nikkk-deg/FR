@@ -1,0 +1,15 @@
+{
+    "savedCities": [
+      {
+        "name": "Rostov-on-Don"
+      },{
+        "name": "Delhi"
+      },{
+        "name": "London"
+      },{
+        "name": "Beijing"
+      },{
+        "name": "Amsterdam"
+      }
+    ]
+  }
