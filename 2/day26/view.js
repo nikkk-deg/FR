@@ -16,6 +16,7 @@ export const PERMANENTS = {
     SERVER_URL: 'http://api.openweathermap.org/data/2.5/weather',
     API_KEY: 'f660a2fb1e4bad108d6160b7f58c555f',//придется потом менять
     SAVED_CITIES_CLASS: 'saved_city',
-    DELETE_BUTTON: 'delete_button'
+    DELETE_BUTTON: 'delete_button',
+    ERROR_MASSEGE_1: "Предельное количесиво добавленных локаций"
 
 }

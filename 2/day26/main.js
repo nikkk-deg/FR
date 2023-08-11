@@ -1,8 +1,9 @@
 import { UI_ELEMENTS, PERMANENTS } from "./view.js";
-import { writeSavedCities } from "./main.mjs";
+import { render, isFullFavList, appendToFav, savedCities, isFavCityPressLike} from "./data.js";
 
 let isAddButtonPress = false;
-const getURL = cityName =>`${PERMANENTS.SERVER_URL}?q=${cityName}&appid=${PERMANENTS.API_KEY}`;
+
+export const getURL = cityName =>`${PERMANENTS.SERVER_URL}?q=${cityName}&appid=${PERMANENTS.API_KEY}`;
 
 const changeToFdegrees = degrees => Math.round(degrees-273);
 
@@ -15,7 +16,11 @@ const changeWeatherIcon = data => {
     UI_ELEMENTS.ADD_TO_FAV.style.marginTop = '-28px'
 }
 
-const getJSON = url => fetch(url)
+const firstRender = () =>{
+    changeCurrentCity(getURL(UI_ELEMENTS.CURRENT_FAV_CITY.textContent));
+}
+
+export const changeCurrentCity = url => fetch(url)
     .then(response => {
         if(response.status === 404){
             throw new Error('Город не найден!');
@@ -23,12 +28,15 @@ const getJSON = url => fetch(url)
         return response.json();
     })
     .then(data => {
-        console.log(data);
         change_temp(changeToFdegrees(data.main.temp));
         changeCurrentFavCity(data.name);
         changeWeatherIcon(data);        
         UI_ELEMENTS.SС_FIELD.value = "";
-        UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', './images/favourites_icon.png');
+        if(savedCities.includes(data.name)){
+            UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', './images/favourites_icon_red.png');
+        }else{
+            UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', './images/favourites_icon.png');
+        }
         isAddButtonPress = false;
 
     })
@@ -37,21 +45,35 @@ const getJSON = url => fetch(url)
     
 UI_ELEMENTS.SC_FORM.addEventListener('submit', event => {
     event.preventDefault();
-    getJSON(getURL(UI_ELEMENTS.SС_FIELD.value));
+    changeCurrentCity(getURL(UI_ELEMENTS.SС_FIELD.value));
   
 })
 
 UI_ELEMENTS.ADD_TO_FAV.addEventListener('click', ()=>{
+    if(savedCities.includes(UI_ELEMENTS.CURRENT_FAV_CITY.textContent)){
+        console.log('удаляю задачу которая уже в избранном');
+        isFavCityPressLike(UI_ELEMENTS.CURRENT_FAV_CITY.textContent);
+        isAddButtonPress = true;
+    }
     if (!isAddButtonPress){
         UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', './images/favourites_icon_red.png');
         isAddButtonPress = true;
+        if (isFullFavList(savedCities)){
+            appendToFav(UI_ELEMENTS.CURRENT_FAV_CITY.textContent);
+        }else{
+            alert(PERMANENTS.ERROR_MASSEGE_1);
+            UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', './images/favourites_icon.png');
+            isAddButtonPress = false;
+        }
+        
+        
     }else{
+        
         UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', './images/favourites_icon.png');
         isAddButtonPress = false;
     }
     
 })
 
-writeSavedCities();   
-
-
+firstRender();
+render();
