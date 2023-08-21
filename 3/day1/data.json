@@ -1,0 +1,26 @@
+{
+    "tasks": [
+      {
+        "name": "Помыть посуду",
+        "priority": "high",
+        "progress": "done"
+      },
+      {
+        "name": "Погулять с собакой",
+        "priority": "low",
+        "progress": "todo"
+      },{
+        "name": "Встретиться с девушкой",
+        "priority": "high",
+        "progress": "todo"
+      },{
+        "name": "Заточить нож",
+        "priority": "low",
+        "progress": "todo"
+      },{
+        "name": "Сходить на тренировку",
+        "priority": "high",
+        "progress": "done"
+      }
+    ]
+  }
