@@ -1,0 +1,95 @@
+body{
+    background-color: #DDD;
+    font-weight:bold;
+    font-size: x-large;
+}
+
+#main_content{
+    width: 600px;
+    height: 359px;
+    background-color: #FFF;
+    margin: 100px auto;
+    border: solid black 1px;
+}
+
+#search_city{
+    height: 45px;
+    border: solid #000 1px;
+}
+#search_city_field{
+    width: 530px;
+    border: none;
+    outline: none;
+    font-size: x-large;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+#search_button{
+    background: url(./images/search_icon.png) no-repeat;
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+div#current_cyty_info{
+    border: solid 1px black;
+    width: 300px;
+    height: 312px;
+}
+p#temperature{
+    font-size: 70px;
+    margin-left: 30px;
+    margin-top: 25px;
+}
+img#degrees{
+    display: inline;
+    float: right;
+    margin-top: -138px;
+    margin-right: 175px;
+}
+img#weather_icon{
+    margin-top: -70px;
+    margin-left: 110px;
+}
+#city_to_favourites{
+    margin-left: 20px;
+    margin-top: 50px;
+}
+#add_to_favourites{
+    cursor: pointer;
+    display: inline;
+    float: right;
+    margin-right: 20px;
+    margin-top: -52px;
+}
+div#favourites_cities{
+    border-bottom: #000 solid 2px;
+}
+div#article_favourites_cities{
+    border-bottom: #000 solid 2px;
+    border-top: #000 solid 1px;
+}
+p#P_article_favourites_cities{
+    margin-left: 15px;
+}
+#favourites_cities{
+    display: inline;
+    border: solid 1px black;
+    margin-top: -315px;
+    width: 298px;
+    height: 312px;
+    float: right;
+    
+}
+.saved_city{
+    margin-top: 15px;
+    margin-left: 17px;
+    cursor: pointer;
+}
+
+.delete_button{
+    display: inline;
+    float: right;
+    margin-right: 20px;
+    cursor: pointer;
+}

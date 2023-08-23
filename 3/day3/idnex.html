@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link href="main.css" rel="stylesheet">
+</head>
+<body>
+<div id="main_content">
+
+<!-- Строка для поиска города -->
+<form id="search_city">
+    <label for="input_city">
+    <input id="search_city_field" type="text" name="input_city" placeholder="City" required>
+    <button id="search_button" type="submit"></button>
+    </label>
+</form>
+
+<!-- Иформация о городе, который мы искали, вначале выдает инфу о городе из placeholder -->
+<div id="current_cyty_info">
+    <p id="temperature">14</p>
+    <img id="degrees" src="./images/degrees_icon.png">
+    <img id="weather_icon" src="https://openweathermap.org/img/wn/04d@2x.png">
+<div>
+    <div id="city_to_favourites"><p id="name_of_city">Rostov-on-Don</p></div>
+    <img id="add_to_favourites" src="./images/favourites_icon.png">
+</div>
+
+</div>
+
+<!-- Добавленные в избранное города -->
+<div id="favourites_cities">
+    <div id="article_favourites_cities"><p id="P_article_favourites_cities" >Added Locations:</p></div>
+    <div id="list_of_favourites_cities"></div>
+</div>
+<script src="main.js" type="module"></script>
+<script src="view.js" type="module"></script>
+<script src="data.js" type="module"></script>
+</div>
+</body>
+</html>
