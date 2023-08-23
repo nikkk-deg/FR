@@ -1,5 +1,4 @@
 import { UI_ELEMENTS, PERMANENTS } from "./view.js";
-import { render, isFullFavList, appendToFav, savedCities, isFavCityPressLike} from "./data.js";
 
 let isAddButtonPress = false;
 
@@ -12,8 +11,8 @@ const change_temp = temp => UI_ELEMENTS.TEMP.textContent = temp;
 const changeCurrentFavCity = city => UI_ELEMENTS.CURRENT_FAV_CITY.textContent = city;
 
 const changeWeatherIcon = data => {
-    UI_ELEMENTS.WEATHER_ICON.setAttribute('src', `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
-    UI_ELEMENTS.ADD_TO_FAV.style.marginTop = '-28px'
+    UI_ELEMENTS.WEATHER_ICON.setAttribute(PERMANENTS.SRC, `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
+    UI_ELEMENTS.ADD_TO_FAV.style.marginTop = PERMANENTS.MOVE_DOWN_ICON;
 }
 
 const firstRender = () =>{
@@ -23,7 +22,7 @@ const firstRender = () =>{
 export const changeCurrentCity = url => fetch(url)
     .then(response => {
         if(response.status === 404){
-            throw new Error('Город не найден!');
+            throw new Error(PERMANENTS.ERROR_CITY_NOT_FOUND);
         }
         return response.json();
     })
@@ -31,11 +30,11 @@ export const changeCurrentCity = url => fetch(url)
         change_temp(changeToFdegrees(data.main.temp));
         changeCurrentFavCity(data.name);
         changeWeatherIcon(data);        
-        UI_ELEMENTS.SС_FIELD.value = "";
+        UI_ELEMENTS.SС_FIELD.value = PERMANENTS.EMPTY;
         if(savedCities.includes(data.name)){
-            UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', './images/favourites_icon_red.png');
+            UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', PERMANENTS.IMAGE_FAVOURITE);
         }else{
-            UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', './images/favourites_icon.png');
+            UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', PERMANENTS.IMAGE_NOT_FAVOURITE);
         }
         isAddButtonPress = false;
 
@@ -51,29 +50,92 @@ UI_ELEMENTS.SC_FORM.addEventListener('submit', event => {
 
 UI_ELEMENTS.ADD_TO_FAV.addEventListener('click', ()=>{
     if(savedCities.includes(UI_ELEMENTS.CURRENT_FAV_CITY.textContent)){
-        console.log('удаляю задачу которая уже в избранном');
         isFavCityPressLike(UI_ELEMENTS.CURRENT_FAV_CITY.textContent);
         isAddButtonPress = true;
     }
     if (!isAddButtonPress){
-        UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', './images/favourites_icon_red.png');
+        UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', PERMANENTS.IMAGE_FAVOURITE);
         isAddButtonPress = true;
         if (isFullFavList(savedCities)){
             appendToFav(UI_ELEMENTS.CURRENT_FAV_CITY.textContent);
         }else{
             alert(PERMANENTS.ERROR_MASSEGE_1);
-            UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', './images/favourites_icon.png');
+            UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', PERMANENTS.IMAGE_NOT_FAVOURITE);
             isAddButtonPress = false;
         }
         
         
     }else{
         
-        UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', './images/favourites_icon.png');
+        UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', PERMANENTS.IMAGE_NOT_FAVOURITE);
         isAddButtonPress = false;
     }
     
 })
 
+let savedCities =  ["Delhi", "London", "Beijing", "Amsterdam"]
+
+ const createDeleteButton = () =>{
+    let deleteButton = document.createElement('img');
+    deleteButton.setAttribute('src', PERMANENTS.CLOSE_ICON);
+    deleteButton.className = PERMANENTS.DELETE_BUTTON;
+    deleteButton.addEventListener('click', ()=>{
+        deleteButton.parentElement.remove();
+        let index = savedCities.indexOf(deleteButton.parentElement.lastChild.textContent);
+        if(index != -1){
+          savedCities.splice(index, 1);
+        }
+        deleteAll();
+        render();
+        UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', PERMANENTS.IMAGE_NOT_FAVOURITE);
+    })
+    return deleteButton;
+}
+
+const createNewElement = (element) =>{
+    let savedCity = document.createElement('div');
+    savedCity.className = PERMANENTS.SAVED_CITIES_CLASS;
+        savedCity.textContent = element;
+        savedCity.addEventListener('click', ()=>{
+          changeCurrentCity(getURL(element))
+        })
+    return savedCity;
+}
+
+const render = () => {
+    savedCities.forEach(element => {
+        let newEl = document.createElement('div');
+        newEl.append(createDeleteButton());
+        newEl.append(createNewElement(element));
+        UI_ELEMENTS.LIST_FAV_CITIES.append(newEl);
+    })
+}
+
+const deleteAll = () =>{
+  UI_ELEMENTS.LIST_FAV_CITIES.innerHTML = ""
+}
+const appendToFav = city =>{
+  if (!(savedCities.includes(city))){
+    savedCities.push(city);
+    deleteAll();
+    render();
+  } 
+}
+
+const isFullFavList = arr => {
+  if (arr.length >= 5){
+    return false;
+  }return true;
+}
+const isFavCityPressLike = city =>{
+  if(savedCities.includes(city)){
+    let index = savedCities.indexOf(city);
+    if(index != -1){
+      savedCities.splice(index, 1);
+    }
+    deleteAll();
+    render();
+  }
+}
 firstRender();
 render();

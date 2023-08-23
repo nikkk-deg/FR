@@ -17,6 +17,13 @@ export const PERMANENTS = {
     API_KEY: 'f660a2fb1e4bad108d6160b7f58c555f',//придется потом менять
     SAVED_CITIES_CLASS: 'saved_city',
     DELETE_BUTTON: 'delete_button',
-    ERROR_MASSEGE_1: "Предельное количесиво добавленных локаций"
+    ERROR_MASSEGE_1: "Предельное количесиво добавленных локаций",
+    SRC: 'src',
+    IMAGE_FAVOURITE: './images/favourites_icon_red.png',
+    IMAGE_NOT_FAVOURITE: './images/favourites_icon.png',
+    MOVE_DOWN_ICON: '-28px',
+    ERROR_CITY_NOT_FOUND: 'Город не найден!!!',
+    EMPTY: '',
+    CLOSE_ICON: './images/close_icon.png',
 
 }
