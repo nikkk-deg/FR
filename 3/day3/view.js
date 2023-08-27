@@ -10,6 +10,21 @@ export const UI_ELEMENTS = {
     ADD_TO_FAV: document.getElementById("add_to_favourites"),
     FAV_CITIES: document.getElementById("favourites_cities"),
     LIST_FAV_CITIES: document.getElementById("list_of_favourites_cities"),
+    FEELS_LIKE_DEGREES: document.getElementById("weather_feels_like"),
+    SUNRISE_TIME: document.getElementById("sunrise_time"),
+    SUNSET_TIME: document.getElementById("sunset_time"),
+    TIME1: document.getElementById("time1"),
+    TEMP_INFO1: document.getElementById("Temperature_info1"),
+    WEATHER_ICON1: document.getElementById("weather_info_icon1"),
+    FEELS_LIKE_DEGREES1: document.getElementById("feels_like_temp1"),
+    TIME2: document.getElementById("time2"),
+    TEMP_INFO2: document.getElementById("Temperature_info2"),
+    WEATHER_ICON2: document.getElementById("weather_info_icon2"),
+    FEELS_LIKE_DEGREES2: document.getElementById("feels_like_temp2"),
+    TIME3: document.getElementById("time3"),
+    TEMP_INFO3: document.getElementById("Temperature_info3"),
+    WEATHER_ICON3: document.getElementById("weather_info_icon3"),
+    FEELS_LIKE_DEGREES3: document.getElementById("feels_like_temp3"),
 }
 
 export const PERMANENTS = {
@@ -25,5 +40,6 @@ export const PERMANENTS = {
     ERROR_CITY_NOT_FOUND: 'Город не найден!!!',
     EMPTY: '',
     CLOSE_ICON: './images/close_icon.png',
-
+    BASE_URL_FORECAST: "http://api.openweathermap.org/data/2.5/forecast",
+    METRIC: `&units=metric`
 }
