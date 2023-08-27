@@ -1,7 +1,29 @@
 import { UI_ELEMENTS, PERMANENTS } from "./view.js";
 
 let isAddButtonPress = false;
-let savedCities =  ["Delhi", "London", "Beijing", "Washington", "Moscow", "Rostov-on-Don"];
+
+
+const createSavedCitiesArr = ()=>{
+    let arr = [];
+    for(let key in localStorage) {
+        if (!localStorage.hasOwnProperty(key)) {
+          continue;
+        }
+        if(key != 'current'){
+            arr.push(`${key}`);
+        }
+      }
+    return arr;
+    
+}
+
+let savedCities =  createSavedCitiesArr();
+
+
+const saveCurrentCity = city =>{
+     localStorage.setItem('current', city);
+     console.log(localStorage['current'])
+}
 
 const getURL = cityName =>`${PERMANENTS.SERVER_URL}?q=${cityName}&appid=${PERMANENTS.API_KEY}`;
 
@@ -44,10 +66,9 @@ const changeWeatherIcon = data => {
     deleteButton.className = PERMANENTS.DELETE_BUTTON;
     deleteButton.addEventListener('click', ()=>{
         deleteButton.parentElement.remove();
-        let index = savedCities.indexOf(deleteButton.parentElement.lastChild.textContent);
-        if(index != -1){
-          savedCities.splice(index, 1);
-        }
+        let deleteCity = deleteButton.parentElement.lastChild.textContent;
+        delete localStorage[deleteCity];
+        savedCities = createSavedCitiesArr();
         deleteAll();
         render();
         UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', PERMANENTS.IMAGE_NOT_FAVOURITE);
@@ -78,17 +99,6 @@ const isFullFavList = arr => {
   if (arr.length >= 12){
     return false;
   }return true;
-}
-
-const isFavCityPressLike = city =>{
-  if(savedCities.includes(city)){
-    let index = savedCities.indexOf(city);
-    if(index != -1){
-      savedCities.splice(index, 1);
-    }
-    deleteAll();
-    render();
-  }
 }
 
 const changeFutureTime = (time, timeZone) => {
@@ -125,13 +135,21 @@ const changeFutureWeather = (obj) => {
 UI_ELEMENTS.ADD_TO_FAV.addEventListener('click', ()=>{
 
     if(savedCities.includes(UI_ELEMENTS.CURRENT_FAV_CITY.textContent)){
-        isFavCityPressLike(UI_ELEMENTS.CURRENT_FAV_CITY.textContent);
+        let deleteCity = UI_ELEMENTS.CURRENT_FAV_CITY.textContent;
+        delete localStorage[deleteCity];
+        savedCities = createSavedCitiesArr();
+        deleteAll();
+        render();
         isAddButtonPress = true;
     }
     
     if (!isAddButtonPress){
         UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', PERMANENTS.IMAGE_FAVOURITE);
         isAddButtonPress = true;
+        localStorage.setItem(UI_ELEMENTS.CURRENT_FAV_CITY.textContent, UI_ELEMENTS.CURRENT_FAV_CITY.textContent);
+        savedCities =  createSavedCitiesArr();
+        deleteAll();
+        render();
         if (isFullFavList(savedCities)){
             appendToFav(UI_ELEMENTS.CURRENT_FAV_CITY.textContent);
         }else{
@@ -162,6 +180,7 @@ const changeCurrentCity = url => fetch(url)
         return response.json();
     })
     .then(data => {
+        saveCurrentCity(data.name)
         change_temp(changeToFdegrees(data.main.temp));
         changeCurrentFavCity(data.name);
         changeWeatherIcon(data); 
@@ -197,8 +216,8 @@ const deleteAll = () =>{
 }
 
 const firstRender = () =>{
-    changeCurrentCity(getURL(UI_ELEMENTS.CURRENT_FAV_CITY.textContent));
-    changeFutureWeatherData(getURLFutureTime(UI_ELEMENTS.CURRENT_FAV_CITY.textContent));
+    changeCurrentCity(getURL(localStorage.getItem('current')));
+    changeFutureWeatherData(getURLFutureTime(localStorage.getItem('current')));
 }
 
 const render = () => {
@@ -209,6 +228,7 @@ const render = () => {
         UI_ELEMENTS.LIST_FAV_CITIES.append(newEl);
     })
 }
+
 
 
 firstRender();
