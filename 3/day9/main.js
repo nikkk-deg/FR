@@ -1,7 +1,28 @@
 import { UI_ELEMENTS, PERMANENTS } from "./view.js";
 
-let isAddButtonPress = false;
 
+const changeCurrentCity = url => fetch(url)
+    .then(response => {
+        if(response.status === 404){
+            throw new Error(PERMANENTS.ERROR_CITY_NOT_FOUND);
+        }
+        return response.json();
+    })
+    .then(data => callFun(data))
+    .catch(error => alert(error));
+
+const changeFutureWeatherData = url => fetch(url)
+    .then(response => {
+        if(response.status === 404){
+            throw new Error(PERMANENTS.ERROR_CITY_NOT_FOUND);
+        }
+        return response.json();
+    })
+    .then(data => changeFutureWeather(data))
+    .catch(error => alert(error));
+
+    
+let isAddButtonPress = false;
 
 const createSavedCitiesArr = ()=>{
     let arr = [];
@@ -22,7 +43,6 @@ let savedCities =  createSavedCitiesArr();
 
 const saveCurrentCity = city =>{
      localStorage.setItem('current', city);
-     console.log(localStorage['current'])
 }
 
 const getURL = cityName =>`${PERMANENTS.SERVER_URL}?q=${cityName}&appid=${PERMANENTS.API_KEY}`;
@@ -132,6 +152,25 @@ const changeFutureWeather = (obj) => {
     }
 }
 
+const callFun = data => {
+    saveCurrentCity(data.name)
+    change_temp(changeToFdegrees(data.main.temp));
+    changeCurrentFavCity(data.name);
+    changeWeatherIcon(data); 
+    changeFeelsLikeTemp(changeToFdegrees(data.main.feels_like));
+    changeSunTime(data.sys.sunrise, data.timezone, UI_ELEMENTS.SUNRISE_TIME);
+    changeSunTime(data.sys.sunset, data.timezone, UI_ELEMENTS.SUNSET_TIME);
+    changeFutureTime(data.dt,data.timezone);
+    UI_ELEMENTS.SС_FIELD.value = PERMANENTS.EMPTY;
+    if(savedCities.includes(data.name)){
+        UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', PERMANENTS.IMAGE_FAVOURITE);
+    }else{
+        UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', PERMANENTS.IMAGE_NOT_FAVOURITE);
+    }
+    isAddButtonPress = false;
+
+}
+
 UI_ELEMENTS.ADD_TO_FAV.addEventListener('click', ()=>{
 
     if(savedCities.includes(UI_ELEMENTS.CURRENT_FAV_CITY.textContent)){
@@ -172,44 +211,7 @@ UI_ELEMENTS.SC_FORM.addEventListener('submit', event => {
   
 })
 
-const changeCurrentCity = url => fetch(url)
-    .then(response => {
-        if(response.status === 404){
-            throw new Error(PERMANENTS.ERROR_CITY_NOT_FOUND);
-        }
-        return response.json();
-    })
-    .then(data => {
-        saveCurrentCity(data.name)
-        change_temp(changeToFdegrees(data.main.temp));
-        changeCurrentFavCity(data.name);
-        changeWeatherIcon(data); 
-        changeFeelsLikeTemp(changeToFdegrees(data.main.feels_like));
-        changeSunTime(data.sys.sunrise, data.timezone, UI_ELEMENTS.SUNRISE_TIME);
-        changeSunTime(data.sys.sunset, data.timezone, UI_ELEMENTS.SUNSET_TIME);
-        changeFutureTime(data.dt,data.timezone);
-        UI_ELEMENTS.SС_FIELD.value = PERMANENTS.EMPTY;
-        if(savedCities.includes(data.name)){
-            UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', PERMANENTS.IMAGE_FAVOURITE);
-        }else{
-            UI_ELEMENTS.ADD_TO_FAV.setAttribute('src', PERMANENTS.IMAGE_NOT_FAVOURITE);
-        }
-        isAddButtonPress = false;
 
-    })
-    .catch(error => alert(error));
-
-const changeFutureWeatherData = url => fetch(url)
-.then(response => {
-    if(response.status === 404){
-        throw new Error(PERMANENTS.ERROR_CITY_NOT_FOUND);
-    }
-    return response.json();
-})
-    .then(data =>{
-        changeFutureWeather(data);
-    })
-    .catch(error => alert(error));
 
 const deleteAll = () =>{
     UI_ELEMENTS.LIST_FAV_CITIES.innerHTML = ""
