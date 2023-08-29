@@ -1,27 +1,40 @@
 import { UI_ELEMENTS, PERMANENTS } from "./view.js";
 
-
-const changeCurrentCity = url => fetch(url)
-    .then(response => {
-        if(response.status === 404){
-            throw new Error(PERMANENTS.ERROR_CITY_NOT_FOUND);
-        }
-        return response.json();
-    })
-    .then(data => callFun(data))
-    .catch(error => alert(error));
-
-const changeFutureWeatherData = url => fetch(url)
-    .then(response => {
-        if(response.status === 404){
-            throw new Error(PERMANENTS.ERROR_CITY_NOT_FOUND);
-        }
-        return response.json();
-    })
-    .then(data => changeFutureWeather(data))
-    .catch(error => alert(error));
-
+async function fetchData(url){
+    const response = await fetch(url);
     
+    return await response.json();
+}
+
+async function changeCurrentCity(url){
+    try{
+        const data = await fetchData(url);
+        callFun(data);
+    }catch(error){
+        console.log(error);
+    }
+}
+
+async function changeFutureWeatherData(url){
+    try {
+        const data = await fetchData(url);
+        changeFutureWeather(data)
+    } catch (error) {
+        alert('город не найден!')
+    }
+}
+
+// const changeFutureWeatherData = url => fetch(url)
+//     .then(response => {
+//         if(response.status === 404){
+//             throw new Error(PERMANENTS.ERROR_CITY_NOT_FOUND);
+//         }
+//         return response.json();
+//     })
+//     .then(data => changeFutureWeather(data))
+//     .catch(error => alert(error));
+
+
 let isAddButtonPress = false;
 
 const createSavedCitiesArr = ()=>{
