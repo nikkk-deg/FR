@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link href="main.css" rel="stylesheet">
+</head>
+<body>
+<div id="main_content">
+
+<!-- Строка для поиска города -->
+<form id="search_city">
+    <label for="input_city">
+    <input id="search_city_field" type="text" name="input_city" placeholder="City" required>
+    <button id="search_button" type="submit"></button>
+    </label>
+</form>
+
+<!-- Иформация о городе, который мы искали, вначале выдает инфу о городе из placeholder -->
+<div id="current_cyty_info">
+    <div>
+        <div id="city_to_favourites"><p id="name_of_city">Rostov-on-Don</p></div>
+        <img id="add_to_favourites" src="./images/favourites_icon.png">
+    </div>
+    <p id="temperature">14</p>
+    <img id="weather_icon" src="https://openweathermap.org/img/wn/04d@2x.png">
+    <div id="feels_like">
+        <p id="text_feels_like">Feels like:</p>
+        <p class= "time_and_temp" id="weather_feels_like">10</p>
+    </div>
+    <div id="sunrise">
+        <p id="text_sunrise">Sunrise:</p>
+        <p class= "time_and_temp" id="sunrise_time">03:21</p>
+    </div>
+    <div id="sunset">
+        <p id="text_sunset">Sunset:</p>
+        <p class="time_and_temp" id="sunset_time">21:40</p>
+    </div>
+<div class="future_weather">
+    <div id="first_info" class="weather_info">
+        <p id="time1">11:00</p>
+        <p class="temp_text">Temperature:</p>
+        <p id="Temperature_info1">14</p>
+        <img id="weather_info_icon1" src="https://openweathermap.org/img/wn/04d@2x.png">
+        <p>Feels like:</p>
+        <p id="feels_like_temp1">12</p>
+    </div>
+</div>
+<div class="future_weather">
+    <div id="first_info" class="weather_info">
+        <p id="time2">14:00</p>
+        <p class="temp_text">Temperature:</p>
+        <p id="Temperature_info2">17</p>
+        <img id="weather_info_icon2" src="https://openweathermap.org/img/wn/04d@2x.png">
+        <p>Feels like:</p>
+        <p id="feels_like_temp2">19</p>
+    </div>
+</div>
+<div class="future_weather">
+    <div id="first_info" class="weather_info">
+        <p id="time3">20:00</p>
+        <p class="temp_text">Temperature:</p>
+        <p id="Temperature_info3">13</p>
+        <img id="weather_info_icon3" src="https://openweathermap.org/img/wn/04d@2x.png">
+        <p>Feels like:</p>
+        <p id="feels_like_temp3">13</p>
+    </div>
+</div>
+</div>
+
+<!-- Добавленные в избранное города -->
+<div id="favourites_cities">
+    <div id="article_favourites_cities"><p id="P_article_favourites_cities" >Added Locations:</p></div>
+    <div id="list_of_favourites_cities"></div>
+</div>
+<script src="main.js" type="module"></script>
+<script src="view.js" type="module"></script>
+<script src="main.mjs" type="module"></script>
+</div>
+</body>
+</html>
