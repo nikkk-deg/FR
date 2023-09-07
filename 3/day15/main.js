@@ -1,4 +1,7 @@
 import { UI_ELEMENTS, PERMANENTS } from "./view.js";
+import { compareAsc, format } from 'date-fns';
+
+console.log(format(new Date(2014, 1, 11), 'yyyy-MM-dd'));
 
 async function fetchData(url){
     const response = await fetch(url);
@@ -23,16 +26,6 @@ async function changeFutureWeatherData(url){
         alert('город не найден!')
     }
 }
-
-// const changeFutureWeatherData = url => fetch(url)
-//     .then(response => {
-//         if(response.status === 404){
-//             throw new Error(PERMANENTS.ERROR_CITY_NOT_FOUND);
-//         }
-//         return response.json();
-//     })
-//     .then(data => changeFutureWeather(data))
-//     .catch(error => alert(error));
 
 
 let isAddButtonPress = false;

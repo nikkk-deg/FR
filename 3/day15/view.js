@@ -1,4 +1,8 @@
 // SC-search city
+import img1 from './images/favourites_icon_red.png';
+import img2 from './images/favourites_icon.png';
+import img3 from './images/close_icon.png'
+
 export const UI_ELEMENTS = {
     SC_FORM: document.getElementById("search_city"),
     SС_FIELD: document.getElementById("search_city_field"),
@@ -34,12 +38,12 @@ export const PERMANENTS = {
     DELETE_BUTTON: 'delete_button',
     ERROR_MASSEGE_1: "Предельное количесиво добавленных локаций",
     SRC: 'src',
-    IMAGE_FAVOURITE: './images/favourites_icon_red.png',
-    IMAGE_NOT_FAVOURITE: './images/favourites_icon.png',
+    IMAGE_FAVOURITE: img1,
+    IMAGE_NOT_FAVOURITE: img2,
     MOVE_DOWN_ICON: '-28px',
     ERROR_CITY_NOT_FOUND: 'Город не найден!!!',
     EMPTY: '',
-    CLOSE_ICON: './images/close_icon.png',
+    CLOSE_ICON: img3,
     BASE_URL_FORECAST: "http://api.openweathermap.org/data/2.5/forecast",
     METRIC: `&units=metric`
 }
