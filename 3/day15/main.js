@@ -1,6 +1,7 @@
 import { UI_ELEMENTS, PERMANENTS } from "./view.js";
 import { compareAsc, format } from 'date-fns';
 
+
 console.log(format(new Date(2014, 1, 11), 'yyyy-MM-dd'));
 
 async function fetchData(url){
