@@ -24,17 +24,6 @@ async function changeFutureWeatherData(url){
     }
 }
 
-// const changeFutureWeatherData = url => fetch(url)
-//     .then(response => {
-//         if(response.status === 404){
-//             throw new Error(PERMANENTS.ERROR_CITY_NOT_FOUND);
-//         }
-//         return response.json();
-//     })
-//     .then(data => changeFutureWeather(data))
-//     .catch(error => alert(error));
-
-
 let isAddButtonPress = false;
 
 const createSavedCitiesArr = ()=>{
@@ -43,19 +32,16 @@ const createSavedCitiesArr = ()=>{
         if (!localStorage.hasOwnProperty(key)) {
           continue;
         }
-        if(key != 'current'){
-            arr.push(`${key}`);
-        }
+        arr.push(`${key}`);
       }
-    return arr;
-    
+    return arr;    
 }
 
 let savedCities =  createSavedCitiesArr();
 
 
 const saveCurrentCity = city =>{
-     localStorage.setItem('current', city);
+     document.cookie = `current=${city}; max-age = 3600`
 }
 
 const getURL = cityName =>`${PERMANENTS.SERVER_URL}?q=${cityName}&appid=${PERMANENTS.API_KEY}`;
@@ -230,9 +216,16 @@ const deleteAll = () =>{
     UI_ELEMENTS.LIST_FAV_CITIES.innerHTML = ""
 }
 
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
+
 const firstRender = () =>{
-    changeCurrentCity(getURL(localStorage.getItem('current')));
-    changeFutureWeatherData(getURLFutureTime(localStorage.getItem('current')));
+    changeCurrentCity(getURL(getCookie('current')));
+    changeFutureWeatherData(getURLFutureTime(getCookie('current')));
 }
 
 const render = () => {
