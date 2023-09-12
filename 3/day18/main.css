@@ -1,0 +1,191 @@
+body{
+    background-color: #DDD;
+    font-weight:bold;
+    font-size: x-large;
+}
+
+#main_content{
+    width: 600px;
+    height: 655px;
+    background-color: #FFF;
+    margin: 100px auto;
+    border: solid black 1px;
+}
+
+#search_city{
+    height: 45px;
+    border: solid #000 1px;
+}
+#search_city_field{
+    width: 530px;
+    border: none;
+    outline: none;
+    font-size: x-large;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+#search_button{
+    background: url(./images/search_icon.png) no-repeat;
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+div#current_cyty_info{
+    border: solid 1px black;
+    width: 300px;
+    height: 607px;
+    border-bottom: #000 solid 2px;
+}
+p#temperature{
+    font-size: 70px;
+    margin-left: 30px;
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+img#degrees{
+    display: inline;
+    float: right;
+    margin-top: -138px;
+    margin-right: 175px;
+}
+img#weather_icon{
+    display: block;
+    position:absolute;
+    margin-top: -130px;
+    margin-left: 115px;
+}
+#city_to_favourites{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+#add_to_favourites{
+    cursor: pointer;
+    display: inline;
+    float: right;
+    margin-right: 20px;
+    margin-top: -52px;
+}
+div#favourites_cities{
+    border-bottom: #000 solid 2px;
+}
+div#article_favourites_cities{
+    border-bottom: #000 solid 2px;
+}
+p#P_article_favourites_cities{
+    margin-left: 15px;
+}
+#favourites_cities{
+    display: inline;
+    border: solid 1px black;
+    margin-top: -610px;
+    width: 298px;
+    height: 607px;
+    float: right;    
+}
+.saved_city{
+    margin-top: 15px;
+    margin-left: 17px;
+    cursor: pointer;
+}
+
+.delete_button{
+    display: inline;
+    float: right;
+    margin-right: 20px;
+    cursor: pointer;
+}
+#weather_feels_like{
+    position: absolute;
+    float: left;
+    display: inline;
+    margin-top: -42px;
+    margin-left: 92px;
+}
+#sunrise_time{
+    position: absolute;
+    float: left;
+    display: inline;
+    margin-top: -42px;
+    margin-left: 78px;
+}
+#sunset_time{
+    position: absolute;
+    float: left;
+    display: inline;
+    margin-top: -42px;
+    margin-left: 70px;
+}
+div.future_weather{
+    width: 265px;
+    height: 92px;
+    border-bottom: #000 solid 1px;
+    font-size: medium;
+    margin-left: 20px;
+}
+#feels_like, #sunrise, #sunset{
+    font-size:smaller;
+    margin-top: -15px;
+    margin-left: 20px;
+}
+#Temperature_info1{
+    display: inline;
+    float: right;
+    margin-top: -33px;
+    margin-right: 145px;
+}
+#weather_info_icon1{
+    display: block;
+    position: absolute;
+    margin-top: -45px;
+    margin-left: 150px;
+    height: 70px;
+    width: 70px;
+}
+#feels_like_temp1{
+    display: inline;
+    float: right;
+    margin-top: -33px;
+    margin-right: 170px;
+}
+#Temperature_info2{
+    display: inline;
+    float: right;
+    margin-top: -33px;
+    margin-right: 145px;
+}
+#weather_info_icon2{
+    display: block;
+    position: absolute;
+    margin-top: -45px;
+    margin-left: 150px;
+    height: 70px;
+    width: 70px;
+}
+#feels_like_temp2{
+    display: inline;
+    float: right;
+    margin-top: -33px;
+    margin-right: 170px;
+}
+
+#Temperature_info3{
+    display: inline;
+    float: right;
+    margin-top: -33px;
+    margin-right: 145px;
+}
+#weather_info_icon3{
+    display: block;
+    position: absolute;
+    margin-top: -45px;
+    margin-left: 150px;
+    height: 70px;
+    width: 70px;
+}
+#feels_like_temp3{
+    display: inline;
+    float: right;
+    margin-top: -33px;
+    margin-right: 170px;
+}
