@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="main.css" rel="stylesheet">
+    <title>Countdown</title>
+</head>
+<body>
+    <div id="mainContent">
+        <p>Выберите дату</p>
+        <form>
+            <label for="input_date">
+            <input id="date_field" type="text" name="input_date" placeholder="DD/MM/YYYY" required>
+            <img id="dateIcon" src="./img/dateIcon.png">
+            <button id="search_button" type="submit">Посчитать</button>
+            </label>
+        </form>
+        <p id="timeLeftTxt">Осталось времени:</p>
+        <div id="countdown">
+            <p class="countNum" id="years">10</p>
+            <p class="countNum" id="yearsTxt">лет</p>
+            <p class="countNum" id="days">201</p>
+            <p class="countNum" id="daysTxt">день</p>
+            <p class="countNum" id="hours">15</p>
+            <p class="countNum" id="hoursTxt">часов</p>
+        </div>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
