@@ -9,10 +9,9 @@
 <body>
     <div id="mainContent">
         <p>Выберите дату</p>
-        <form>
+        <form id="dateForm" onsubmit="return false;">
             <label for="input_date">
-            <input id="date_field" type="text" name="input_date" placeholder="DD/MM/YYYY" required>
-            <img id="dateIcon" src="./img/dateIcon.png">
+            <input type="date" id="date_field" required>
             <button id="search_button" type="submit">Посчитать</button>
             </label>
         </form>
@@ -27,6 +26,5 @@
         </div>
     </div>
     <script type="module" src="main.js"></script>
-    <script type="module" src="view.js"></script>
 </body>
 </html>

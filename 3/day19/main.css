@@ -12,6 +12,9 @@
     position: absolute;
     margin-left: 10px;
     text-align: center;
+    font-size: x-large;
+    color: #666;
+    font-family:sans-serif;
 }
 #search_button{
     width: 380px;
@@ -22,6 +25,7 @@
     border-radius: 8px;
     font-size: large;
     margin-left: 400px;
+    cursor: pointer;
 }
 #timeLeftTxt{
     font-weight: bold;

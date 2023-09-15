@@ -1,0 +1,7 @@
+перейти в директорию с проектом!!!
+
+
+npm install --save-dev parcel
+npm install date-fns --save
+npx parcel index.html
+import { compareAsc, format } from 'date-fns'
