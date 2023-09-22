@@ -598,8 +598,32 @@ const changeUI = (arr)=>{
     (0, _viewJs.UI_EL).HOURS.textContent = arr[2];
     changeTimeTxt(arr);
 };
+class ValidationDateError extends Error {
+    constructor(message){
+        super(message);
+        this.name = "validationDateError";
+    }
+}
+const readDate = (time, date)=>{
+    let invalidDate = new Date(time) - new Date() > 0;
+    if (!invalidDate) {
+        changeUI([
+            0,
+            0,
+            0
+        ]);
+        throw new ValidationDateError("Введена дата в прошлом.");
+    }
+    changeUI(getTimeArr(getHoursFromTime(date)));
+};
 (0, _viewJs.UI_EL).DATE_FORM.addEventListener("submit", ()=>{
-    changeUI(getTimeArr(getHoursFromTime(getTimeFromDate((0, _viewJs.UI_EL).DATE_FIELD.value))));
+    let date = getTimeFromDate((0, _viewJs.UI_EL).DATE_FIELD.value);
+    try {
+        readDate((0, _viewJs.UI_EL).DATE_FIELD.value, date);
+    } catch (err) {
+        if (err instanceof ValidationDateError) alert("Некорректные данные: " + err.message);
+        else throw err;
+    }
 });
 
 },{"./view.js":"de63B","date-fns/millisecondsToHours":"2GgQk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"de63B":[function(require,module,exports) {
