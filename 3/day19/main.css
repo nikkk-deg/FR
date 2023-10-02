@@ -39,9 +39,3 @@
     display: inline;
     float: left;
 }
-#dateIcon{
-    position: absolute;
-    margin-top: 9px;
-    margin-left: 350px;
-    cursor: pointer;
-}
