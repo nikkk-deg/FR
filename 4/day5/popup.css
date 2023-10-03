@@ -1,0 +1,173 @@
+
+body{
+    background-color: #CCC;
+    font-family: "Roboto-Light"
+}
+
+#mainContent{
+    height: 533px;
+    width: 320px;
+    margin: auto;
+    margin-top: 50px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+#settings_conteiner{
+    border: 1px solid black;
+    width: 98px;
+    height: 32px;
+    margin: 10px 7px;
+    text-align: center;
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+#settings_button{
+    margin-top: 5px;
+}
+
+#exit_conteiner{
+    display: inline;
+    float: right;
+    border: 1px solid black;
+    width: 66px;
+    height: 32px;
+    margin-top: -44px;
+    margin-right: 7px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#exit_button{
+    margin-top: 5px;  
+}
+
+#chat_conteiner{
+    width: 302px;
+    height: 437px;
+    border: 1px solid black;
+    margin-left: 8px;
+}
+
+#input_text_field{
+    width: 267px;
+    height: 28px;
+    border: 1px solid black;
+    margin-left: 8px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+#send_message{
+    width: 27px;
+    height: 32px;
+    border: 1px solid black;
+    background-color: white;
+    cursor: pointer;
+}
+#chat_conteiner{
+    position:relative;
+    padding-bottom: 0;
+}
+#prosloika{
+    position:absolute;
+    bottom: 5px;
+}
+
+.another_message, .my_message{
+    background-color: #CCC;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: table;
+}
+
+.text{
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 0;
+}
+
+.my_message{
+    float: inline-end;
+}
+
+.another_message{
+    float: inline-start;
+}
+
+.time{
+    margin-top: -15px;
+    margin-bottom: 0;
+    margin-right: 0px;
+    font-family: "Roboto-Light";
+    font-style: italic;
+    font-size: small;
+    padding-right: 5px;
+    float: inline-end;
+}
+
+#popup_settings{
+    width: 321px;
+    height: 533px;
+    background-color: #444;
+    display: none;
+    position: absolute;
+    top: -19px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+#popup_settings_body{
+    width: 273px;
+    height: 319px;
+    margin: auto;
+    margin-top: 100px;
+    background-color: white;
+    text-align: center;
+}
+
+#popup_settings:target{
+    display:block;
+}
+
+#popup_settigs_text{
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+.close_icon{
+    float: right;
+    margin-top: -33px;
+    margin-right: 20px;
+}
+
+#name_in_chat_text{
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+#input_name_field{
+    width: 207px;
+    height: 28px;
+    border: 1px solid black;
+    margin-left: 8px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+#send_name{
+    width: 27px;
+    height: 32px;
+    border: 1px solid black;
+    background-color: white;
+    cursor: pointer;
+}
+
