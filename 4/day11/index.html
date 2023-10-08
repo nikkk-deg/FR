@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link href="popup.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="main.css" rel="stylesheet">
+</head>
+<body>
+<div id="mainContent">
+
+    <!-- кнопки выйти и настройки -->
+<div id="settings_conteiner"><p id="settings_button"><a href="#popup_settings">Настройки</a></p></div>
+<div id="exit_conteiner"><p id="exit_button">Выйти</p></div>
+
+<!-- сам чат -->
+<div id="chat_conteiner">
+    <div id="prosloika">
+    <div  class="my_message">
+        <p class="text">Я: Добрый день!</p>
+        <p class="time">18:45</p>
+    </div>
+    <div class="another_message">
+        <p class="text">Собеседник: Добрый день!</p>
+        <p class="time">18:45</p>
+    </div>
+    <div class="another_message">
+        <p class="text">Собеседник: А это второе и, кажется, оно очень 
+            длинное, чтобы поместиться на 
+            одной строке</p>
+        <p class="time">18:45</p>
+    </div>
+    <div  class="my_message">
+        <p class="text">Я: Добрый день!</p>
+        <p class="time">18:45</p>
+    </div>
+</div>
+</div>
+<template id="myMessage">
+        <p class="text"></p>
+        <p class="time"></p>
+</template>
+<!-- форма отправки сообщения -->
+<form id="send_message_form">
+    <label for="input_text">
+    <input id="input_text_field" type="text" name="input_text" placeholder=" сообщение.." required>
+    <button id="send_message" type="submit">-></button>
+    </label>
+</form>
+
+<!-- popup settings-->
+<div id="popup_settings">
+    <div id="popup_settings_body">
+        <p id="popup_settigs_text">Настройки</p>
+        <a class="close_icon" href="#mainContent"><img src="image/close_icon.png"></a>
+        <p id="name_in_chat_text">Имя в чате</p>
+        <form id="change_name_form">
+            <label for="input_name">
+            <input id="input_name_field" type="text" name="input_name" placeholder=" Стив" required>
+            <button id="send_name" type="submit">-></button>
+            </label>
+        </form>
+    </div>
+</div>
+</div>
+
+<script src="main.js" type="module"></script>
+</body>
+</html>
