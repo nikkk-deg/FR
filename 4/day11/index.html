@@ -4,67 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
-    <link href="popup.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/settingsPOPUP.css" rel="stylesheet">
+    <link href="css/loginPOPUP.css" rel="stylesheet">
+    <link href="css/confirmMail.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div id="mainContent">
 
-    <!-- кнопки выйти и настройки -->
-<div id="settings_conteiner"><p id="settings_button"><a href="#popup_settings">Настройки</a></p></div>
-<div id="exit_conteiner"><p id="exit_button">Выйти</p></div>
+    <!-- кнопка настройки -->
+<div id="settings"><p id="buttonSETTINGS"><a href="#settingsPOPUP">Настройки</a></p></div>
+    <!-- кнопка выйти -->
+<div id="logout"><p id="buttonLOGIN"><a href="#loginPOPUP">Выйти</a></p></div>
 
-<!-- сам чат -->
-<div id="chat_conteiner">
+    <!-- чат -->
+<div id="chatContent">
     <div id="chat">
-    <div  class="my_message">
-        <p class="text">Я: Добрый день!</p>
-        <p class="time">18:45</p>
-    </div>
-    <div class="another_message">
-        <p class="text">Собеседник: Добрый день!</p>
-        <p class="time">18:45</p>
-    </div>
-    <div class="another_message">
-        <p class="text">Собеседник: А это второе и, кажется, оно очень 
-            длинное, чтобы поместиться на 
-            одной строке</p>
-        <p class="time">18:45</p>
-    </div>
-    <div  class="my_message">
-        <p class="text">Я: Добрый день!</p>
-        <p class="time">18:45</p>
+        <!-- sms1 -->
+        <div  class="myMessage">
+            <p class="text">Я: Добрый день!</p>
+            <p class="time">18:45</p>
+        </div>
+        <!-- sms2 -->
+        <div class="userMessage">
+            <p class="text">Собеседник: Добрый день!</p>
+            <p class="time">18:45</p>
+        </div>
+        <!-- sms3 -->
+        <div class="userMessage">
+            <p class="text">Собеседник: А это второе и, кажется, оно очень 
+                длинное, чтобы поместиться на 
+                одной строке</p>
+            <p class="time">18:45</p>
+        </div>
+        <!-- sms4 -->
+        <div  class="myMessage">
+            <p class="text">Я: Добрый день!</p>
+            <p class="time">18:45</p>
+        </div>
     </div>
 </div>
-</div>
-<template id="myMessage">
-        <p class="text"></p>
-        <p class="time"></p>
-</template>
+
+
+        <!-- шаблон для сообщений -->
+        <template id="messageTemplate">
+            <p class="text"></p>
+            <p class="time"></p>
+        </template>
+
+
 <!-- форма отправки сообщения -->
-<form id="send_message_form">
-    <label for="input_text">
-    <input id="input_text_field" type="text" name="input_text" placeholder=" сообщение.." required>
-    <button id="send_message" type="submit">-></button>
+<form id="sendForm">
+    <label for="inputText">
+    <input id="textField" type="text" name="inputText" placeholder=" сообщение.." required>
+    <button id="buttonSEND" type="submit">-></button>
     </label>
 </form>
 
+
 <!-- popup settings-->
-<div id="popup_settings">
-    <div id="popup_settings_body">
-        <p id="popup_settigs_text">Настройки</p>
-        <a class="close_icon" href="#mainContent"><img src="image/close_icon.png"></a>
-        <p id="name_in_chat_text">Имя в чате</p>
-        <form id="change_name_form">
-            <label for="input_name">
-            <input id="input_name_field" type="text" name="input_name" placeholder=" Стив" required>
-            <button id="send_name" type="submit">-></button>
+<div id="settingsPOPUP">
+    <div id="settingsPOPUP_body">
+        <p id="settingsPOPUP_text">Настройки</p>
+        <a class="closePOPUP" href="#mainContent"><img src="image/close_icon.png"></a>
+        <p id="settingsPOPUP_name">Имя в чате</p>
+        <form id="settingsPOPUP_changeNameForm">
+            <label for="inputName">
+            <input id="settingsPOPUP_textField" type="text" name="inputName" placeholder=" Стив" required>
+            <button id="settingsPOPUP_buttonSEND" type="submit">-></button>
             </label>
         </form>
     </div>
 </div>
+
+<!-- popup login -->
+<div id="loginPOPUP">
+    <div id="loginPOPUP_body">
+        <p id="loginPOPUP_text">Авторизация</p>
+        <a class="closePOPUP" href="#mainContent"><img src="image/close_icon.png"></a>
+        <p id="loginPOPUP_mail">Почта:</p>
+        <form id="loginPOPUP_inputMailForm">
+            <label for="inputMail">
+            <input id="loginPOPUP_textField" type="text" name="inputMail" required>
+            <button id="loginPOPUP_buttonSEND" type="submit">Получить код</button>
+            <button id="loginPOPUP_buttonInput" type="button"><a href = "#confirmPOPUP" >Ввести код</a></button>
+            </label>
+        </form>
+    </div>
 </div>
 
-<script src="main.js" type="module"></script>
+<!-- confirm email form -->
+<div id="confirmPOPUP">
+    <div id="confirmPOPUP_body">
+        <p id="confirmPOPUP_text">Подтверждение</p>
+        <a class="closePOPUP" href="#loginPOPUP"><img src="image/close_icon.png"></a>
+        <p id="confirmPOPUP_code">Код:</p>
+        <form id="confirmPOPUP_inputCodeForm">
+            <label for="inputCode">
+            <input id="confirmPOPUP_textField" type="text" name="inputCode" required>
+            <button id="confirmPOPUP_buttonSEND" type="submit">Войти</button>
+            </label>
+        </form>
+    </div>
+</div>
+
+</div>
+<script  type="module" src="vies.js"></script>
+<script  type="module" src="main.js"></script>
 </body>
 </html>

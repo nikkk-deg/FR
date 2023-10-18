@@ -1,41 +1,59 @@
-var UI_EL = {
-    SETTINGS_BUTTON: document.getElementById("settings_conteiner"),
-    EXIT_BUTTON: document.getElementById("exit_conteiner"),
-    CHAT: document.getElementById("chat"),
-    MY_MESSAGE: document.querySelectorAll("my_message"),
-    ANOTHER_MESSAGE: document.querySelectorAll("another_message"),
-    SEND_MESSAGE_FORM: document.getElementById("send_message_form"),
-    INPUT_TEXT_FIELD: document.getElementById("input_text_field"),
-    SEND_MESSAGE_BUTTON: document.getElementById("send_message"),
-    SETTINGS_WINDOW: document.getElementById("popup_settings"),
-    CHANGE_NAME_FORM: document.getElementById("change_name_form"),
-    INPUT_NAME_FIELD: document.getElementById("input_name_field"),
-    SEND_NAME: document.getElementById("send_name"),
-    MY_MESSAGE_TEMP: document.getElementById("myMessage"),
-};
-var createMyMessage = function (text) {
-    var templateContent = UI_EL.MY_MESSAGE_TEMP.content.cloneNode(true);
-    var templateRoot = document.createElement('div');
-    templateRoot.className = 'my_message';
-    var textOfMessage = templateContent.querySelector('.text');
+import { UI_EL, PERMANENTS } from "./vies.js";
+
+
+// отправка mail
+const postData =async (mail_address) => {
+    const data = {
+        email: `${mail_address}`
+    }
+    const response = await fetch(PERMANENTS.API_GET_CODE, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify(data)
+    })
+    return response.json(); 
+}
+
+
+const sendMail = () => {
+    if(UI_EL.MAIL.value){
+        postData(UI_EL.MAIL.value);
+    }
+}
+
+UI_EL.MAIL_FORM.addEventListener('submit', sendMail);
+
+
+
+// отправка смс
+const createMyMessage = (text)=> {
+    const templateContent = UI_EL.TEMPLATE_MESSAGE.content.cloneNode(true);
+    const templateRoot = document.createElement('div');
+    templateRoot.className = UI_EL.MY_MESS_CLASS;
+    const textOfMessage = templateContent.querySelector('.text');
     textOfMessage.textContent = text;
-    var timeOfMessage = templateContent.querySelector('.time');
-    timeOfMessage.textContent = createTime();
+    const timeOfMessage = templateContent.querySelector('.time');
+    timeOfMessage.textContent = createTime();       
     templateRoot.append(templateContent);
-    return templateRoot;
-};
-var createTime = function () {
-    var time = new Date();
-    var hours = time.getHours();
-    var minutes = time.getMinutes();
-    var formatedMinutes = minutes < 10 ? '0' + minutes : minutes;
-    return "".concat(hours, ":").concat(formatedMinutes);
-};
-var sendMyMessage = function (text) {
-    var _a;
-    (_a = UI_EL.CHAT) === null || _a === void 0 ? void 0 : _a.append(createMyMessage(text));
-};
-UI_EL.SEND_MESSAGE_FORM.addEventListener("submit", function (event) {
+    return templateRoot;    
+}
+
+const createTime = () => {
+    let time = new Date();
+    let hours = time.getHours();
+    let minutes = time.getMinutes();
+    let formatedMinutes = minutes < 10 ? '0'+minutes : minutes;
+    return `${hours}:${formatedMinutes}`;    
+}
+
+const sendMessage = (event) => {
     event.preventDefault();
-    sendMyMessage(UI_EL.INPUT_TEXT_FIELD.value);
-});
+    UI_EL.CHAT.append(createMyMessage(UI_EL.MESSAGE_TEXT.value));
+    const space = document.createElement('div');
+    space.className = UI_EL.SPACE_CLASS;
+    UI_EL.CHAT.append(space);
+}
+
+UI_EL.SEND_MESSAGE.addEventListener("submit", sendMessage);
