@@ -1,0 +1,62 @@
+#confirmPOPUP {
+  background-color: #444;
+  width: 321px;
+  height: 534px;
+  margin: 50px auto auto;
+  display: none;
+  position: absolute;
+  inset: 0;
+}
+
+#confirmPOPUP_body {
+  text-align: center;
+  background-color: #fff;
+  width: 273px;
+  height: 319px;
+  margin: 100px auto auto;
+}
+
+#confirmPOPUP:target {
+  display: block;
+}
+
+#confirmPOPUP_text {
+  text-align: left;
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.closePOPUP {
+  float: right;
+  margin-top: -33px;
+  margin-right: 20px;
+}
+
+#confirmPOPUP_code {
+  text-align: left;
+  margin-bottom: 0;
+  padding-top: 10px;
+  padding-left: 16px;
+}
+
+#confirmPOPUP_textField {
+  cursor: pointer;
+  border: 1px solid #000;
+  width: 245px;
+  height: 28px;
+  margin-top: 4px;
+  margin-left: 8px;
+}
+
+#confirmPOPUP_buttonSEND {
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #000;
+  width: 62px;
+  height: 32px;
+  margin-top: 5px;
+  margin-left: 15px;
+  display: block;
+}
+
+/*# sourceMappingURL=index.4922d089.css.map */

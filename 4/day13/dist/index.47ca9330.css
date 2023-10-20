@@ -1,0 +1,120 @@
+body {
+  background-color: #ccc;
+  font-family: Roboto-Light;
+}
+
+#mainContent {
+  background-color: #fff;
+  border: 1px solid #000;
+  width: 320px;
+  height: 533px;
+  margin: 50px auto auto;
+}
+
+#settings {
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #000;
+  width: 98px;
+  height: 32px;
+  margin: 10px 7px;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+#buttonSETTINGS {
+  margin-top: 5px;
+}
+
+#logout {
+  float: right;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #000;
+  width: 66px;
+  height: 32px;
+  margin-top: -44px;
+  margin-right: 7px;
+  display: inline;
+}
+
+#buttonLOGIN {
+  margin-top: 5px;
+}
+
+#chatContent {
+  border: 1px solid #000;
+  width: 302px;
+  height: 437px;
+  margin-left: 8px;
+}
+
+#textField {
+  cursor: pointer;
+  border: 1px solid #000;
+  width: 267px;
+  height: 28px;
+  margin-top: 4px;
+  margin-left: 8px;
+}
+
+#buttonSEND {
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #000;
+  width: 27px;
+  height: 32px;
+}
+
+#chatContent {
+  padding-bottom: 0;
+  position: relative;
+}
+
+#chat {
+  position: absolute;
+  bottom: 5px;
+}
+
+.userMessage, .myMessage {
+  background-color: #ccc;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.text {
+  margin-top: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.myMessage {
+  float: inline-end;
+}
+
+.userMessage {
+  float: inline-start;
+}
+
+.time {
+  float: inline-end;
+  margin-top: -15px;
+  margin-bottom: 0;
+  margin-right: 0;
+  padding-right: 5px;
+  font-family: Roboto-Light;
+  font-size: small;
+  font-style: italic;
+}
+
+.space {
+  float: inline-end;
+  width: 267px;
+}
+
+/*# sourceMappingURL=index.47ca9330.css.map */

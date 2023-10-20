@@ -1,0 +1,74 @@
+#loginPOPUP {
+  background-color: #444;
+  width: 321px;
+  height: 534px;
+  margin: 50px auto auto;
+  display: none;
+  position: absolute;
+  inset: 0;
+}
+
+#loginPOPUP_body {
+  text-align: center;
+  background-color: #fff;
+  width: 273px;
+  height: 319px;
+  margin: 100px auto auto;
+}
+
+#loginPOPUP:target {
+  display: block;
+}
+
+#loginPOPUP_text {
+  text-align: left;
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.closePOPUP {
+  float: right;
+  margin-top: -33px;
+  margin-right: 20px;
+}
+
+#loginPOPUP_mail {
+  text-align: left;
+  margin-bottom: 0;
+  padding-top: 50px;
+  padding-left: 13px;
+}
+
+#loginPOPUP_textField {
+  cursor: pointer;
+  border: 1px solid #000;
+  width: 245px;
+  height: 28px;
+  margin-top: 4px;
+  margin-left: 0;
+}
+
+#loginPOPUP_buttonSEND {
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #000;
+  width: 120px;
+  height: 32px;
+  margin-top: 5px;
+  margin-left: 11px;
+  display: block;
+}
+
+#loginPOPUP_buttonInput {
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #000;
+  width: 120px;
+  height: 32px;
+  margin-top: -32px;
+  margin-left: 141px;
+  display: block;
+  position: absolute;
+}
+
+/*# sourceMappingURL=index.38bb1601.css.map */

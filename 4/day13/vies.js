@@ -44,6 +44,9 @@ export const UI_EL = {
     MESSAGE_TEXT: document.getElementById(IDS.TEXTFIELD),
     SEND_MESSAGE: document.getElementById(IDS.SENDFORM),
     SPACE_CLASS: IDS.SPACE,
+    LOGIN_IN_CHAT: document.getElementById(IDS.CONFIRMPOPUP_INPUTCODEFORM),
+    CODE_FROM_EMAIL: document.getElementById(IDS.CONFIRMPOPUP_TEXTFIELD),
+
 }
 
 export const PERMANENTS = {

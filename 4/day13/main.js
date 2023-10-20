@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { UI_EL, PERMANENTS } from "./vies.js";
 
 
@@ -58,3 +59,13 @@ const sendMessage = (event) => {
 }
 
 UI_EL.SEND_MESSAGE.addEventListener("submit", sendMessage);
+
+// save code from mail in cookie
+
+const saveCodeInCookie = () =>{
+    Cookies.set('code', UI_EL.CODE_FROM_EMAIL.value);
+    console.log(Cookies.get());
+}
+
+UI_EL.LOGIN_IN_CHAT.addEventListener("submit", saveCodeInCookie)
+
