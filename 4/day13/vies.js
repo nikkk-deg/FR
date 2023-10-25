@@ -33,6 +33,7 @@ const IDS = {
     CONFIRMPOPUP_TEXTFIELD: "confirmPOPUP_textField",
     CONFIRMPOPUP_BUTTONSEND: "confirmPOPUP_buttonSEND",
     SPACE: "space",
+    NAME_IN_CHAT: "nameInChat",
 }
 
 export const UI_EL = {
@@ -46,9 +47,15 @@ export const UI_EL = {
     SPACE_CLASS: IDS.SPACE,
     LOGIN_IN_CHAT: document.getElementById(IDS.CONFIRMPOPUP_INPUTCODEFORM),
     CODE_FROM_EMAIL: document.getElementById(IDS.CONFIRMPOPUP_TEXTFIELD),
+    CHANGE_NAME: document.getElementById(IDS.SETTINGSPOPUP_CHANGENAMEFORM),
+    NEW_NAME: document.getElementById(IDS.SETTINGSPOPUP_TEXTFIELD),
+    NAME_IN_CHAT: document.getElementById(IDS.NAME_IN_CHAT),
+
 
 }
 
 export const PERMANENTS = {
     API_GET_CODE: "https://edu.strada.one/api/user",
+    API_CHANGE_NAME: "https://edu.strada.one/api/user",
+    API_GET_NAME: "https://edu.strada.one/api/user/me",
 }
