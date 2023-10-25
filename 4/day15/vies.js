@@ -41,6 +41,7 @@ export const UI_EL = {
     MAIL: document.getElementById(IDS.LOGINPOPUP_TEXTFIELD),
     TEMPLATE_MESSAGE: document.getElementById(IDS.MESSAGETEMPLATE),
     MY_MESS_CLASS: IDS.MYMESSAGE,
+    USER_MESSAGE_CLASS: IDS.USERMESSAGE,
     CHAT: document.getElementById(IDS.CHAT),
     MESSAGE_TEXT: document.getElementById(IDS.TEXTFIELD),
     SEND_MESSAGE: document.getElementById(IDS.SENDFORM),
@@ -58,4 +59,5 @@ export const PERMANENTS = {
     API_GET_CODE: "https://edu.strada.one/api/user",
     API_CHANGE_NAME: "https://edu.strada.one/api/user",
     API_GET_NAME: "https://edu.strada.one/api/user/me",
+    API_GET_MESSAGES: "https://edu.strada.one/api/messages/",
 }
