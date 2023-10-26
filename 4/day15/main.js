@@ -40,7 +40,12 @@ const createMyMessage = (text)=> {
     const templateRoot = document.createElement('div');
     templateRoot.className = UI_EL.MY_MESS_CLASS;
     const textOfMessage = templateContent.querySelector('.text');
+    const userName = templateContent.querySelector('.userName');
+    userName.textContent = "";
     textOfMessage.textContent = text;
+    if(text.length < 10){
+        templateRoot.style.maxWidth = "max-content";
+    }
     const timeOfMessage = templateContent.querySelector('.time');
     timeOfMessage.textContent = createTime();       
     templateRoot.append(templateContent);
@@ -146,6 +151,7 @@ const getHistoreOfMessages = async (token) => {
         },
     });
     const valueRequest = await response.json();
+    console.log(valueRequest);
     return valueRequest;
 }
 const createMessageFromHistory = (message)=> {
@@ -153,12 +159,14 @@ const createMessageFromHistory = (message)=> {
     const templateRoot = document.createElement('div');
     templateRoot.className = UI_EL.USER_MESSAGE_CLASS;
     const textOfMessage = templateContent.querySelector('.text');
+    const userName = templateContent.querySelector('.userName');
+    userName.textContent = message.user.name;
     textOfMessage.textContent = message.text;
     if(message.text.length < 10){
         templateRoot.style.maxWidth = "max-content";
     }
     const timeOfMessage = templateContent.querySelector('.time');
-    timeOfMessage.textContent = message.createdAt.substr(11,8);       
+    timeOfMessage.textContent = message.createdAt.substr(11,5);       
     templateRoot.append(templateContent);
     return templateRoot;    
 }

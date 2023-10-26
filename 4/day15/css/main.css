@@ -45,8 +45,7 @@ a{
 }
 
 #chatContent{
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-y: auto;
     width: 302px;
     height: 437px;
     border: 1px solid black;
@@ -86,8 +85,8 @@ a{
     margin-left: 5px;
     margin-right: 5px;
     max-width: 220px;
-    /* max-width: max-content; */
     overflow-wrap: break-word;
+    min-width: 70px;
 }
 
 .text{
@@ -97,12 +96,10 @@ a{
 }
 
 .myMessage{
-    float: right;
+    align-self:flex-end;
+    margin-right: -13px;
 }
 
-.userMessage{
-    float: inline-start;
-}
 
 .time{
     margin-top: -15px;
@@ -113,7 +110,12 @@ a{
     font-size: small;
     padding-right: 5px;
     float: inline-end;
-}    
+} 
+
+.userName{
+    font-size: small;
+    margin: 0 0;
+}
 
 .space{
     width: 267px;
