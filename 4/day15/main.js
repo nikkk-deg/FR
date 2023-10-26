@@ -154,6 +154,9 @@ const createMessageFromHistory = (message)=> {
     templateRoot.className = UI_EL.USER_MESSAGE_CLASS;
     const textOfMessage = templateContent.querySelector('.text');
     textOfMessage.textContent = message.text;
+    if(message.text.length < 10){
+        templateRoot.style.maxWidth = "max-content";
+    }
     const timeOfMessage = templateContent.querySelector('.time');
     timeOfMessage.textContent = message.createdAt.substr(11,8);       
     templateRoot.append(templateContent);

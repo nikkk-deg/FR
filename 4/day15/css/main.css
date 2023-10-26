@@ -45,6 +45,8 @@ a{
 }
 
 #chatContent{
+    overflow-y: scroll;
+    overflow-x: hidden;
     width: 302px;
     height: 437px;
     border: 1px solid black;
@@ -83,8 +85,9 @@ a{
     margin-top: 10px;
     margin-left: 5px;
     margin-right: 5px;
-    max-width: 250px;
-
+    max-width: 220px;
+    /* max-width: max-content; */
+    overflow-wrap: break-word;
 }
 
 .text{
