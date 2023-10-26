@@ -45,7 +45,8 @@ a{
 }
 
 #chatContent{
-    overflow-y: auto;
+    overflow-y: scroll;
+    /* scroll-snap-align: ; */
     width: 302px;
     height: 437px;
     border: 1px solid black;
@@ -77,6 +78,7 @@ a{
     bottom: 5px;
     display: flex;
     flex-direction: column;
+    height: 500px;
 }
 
 .userMessage, .myMessage{
