@@ -1,5 +1,12 @@
 import { UI_EL, PERMANENTS } from "./vies.js";
 
+const sendMesToServer = (message) => {
+    const socket = new WebSocket(`wss://edu.strada.one/websockets?${getCookie('code')}`);
+    socket.onopen = ()=> socket.send(JSON.stringify({ text: message}));
+    socket.onmessage = function(event) { console.log(event.data) };
+}
+
+
 
 // change name in chat
 const change_name_in_chat = (name) =>  UI_EL.NAME_IN_CHAT.textContent = name;
@@ -66,6 +73,7 @@ const sendMessage = (event) => {
     const space = document.createElement('div');
     space.className = UI_EL.SPACE_CLASS;
     UI_EL.CHAT.append(space);
+    sendMesToServer(UI_EL.MESSAGE_TEXT.value)
     UI_EL.MESSAGE_TEXT.value = "";
 }
 
@@ -188,7 +196,10 @@ const renderMessagesFromHistory = () => {
 })
 }
 
-
+// connect WebSocket
+// const socket = new WebSocket(`wss://edu.strada.one/websockets?${getCookie('code')}`);
+// socket.onopen = ()=> socket.send(JSON.stringify({ text: 'Всем привет.ю' }));
+// socket.onmessage = function(event) { console.log(event.data) };
 
 
 // first render
