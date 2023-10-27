@@ -93,8 +93,6 @@ const saveCodeInCookie = (value) =>{
     document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value);
 }
 
-UI_EL.LOGIN_IN_CHAT.addEventListener("submit", saveCodeInCookie);
-
 // login in chat
 const getUser = async (token) => {
     const response = await fetch(PERMANENTS.API_GET_NAME, {
