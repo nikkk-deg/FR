@@ -5,19 +5,22 @@ import { get } from "http";
 const sendMesToServer = (message) => {
     const socket = new WebSocket(`wss://edu.strada.one/websockets?${getCookie('code')}`);
     socket.onopen = ()=> socket.send(JSON.stringify({ text: message}));
-    socket.onmessage = function(event) { console.log(event.data) };
+    console.log('принял смс');
+    socket.onmessage = function(event) {renderMessageFromHistory(JSON.parse(event.data))};
 }
 
 
 // logout from chat
 
 const logoutFromAcc = () => {
-    console.log(document.cookie);
     saveCodeInCookie('code', '');
     saveCodeInCookie('email','');
+    change_name_in_chat('');
+    console.log(document.cookie);
 }
 
 UI_EL.LOGOUT_BUTTON.addEventListener('click', logoutFromAcc);
+
 
 // change name in chat
 const change_name_in_chat = (name) =>  UI_EL.NAME_IN_CHAT.textContent = name;
@@ -81,10 +84,10 @@ const createTime = () => {
 
 const sendMessage = (event) => {
     event.preventDefault();
-    UI_EL.CHAT.append(createMyMessage(UI_EL.MESSAGE_TEXT.value));
-    const space = document.createElement('div');
-    space.className = UI_EL.SPACE_CLASS;
-    UI_EL.CHAT.append(space);
+    // UI_EL.CHAT.append(createMyMessage(UI_EL.MESSAGE_TEXT.value));
+    // const space = document.createElement('div');
+    // space.className = UI_EL.SPACE_CLASS;
+    // UI_EL.CHAT.append(space);
     sendMesToServer(UI_EL.MESSAGE_TEXT.value)
     UI_EL.MESSAGE_TEXT.value = "";
 }
@@ -114,27 +117,18 @@ const getUser = async (token) => {
     });
     const valueRequest = await response.json();
     
-    if(getCookie('email')==valueRequest.email){
-        saveCodeInCookie("code", UI_EL.CODE_FROM_EMAIL.value);
-        change_name_in_chat(valueRequest.name);
-    }else{
-        saveCodeInCookie('email', "");
-        alert('ошибка, неправильный email')
-    }
-    
+    console.log(123);
+    console.log(UI_EL.CODE_FROM_EMAIL.value);
+    change_name_in_chat(valueRequest.name);
 }
 
 const login = event => {
     event.preventDefault();
-    if(getCookie('email')){
-        
-        getUser(UI_EL.CODE_FROM_EMAIL.value);
-        UI_EL.CODE_FROM_EMAIL.value = "";
-        location.reload();
-    }else{
-        alert('no email, can not login')
-    }
-
+    console.log(document.cookie);
+    getUser(UI_EL.CODE_FROM_EMAIL.value);
+    saveCodeInCookie("code", UI_EL.CODE_FROM_EMAIL.value);
+    UI_EL.CODE_FROM_EMAIL.value = "";
+    // location.reload();
 }
 
 UI_EL.LOGIN_IN_CHAT.addEventListener('submit', login);
@@ -181,12 +175,9 @@ const getHistoreOfMessages = async (token) => {
         },
     });
     const valueRequest = await response.json();
-    return(valueRequest);
-    // if(getCookie('email') == valueRequest.email){
-    //     return valueRequest;
-    // }
-    // return undefined;
+    return valueRequest;
 }
+
 const createMessageFromHistory = (message)=> {
     const templateContent = UI_EL.TEMPLATE_MESSAGE.content.cloneNode(true);
     const templateRoot = document.createElement('div');
@@ -232,4 +223,9 @@ const firstRender = () => {
     renderMessagesFromHistory();
 }
 
+
+
+
+
 firstRender();
+console.log(document.cookie);
