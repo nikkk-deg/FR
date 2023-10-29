@@ -51,6 +51,7 @@ export const UI_EL = {
     CHANGE_NAME: document.getElementById(IDS.SETTINGSPOPUP_CHANGENAMEFORM),
     NEW_NAME: document.getElementById(IDS.SETTINGSPOPUP_TEXTFIELD),
     NAME_IN_CHAT: document.getElementById(IDS.NAME_IN_CHAT),
+    LOGOUT_BUTTON: document.getElementById(IDS.LOGOUT),
 
 
 }
