@@ -1,6 +1,6 @@
 import { realpathSync } from "fs";
 import { UI_EL, PERMANENTS } from "./vies.js";
-import { get } from "http";
+// import { get } from "http";
 
 const sendMesToServer = (message) => {
     const socket = new WebSocket(`wss://edu.strada.one/websockets?${getCookie('code')}`);
@@ -181,19 +181,19 @@ const renderMessagesFromHistory = () => {
     let message_history = getHistoreOfMessages(getCookie('code'));
     message_history.then(value =>{
         value.messages.slice().reverse().forEach((item)=>{
-            // renderMessageFromHistory(item);
-            arr_of_messages.push(item);
-        })
-    message_history.then(
-        for(let i = 0; i<10; i++){
-            console.log(i)
-        }
-    );
-    })
-}
+            renderMessageFromHistory(item);
+            // arr_of_messages.push(item);
+        
+    // message_history.then(
+    //     for(let i = 0; i<10; i++){
+    //         console.log(i)
+    //     }
+    // );
+    // })
+})})}
 
 // console.log(arr_of_messages);
-arr_of_messages.forEach(item => console.log(item));
+// arr_of_messages.forEach(item => console.log(item));
 
 
 
