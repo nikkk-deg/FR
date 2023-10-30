@@ -56,39 +56,9 @@ UI_EL.MAIL_FORM.addEventListener('submit', sendMail);
 
 
 
-// send sms
-const createMyMessage = (text)=> {
-    const templateContent = UI_EL.TEMPLATE_MESSAGE.content.cloneNode(true);
-    const templateRoot = document.createElement('div');
-    templateRoot.className = UI_EL.MY_MESS_CLASS;
-    const textOfMessage = templateContent.querySelector('.text');
-    const userName = templateContent.querySelector('.userName');
-    userName.textContent = "";
-    textOfMessage.textContent = text;
-    if(text.length < 10){
-        templateRoot.style.maxWidth = "max-content";
-    }
-    const timeOfMessage = templateContent.querySelector('.time');
-    timeOfMessage.textContent = createTime();       
-    templateRoot.append(templateContent);
-    return templateRoot;    
-}
-
-const createTime = () => {
-    let time = new Date();
-    let hours = time.getHours();
-    let minutes = time.getMinutes();
-    let formatedMinutes = minutes < 10 ? '0'+minutes : minutes;
-    return `${hours}:${formatedMinutes}`;    
-}
-
 const sendMessage = (event) => {
     event.preventDefault();
-    // UI_EL.CHAT.append(createMyMessage(UI_EL.MESSAGE_TEXT.value));
-    // const space = document.createElement('div');
-    // space.className = UI_EL.SPACE_CLASS;
-    // UI_EL.CHAT.append(space);
-    sendMesToServer(UI_EL.MESSAGE_TEXT.value)
+    sendMesToServer(UI_EL.MESSAGE_TEXT.value);
     UI_EL.MESSAGE_TEXT.value = "";
 }
 
@@ -116,9 +86,6 @@ const getUser = async (token) => {
         },
     });
     const valueRequest = await response.json();
-    
-    console.log(123);
-    console.log(UI_EL.CODE_FROM_EMAIL.value);
     change_name_in_chat(valueRequest.name);
 }
 
@@ -128,7 +95,6 @@ const login = event => {
     getUser(UI_EL.CODE_FROM_EMAIL.value);
     saveCodeInCookie("code", UI_EL.CODE_FROM_EMAIL.value);
     UI_EL.CODE_FROM_EMAIL.value = "";
-    // location.reload();
 }
 
 UI_EL.LOGIN_IN_CHAT.addEventListener('submit', login);
@@ -204,28 +170,43 @@ const renderMessageFromHistory = (message) => {
     const space = document.createElement('div');
     space.className = UI_EL.SPACE_CLASS;
     UI_EL.CHAT.append(space);
+    UI_EL.CHAT_PARENT.scrollTop =  UI_EL.CHAT_PARENT.scrollHeight;
+    
 }
+
+let arr_of_messages = [];
 
 
 const renderMessagesFromHistory = () => {
     let message_history = getHistoreOfMessages(getCookie('code'));
     message_history.then(value =>{
         value.messages.slice().reverse().forEach((item)=>{
-            renderMessageFromHistory(item);
-    });
-})
+            // renderMessageFromHistory(item);
+            arr_of_messages.push(item);
+        })
+    message_history.then(
+        for(let i = 0; i<10; i++){
+            console.log(i)
+        }
+    );
+    })
 }
+
+// console.log(arr_of_messages);
+arr_of_messages.forEach(item => console.log(item));
+
+
+
+// UI_EL.CHAT_PARENT.addEventListener('scroll', () => {
+//    for(i=0; i<arr_of_messages.length; i++){
+//     renderMessageFromHistory(arr_of_messages[i]);
+//    }
+// });
 
 // first render
 const firstRender = () => {
-    console.log('производится первая загрузка страницы');
     getUser(getCookie('code'));
     renderMessagesFromHistory();
 }
 
-
-
-
-
 firstRender();
-console.log(document.cookie);
