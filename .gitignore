@@ -1,0 +1,6 @@
+node_modules
+.parcel-cache
+FR-5
+package-lock.json
+package.json
+dist
