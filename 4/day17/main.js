@@ -174,39 +174,66 @@ const renderMessageFromHistory = (message) => {
     
 }
 
-let arr_of_messages = [];
-
-
-const renderMessagesFromHistory = () => {
-    let message_history = getHistoreOfMessages(getCookie('code'));
-    message_history.then(value =>{
-        value.messages.slice().reverse().forEach((item)=>{
-            renderMessageFromHistory(item);
-            // arr_of_messages.push(item);
-        
-    // message_history.then(
-    //     for(let i = 0; i<10; i++){
-    //         console.log(i)
-    //     }
-    // );
-    // })
-})})}
-
-// console.log(arr_of_messages);
-// arr_of_messages.forEach(item => console.log(item));
 
 
 
-// UI_EL.CHAT_PARENT.addEventListener('scroll', () => {
-//    for(i=0; i<arr_of_messages.length; i++){
-//     renderMessageFromHistory(arr_of_messages[i]);
-//    }
-// });
+const renderMessagesFromHistory = async () => {
+    let messagesArray = [];
+    let messageHistory = await getHistoreOfMessages(getCookie('code'));
+    messageHistory.messages.slice().reverse().forEach((item)=>{
+        messagesArray.push(item);
+    })
+    return(messagesArray);
+}
+
+const renderMess = async (number) =>{
+    let arr = await renderMessagesFromHistory();
+    for(let i=number; i<number+10; i++){
+        renderMessageFromHistory(arr[i]);
+        arr.shift();
+    }
+}
+
+let number = 10;
+
+// const renderTwentyMess = () => {
+//     renderMess(number);
+//     number+=20;
+// }
+
+function checkPosition() {
+    // Нам потребуется знать высоту документа и высоту экрана:
+    const height = document.body.offsetHeight
+    const screenHeight = window.innerHeight
+  
+    // Они могут отличаться: если на странице много контента,
+    // высота документа будет больше высоты экрана (отсюда и скролл).
+  
+    // Записываем, сколько пикселей пользователь уже проскроллил:
+    const scrolled = window.scrollY
+  
+    // Обозначим порог, по приближении к которому
+    // будем вызывать какое-то действие.
+    // В нашем случае — четверть экрана до конца страницы:
+    const threshold = height - screenHeight / 4
+  
+    // Отслеживаем, где находится низ экрана относительно страницы:
+    const position = scrolled + screenHeight
+  
+    if (position >= threshold) {
+      // Если мы пересекли полосу-порог, вызываем нужное действие.
+    }
+  }
+  
+
+UI_EL.CHAT_PARENT.addEventListener('scroll', checkPosition);
+
 
 // first render
 const firstRender = () => {
     getUser(getCookie('code'));
-    renderMessagesFromHistory();
+    renderMess(0);
+    // renderMessagesFromHistory();
 }
 
 firstRender();
