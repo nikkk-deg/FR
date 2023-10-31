@@ -29,4 +29,3 @@ UI_EL.CHAT_PARENT.addEventListener('scroll', chatScroll);
 
 // first render
 window.addEventListener('load', render)
-

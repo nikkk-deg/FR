@@ -1,8 +1,5 @@
-import { realpathSync } from "fs";
 import { UI_EL, PERMANENTS } from "./vies.js";
-import { TIMEOUT } from "dns";
-import { Console } from "console";
-// import { get } from "http";
+
 
 const sendMesToServer = (message) => {
     const socket = new WebSocket(`wss://edu.strada.one/websockets?${getCookie('code')}`);
@@ -172,9 +169,7 @@ const renderMessageFromHistory = (message) => {
     const space = document.createElement('div');
     space.className = UI_EL.SPACE_CLASS;
     UI_EL.CHAT.append(space);
-    UI_EL.CHAT_PARENT.scrollTop =  1100;
-    // console.log(UI_EL.CHAT_PARENT.scrollTop);
-    
+    UI_EL.CHAT_PARENT.scrollTop =  1100; 
 }
 
 
@@ -184,7 +179,6 @@ const renderMessagesFromHistory = async () => {
     let messagesArray = [];
     let messageHistory = await getHistoreOfMessages(getCookie('code'));
     messageHistory.messages.slice().reverse().forEach((item)=>{
-        // renderMessageFromHistory(item);
         messagesArray.push(item);
     })
     return(messagesArray);
@@ -194,13 +188,8 @@ const renderMessagesFromHistory = async () => {
     UI_EL.CHAT.innerHTML = "";
     let number1 = arr.length - number - 20;
     let number2 = arr.length;
-    // console.log(arr);
-
-    // console.log(number1);
-    // console.log(number2);
     if(number1 >= 0){
         for(let i =number1; i<number2; i++){
-            // console.log(i);
             renderMessageFromHistory(arr[i]);
         }
     }
@@ -210,16 +199,9 @@ let number = 20;
 
 UI_EL.CHAT_PARENT.addEventListener('scroll', ()=>{
     let scroll = UI_EL.CHAT_PARENT.scrollTop;
-    // console.log(scrollFromBottom);
-    // if(scroll > scrollFromBottom){
-    //     scrollFromBottom = scroll;
-    //     console.log(scrollFromBottom);
-    // }
-    // console.log(scroll)
     if(scroll <= 0 && number<300){
         redArr(number);
         number += 20;
-        console.log(number);
         if(number >= 300){
             document.getElementById('chatEnd').style.display = "block";
         }
@@ -227,15 +209,10 @@ UI_EL.CHAT_PARENT.addEventListener('scroll', ()=>{
 
 });
 
-// console.log(UI_EL.CHAT_PARENT.clientHeight)
-
-
 // first render
 const firstRender = () => {
     getUser(getCookie('code'));
-    // renderMessagesFromHistory();
     redArr(0);
-    // UI_EL.CHAT_PARENT.scrollTop =  400;
 }
 
 firstRender();
