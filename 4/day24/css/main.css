@@ -1,0 +1,135 @@
+body{
+    background-color: #CCC;
+    font-family: "Roboto-Light"
+}
+
+#mainContent{
+    height: 533px;
+    width: 320px;
+    margin: auto;
+    margin-top: 50px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+#settings{
+    border: 1px solid black;
+    width: 98px;
+    height: 32px;
+    margin: 10px 7px;
+    text-align: center;
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+#buttonSETTINGS{
+    margin-top: 5px;
+}
+
+#logout{
+    display: inline;
+    float: right;
+    border: 1px solid black;
+    width: 66px;
+    height: 32px;
+    margin-top: -44px;
+    margin-right: 7px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#buttonLOGIN{
+    margin-top: 5px;  
+}
+
+#chatContent{
+    overflow-y: scroll;
+    /* scroll-snap-align: ; */
+    width: 302px;
+    height: 437px;
+    border: 1px solid black;
+    margin-left: 8px;
+}
+
+#textField{
+    width: 267px;
+    height: 28px;
+    border: 1px solid black;
+    margin-left: 8px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+#buttonSEND{
+    width: 27px;
+    height: 32px;
+    border: 1px solid black;
+    background-color: white;
+    cursor: pointer;
+}
+#chatContent{
+    position:relative;
+    padding-bottom: 0;
+}
+#chat{
+    position:absolute;
+    bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+}
+
+.userMessage, .myMessage{
+    background-color: #CCC;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    max-width: 220px;
+    overflow-wrap: break-word;
+    min-width: 70px;
+}
+
+.text{
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 0;
+}
+
+.myMessage{
+    align-self:flex-end;
+    margin-right: -13px;
+}
+
+
+.time{
+    margin-top: -15px;
+    margin-bottom: 0;
+    margin-right: 0px;
+    font-family: "Roboto-Light";
+    font-style: italic;
+    font-size: small;
+    padding-right: 5px;
+    float: inline-end;
+} 
+
+.userName{
+    font-size: small;
+    margin: 0 0;
+}
+
+.space{
+    width: 267px;
+    float: right;
+}
+#chatEnd{
+    text-align: center;
+    position: fixed;
+    width: 90px;
+    top: 155px;
+    left: 220px;
+    background-color: bisque;
+    border: 1px solid black;
+    display: none;
+}
