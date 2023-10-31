@@ -123,3 +123,13 @@ a{
     width: 267px;
     float: right;
 }
+#chatEnd{
+    text-align: center;
+    position: fixed;
+    width: 90px;
+    top: 155px;
+    left: 220px;
+    background-color: bisque;
+    border: 1px solid black;
+    display: none;
+}
