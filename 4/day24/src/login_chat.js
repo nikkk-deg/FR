@@ -1,5 +1,5 @@
 import { UI_EL, PERMANENTS } from "./vies.js";
-import { getCookie, setCookie } from "./cookie.js";
+import { setCookie } from "./cookie.js";
 
 
 export const getUser = async (token) => {
@@ -16,6 +16,6 @@ export const getUser = async (token) => {
 export const login = event => {
     event.preventDefault();
     getUser(UI_EL.CODE_FROM_EMAIL.value);
-    setCookie("code", UI_EL.CODE_FROM_EMAIL.value);
-    UI_EL.CODE_FROM_EMAIL.value = "";
+    setCookie(PERMANENTS.TOKEN, UI_EL.CODE_FROM_EMAIL.value);
+    UI_EL.CODE_FROM_EMAIL.value = PERMANENTS.EMPTY;
 }

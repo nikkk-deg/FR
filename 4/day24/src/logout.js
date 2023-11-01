@@ -1,6 +1,8 @@
 import { setCookie } from "./cookie";
+import { PERMANENTS } from "./vies";
+
 
 export const logout = () => {
-    setCookie('code', '');
-    setCookie('email','');
+    setCookie(PERMANENTS.TOKEN, PERMANENTS.EMPTY);
+    setCookie(PERMANENTS.EMAIL, PERMANENTS.EMPTY);
 }

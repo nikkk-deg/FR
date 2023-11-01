@@ -1,4 +1,4 @@
-import { getCookie, setCookie } from "./cookie.js";
+import { getCookie } from "./cookie.js";
 import { UI_EL, PERMANENTS } from "./vies.js";
 
 const getName = async (token, userName) => {
@@ -13,13 +13,11 @@ const getName = async (token, userName) => {
         },
         body: JSON.stringify(user),
     })
-    const valueRequest = await response.json();
-    return valueRequest;
+    return await response.json();
 }
-
 
 export const changeName = (event) => {
     event.preventDefault();
-    getName(getCookie('code'), UI_EL.NEW_NAME.value);
-    UI_EL.NEW_NAME.value = "";
+    getName(getCookie(PERMANENTS.TOKEN), UI_EL.NEW_NAME.value);
+    UI_EL.NEW_NAME.value = PERMANENTS.EMPTY;
 }

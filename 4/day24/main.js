@@ -2,7 +2,7 @@ import { UI_EL} from "./src/vies.js";
 import { sendMail } from "./src/send_email.js";
 import { sendMessage } from "./src/send_message.js";
 import { render } from "./src/render.js";
-import { login, getUser  } from "./src/login_chat.js";
+import { login } from "./src/login_chat.js";
 import { changeName } from "./src/change_name.js";
 import { logout } from "./src/logout.js";
 import { chatScroll } from "./src/scroll.js";

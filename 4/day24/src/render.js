@@ -1,30 +1,41 @@
 import { UI_EL, PERMANENTS } from "./vies.js";
-import { getCookie, setCookie } from "./cookie.js";
+import { getCookie } from "./cookie.js";
 import { getUser } from "./login_chat.js";
 
-const createMessageFromHistory = (message)=> {
+
+
+// const createMessage = (message)=> {
+//     const text = UI_EL.TEMPLATE_MESSAGE.content.cloneNode(true);
+//     text.querySelector(PERMANENTS.SELECTOR_TEXT).textContent = message.text;
+//     text.querySelector(PERMANENTS.SELECTOR_USER).textContent = message.user.name;
+//     text.querySelector(PERMANENTS.SELECTOR_TIME).textContent = message.createdAt.substr(11,5);
+//     const newMessage = document.createElement(PERMANENTS.DIV);
+//     newMessage.style.maxWidth = message.text.length < 10 ? PERMANENTS.MIN_WIDTH : PERMANENTS.MAX_WIDTH;
+//     newMessage.className = message.user.email == getCookie(PERMANENTS.EMAIL) ? UI_EL.MY_MES : UI_EL.USER_MES;
+//     newMessage.append(text);
+//     return newMessage;    
+// }
+
+const createText = (message) => {
     const templateContent = UI_EL.TEMPLATE_MESSAGE.content.cloneNode(true);
-    const templateRoot = document.createElement('div');
-    const textOfMessage = templateContent.querySelector('.text');
-    const userName = templateContent.querySelector('.userName');
-    userName.textContent = message.user.name;
-    textOfMessage.textContent = message.text;
-    if(message.text.length < 10){
-        templateRoot.style.maxWidth = "max-content";
-    }
-    if(message.user.email == getCookie('email')){
-        templateRoot.className = UI_EL.MY_MESS_CLASS;
-    }else{
-        templateRoot.className = UI_EL.USER_MESSAGE_CLASS;
-    }
-    const timeOfMessage = templateContent.querySelector('.time');
-    timeOfMessage.textContent = message.createdAt.substr(11,5);       
-    templateRoot.append(templateContent);
-    return templateRoot;    
+    templateContent.querySelector(PERMANENTS.SELECTOR_TEXT).textContent = message.text;
+    templateContent.querySelector(PERMANENTS.SELECTOR_USER).textContent = message.user.name;
+    templateContent.querySelector(PERMANENTS.SELECTOR_TIME).textContent = message.createdAt.substr(11,5);
+    return templateContent;
+}
+
+
+const createMessage = (message)=> {
+    const text = createText(message);
+    const newMessage = document.createElement(PERMANENTS.DIV);
+    newMessage.style.maxWidth = message.text.length < 10 ? PERMANENTS.MIN_WIDTH : PERMANENTS.MAX_WIDTH;
+    newMessage.className = message.user.email == getCookie(PERMANENTS.EMAIL) ? UI_EL.MY_MES : UI_EL.USER_MES;
+    newMessage.append(text);
+    return newMessage;    
 }
 
 export const renderMessageFromHistory = (message) => {
-    UI_EL.CHAT.append(createMessageFromHistory(message));
+    UI_EL.CHAT.append(createMessage(message));
     const space = document.createElement('div');
     space.className = UI_EL.SPACE_CLASS;
     UI_EL.CHAT.append(space);
@@ -36,14 +47,14 @@ export const renderMessageFromHistory = (message) => {
 
 const renderMessagesFromHistory = async () => {
     let messagesArray = [];
-    let messageHistory = await getHistoreOfMessages(getCookie('code'));
+    let messageHistory = await getHistoreOfMessages(getCookie(PERMANENTS.TOKEN));
     messageHistory.messages.slice().reverse().forEach((item)=>{
         messagesArray.push(item);
     })
     return(messagesArray);
 }
 
-export const redArr = async (number) => {
+export const renderOldMessages = async (number) => {
     let arr = await renderMessagesFromHistory();
     UI_EL.CHAT.innerHTML = "";
     let number1 = arr.length - number - 20;
@@ -68,6 +79,6 @@ export const redArr = async (number) => {
 }
 
 export const render = () => {
-    getUser(getCookie('code'));
-    redArr(0);
+    getUser(getCookie(PERMANENTS.TOKEN));
+    renderOldMessages(PERMANENTS.FROM_THAT_MES);
 }
