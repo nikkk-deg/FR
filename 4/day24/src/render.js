@@ -48,7 +48,9 @@ const getMesArray = (token) => {
         messagesArray.push(item);
     })
     return(messagesArray);
-    })
+    }).then(
+        
+    )
 }
 
 
