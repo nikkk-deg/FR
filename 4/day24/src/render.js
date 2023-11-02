@@ -37,32 +37,33 @@ export const getAllMessages = async (token) => {
             Authorization: `Bearer ${token}`,
         },
     });
-    return await response.json();
-    
+    console.log('используется промис')
+    return await response.json();    
 }
 
-const getMesArray = (token) => {
-    getAllMessages(token).then(response => {
+
+
+export const getMesArray = async (token) => {
+    let response = await getAllMessages(token);
     let messagesArray = [];
     response.messages.slice().reverse().forEach((item)=>{
         messagesArray.push(item);
     })
     return(messagesArray);
-    }).then(
-        
-    )
 }
 
-
+let response = await getMesArray(getCookie(PERMANENTS.TOKEN));
+console.log(response);
 
 export const renderAllMessages = async (position) => {
-    let arr = getMesArray(getCookie(PERMANENTS.TOKEN));
+    let arr = await getMesArray(getCookie(PERMANENTS.TOKEN));
     UI_EL.CHAT.innerHTML = PERMANENTS.EMPTY;
     if(arr.length - position - PERMANENTS.COUNT >= 0){
         for(let i = (arr.length - position - PERMANENTS.COUNT); i < arr.length; i++){
             renderMessage(arr[i]);
         }
     }
+    UI_EL.CHAT_PARENT.scrollTop = 1e10;
  }
 
 export const render = () => {
