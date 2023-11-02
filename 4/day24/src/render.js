@@ -12,7 +12,7 @@ const createText = (message) => {
 }
 
 
-const createMessage = (message)=> {
+export const createMessage = (message)=> {
     const text = createText(message);
     const newMessage = document.createElement(PERMANENTS.DIV);
     newMessage.style.maxWidth = message.text.length < 10 ? PERMANENTS.MIN_WIDTH : PERMANENTS.MAX_WIDTH;
@@ -26,7 +26,7 @@ export const renderMessage = (message) => {
     const space = document.createElement(PERMANENTS.DIV)
     space.className = UI_EL.SPACE_CLASS;
     UI_EL.CHAT.append(space);
-    UI_EL.CHAT_PARENT.scrollTop =  1100;
+   
 }
 
 export const getAllMessages = async (token) => {
@@ -37,16 +37,24 @@ export const getAllMessages = async (token) => {
             Authorization: `Bearer ${token}`,
         },
     });
-    const valueRequest = await response.json();
+    return await response.json();
+    
+}
+
+const getMesArray = (token) => {
+    getAllMessages(token).then(response => {
     let messagesArray = [];
-    valueRequest.messages.slice().reverse().forEach((item)=>{
+    response.messages.slice().reverse().forEach((item)=>{
         messagesArray.push(item);
     })
     return(messagesArray);
+    })
 }
 
+
+
 export const renderAllMessages = async (position) => {
-    let arr = await getAllMessages(getCookie(PERMANENTS.TOKEN));
+    let arr = getMesArray(getCookie(PERMANENTS.TOKEN));
     UI_EL.CHAT.innerHTML = PERMANENTS.EMPTY;
     if(arr.length - position - PERMANENTS.COUNT >= 0){
         for(let i = (arr.length - position - PERMANENTS.COUNT); i < arr.length; i++){
