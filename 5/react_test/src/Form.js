@@ -1,10 +1,18 @@
-import Login from "./Login";
 
-function Form({isRegistration}){
-    return(
-     <Login isRegistration={isRegistration}/>
-    )
+const formClass = "examples";
+const titleClass = "titleLogin";
+
+
+
+export default function Form(){
+  const onSubmit = (e) => {
+    e.preventDefault();
+    alert('hi!')
   }
-
-
-export default Form;
+  return(
+    <form onSubmit={onSubmit}>
+      <input type="text"></input>
+      <button type="submit">Отправить</button>
+    </form>
+  )
+}

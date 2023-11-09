@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <div className={mainContentClass}>
-        <Form isRegistration={true}/>
+        <Form/>
       </div>
     </div>
   );
