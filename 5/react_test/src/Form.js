@@ -1,20 +1,47 @@
-
-// const formClass = "examples";
-// const titleClass = "titleLogin";
-// import {useState} from 'react';
+import { useState } from 'react';
 
 export default function Form(){
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const login = e.target.login.value;
-    const password = e.target.password.value
-    console.log(`логин - ${login};  пароль - ${password}`);
-    e.target.reset();
+  
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  })
+
+  function handleEmailChange(e){
+    setCredentials({
+      ...credentials,
+      email: e.target.value,
+    })
   }
+
+  function handlePasswordChange(e){
+    setCredentials({
+      ...credentials,
+      password: e.target.value,
+    })
+  }
+
+  
+
   return(
-    <form onSubmit={handleSubmit}>
-      <input id = "login" name = "login" type="text"></input>
-      <input id = "password" name = "password" type="password"></input>
+    <form onSubmit = {e => {
+      console.log(credentials);
+      e.preventDefault()
+      }}>
+      <input 
+          id = "login" 
+          name = "login" 
+          type="text"
+          value={credentials.email}
+          onChange={handleEmailChange}
+      />
+      <input 
+          id = "password" 
+          name = "password" 
+          type="password"
+          value={credentials.password}
+          onChange={handlePasswordChange}
+      />
       <button type="submit">Отправить</button>
     </form>
   )
