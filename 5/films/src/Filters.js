@@ -1,4 +1,4 @@
-import GenreSort from "./GenreSort";
+import Genres from "./Genres";
 import Navigation from "./Navigation";
 import { Select } from "./Select";
 
@@ -15,7 +15,7 @@ export default function Filters(){
         
         <Select isReleaseYear={true}></Select>
         <Select isReleaseYear={false}></Select>
-        <GenreSort></GenreSort>
+        <Genres></Genres>
         <Navigation></Navigation>
         
         </>
