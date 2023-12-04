@@ -1,6 +1,7 @@
 import GenreSort from "./GenreSort";
 import Navigation from "./Navigation";
-import SortingBy from "./SortingBy";
+import { Select } from "./Select";
+
 
 
 
@@ -12,7 +13,8 @@ export default function Filters(){
         <button id="filterCloseButton" onClick={()=>alert('close filters')}>X</button>
 
         
-        <SortingBy></SortingBy>
+        <Select isReleaseYear={true}></Select>
+        <Select isReleaseYear={false}></Select>
         <GenreSort></GenreSort>
         <Navigation></Navigation>
         
