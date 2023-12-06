@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 
 const sortBy = [
     {value: 'популярности', key: 'popular'},
@@ -5,21 +7,23 @@ const sortBy = [
     {value: 'возрастанию рейтинга', key: 'low_raiting'},
 ]
 
-const releaseYears = [];
-for (let i=1900; i<=Number(new Date().getFullYear()); i++){
+let releaseYears = [];
+for (let i=Number(new Date().getFullYear()); i>1950; i--){
     let year = {
         key: `year${i}`,
         value: i,
     }
     releaseYears.push(year);
 }
-console.log(releaseYears);
 
 
 
 export function Select({isReleaseYear}){
 
-    const showYears = releaseYears.reverse().map(item => {
+    const [selectedYear, setSelectedYear] = useState(releaseYears[0].value);
+    const [selectedSorting, setSelectedSorting] = useState(sortBy[0].value);
+
+    const showYears = releaseYears.map(item => {
         return(
             <option value={item.value} key={item.key}>{item.value}</option>
         );
@@ -35,14 +39,16 @@ export function Select({isReleaseYear}){
         return(
             <>
             <label htmlFor = "sorting_select_year">Выбор года релиза:</label>
-            <select name="sort" id = "sorting_select_year">{showYears}</select>
+            <select value = {selectedYear} onChange = {e => setSelectedYear(e.target.value)} name="sort" id = "sorting_select_year">{showYears}</select>
+            <h1>{selectedYear}</h1>
             </>
         );
     }else{
         return(
             <>
             <label htmlFor = "sorting_select_raiting">Сортировать по:</label>
-            <select name="sort" id = "sorting_select_raiting">{showSortBy}</select>
+            <select value = {selectedSorting} onChange = {e => setSelectedSorting(e.target.value)} name="sort" id = "sorting_select_raiting">{showSortBy}</select>
+            <h1>{selectedSorting}</h1>
             </>
         );
     }

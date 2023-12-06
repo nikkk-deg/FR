@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 
 export default function Genres(){
     const [genres, setGenres] = useState([]);
-
+    const [selectedGenres, setSelectedGenres] = useState([]);
 
     const getGenres = async () => {
-        const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=en',{
+        const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=ru',{
             method: 'GET',
             headers: {
                 accept : 'application/json',
@@ -26,7 +26,25 @@ export default function Genres(){
     })
 
 
-const listItems = genres.map(item => <li key={item.id}>{item.name}</li>)
+    const listItems = genres.map(item => {
+    return(
+        <li>
+        <input 
+        type="checkbox" 
+        name={item}
+        onChange={()=>{
+            let nextSelectedGenres = selectedGenres;
+            nextSelectedGenres.push(item.name);
+            setSelectedGenres(nextSelectedGenres);
+            console.log(selectedGenres);
+        }}
+        
+        >
+        </input>
+        <label htmlFor={item}>{item.name}</label>
+        </li>
+    );
+    })
 
     return <ul>{listItems}</ul>
 }
