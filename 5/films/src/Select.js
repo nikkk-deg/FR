@@ -10,8 +10,7 @@ export function Select({isYearFilter}){
     let genresList =[];
     useEffect(()=>{
         getGenres()
-        .then(genres => {genresList = genres});
-        console.log(genresList)
+        .then(genres => );
     })
 
     function showFilters(arr){
