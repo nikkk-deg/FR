@@ -1,6 +1,8 @@
-import { useReducer } from "react";
-import { initialState, yearsArr } from "./initialData";
+import { useReducer, useEffect, useState } from "react";
+import { filterOptions, initialState, yearsArr, SelectProps } from "./initialData";
 import { filterReducer } from "./filterReducer";
+
+
 
 
 
@@ -18,38 +20,121 @@ export default function Filters(){
         })
     }  
 
+    function showFilters2(arr: any){
+
+        return arr.map((item : any) => {
+            return(
+                <option value={item.value} key={item.key}>{item.value}</option>
+            )
+        })
+    } 
+
     const handleChangeYear = (year: String) => {
-        console.log(year);
         dispatch({
             type: 'select_year',
             year: year,
         });
     }
 
-    function Select({name, title, showOptions} : SelectProps){
-        return(
-        <>
-            <label htmlFor={name}>{title}</label>
-            <select  onChange = {(e)=>handleChangeYear(e.target.value)} name={name}>{showOptions()}</select>
-        </>
-        );
+    const handleChangeOption = (option: any) => {
+        dispatch({
+            type: 'sort_option',
+            option: option,
+        });
     }
+
+    const handleResetFilters = () => {
+        dispatch({
+            type: 'reset_filters',
+        })
+    }
+
+    const handlChooseGenre = (e: string) => {
+        dispatch({
+            type: 'choose_genre',
+            genre: e,
+        })
+    }
+
+   
 
     return(
         <div id="filters">
+            <button 
+            id="resetFilterButton"
+            onClick={handleResetFilters}
+            style={{width: "50px", height: "50px"}}
+            >RESET</button>
+
             <Select 
             name = {"year_filter"} 
             title = {'Выбор года релиза'} 
+            isYearFilter = {true}
             showOptions={()=>showFilters(yearsArr())}
+            handleChangeYear = {handleChangeYear}
+            handleChangeOption = {handleChangeOption}
+            value = {filters.year}
             ></Select>
             <h1>{filters.year}</h1>
+
+            <Select 
+            name = {"option_filter"} 
+            title = {'Сортировать по:'} 
+            isYearFilter = {false}
+            showOptions={()=>showFilters2(filterOptions)}
+            handleChangeYear = {handleChangeYear}
+            handleChangeOption = {handleChangeOption}
+            value = {filters.sortOption}
+            ></Select>
+            <h1>{filters.sortOption}</h1>
+
+            <Genres onChange = {() => {handlChooseGenre('234')}}></Genres>
         </div>
     );
 }
 
-interface SelectProps {
-    title: string;
-    name: string;
-    showOptions: Function;
+
+
+function Select({name, title, isYearFilter, showOptions, handleChangeYear, handleChangeOption, value} : SelectProps){
+    const handleChangeData = (isYearFilter: boolean, data: any) => {
+        isYearFilter ? (handleChangeYear(data)) : (handleChangeOption(data));
+    }
+    
+    return(
+    <>
+        <label htmlFor={name}>{title}</label>
+        <select value={value} onChange = {e => handleChangeData(isYearFilter, e.target.value)} name={name}>{showOptions()}</select>
+    </>
+    );
 }
 
+function Genres(onChange: Function){
+    const [genres, setGenres] = useState([]);
+    const getGenres = async () => {
+        const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=ru',{
+            method: 'GET',
+            headers: {
+                accept : 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2Y2I3M2UwZmJlNzkyYjZmZGFlOGQwYTg1YmExNGNmMiIsInN1YiI6IjY1NmI3OWFlODgwNTUxMDBhZWU4Yzk0OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fIILgVPsRFrQZweu3ZQ0-aUnacAzRGBiNTOduh3_92I',
+            },
+        });
+        const valueRequest = await response.json();
+        return valueRequest.genres
+    }
+    useEffect(()=>{
+        getGenres()
+        .then(genres => setGenres(genres));
+    })
+    const listItems = genres.map((item:any) => {
+        return(
+            <li key={item.name}>
+            <input 
+            type="checkbox" 
+            name={item}
+            onChange={onChange()}></input>
+            <label htmlFor={item}>{item.name}</label>
+            </li>
+        )    
+    })
+        return <ul>{listItems}</ul>
+}

@@ -1,5 +1,3 @@
-import { Interface } from "readline";
-
 export const initialState = {
     sortOption: 'популярности',
     year: '2023',
@@ -18,6 +16,16 @@ export const yearsArr = () => {
         years.push(`${i}`);
     }
     return years;
+}
+
+export interface SelectProps {
+    title: string;
+    name: string;
+    isYearFilter: boolean
+    showOptions: Function;
+    handleChangeYear:Function;
+    handleChangeOption: Function;
+    value: string;
 }
 
 export{}
