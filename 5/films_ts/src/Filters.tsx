@@ -1,6 +1,7 @@
 import { useReducer, useEffect, useState } from "react";
-import { filterOptions, initialState, yearsArr, SelectProps } from "./initialData";
+import { filterOptions, initialState, yearsArr, SelectProps, IGenres } from "./initialData";
 import { filterReducer } from "./filterReducer";
+
 
 
 
@@ -49,12 +50,62 @@ export default function Filters(){
         })
     }
 
-    const handlChooseGenre = (e: string) => {
-        dispatch({
-            type: 'choose_genre',
-            genre: e,
-        })
+    // const handleChooseGenre = (arr: string) => {
+    //     dispatch({
+    //         type: 'choose_genre',
+    //         genre: arr,
+    //     })
+    //     console.log(filters);
+    // }
+
+    const handleChooseGenre = (e:any, genre:any) =>{
+        e.target.checked ? (
+            console.log(genre)
+            // dispatch({
+            //     type: 'choose_genre',
+            //     genre: genre,
+            // })
+        ) : (
+            console.log(genre)
+            // dispatch({
+            //     type: 'choose_genre',
+            //     genre: arr,
+            // })
+        )
     }
+
+    function Genres(){
+        const [genres, setGenres] = useState([]);
+        const getGenres = async () => {
+            const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=ru',{
+                method: 'GET',
+                headers: {
+                    accept : 'application/json',
+                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2Y2I3M2UwZmJlNzkyYjZmZGFlOGQwYTg1YmExNGNmMiIsInN1YiI6IjY1NmI3OWFlODgwNTUxMDBhZWU4Yzk0OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fIILgVPsRFrQZweu3ZQ0-aUnacAzRGBiNTOduh3_92I',
+                },
+            });
+            const valueRequest = await response.json();
+            return valueRequest.genres
+        }
+        useEffect(()=>{
+            getGenres()
+            .then(genres => setGenres(genres));
+        })
+        const listItems = genres.map((item:any) => {
+            return(
+                <li key={item.name}>
+                <input 
+                type="checkbox" 
+                name={item}
+                onChange={(e)=>handleChooseGenre(e, item.name)}></input>
+                {item.name}
+                </li>
+            )    
+        })
+            return <ul>{listItems}</ul>
+    }
+    
+
 
    
 
@@ -88,7 +139,7 @@ export default function Filters(){
             ></Select>
             <h1>{filters.sortOption}</h1>
 
-            <Genres onChange = {() => {handlChooseGenre('234')}}></Genres>
+            <Genres></Genres>
         </div>
     );
 }
@@ -108,33 +159,5 @@ function Select({name, title, isYearFilter, showOptions, handleChangeYear, handl
     );
 }
 
-function Genres(onChange: Function){
-    const [genres, setGenres] = useState([]);
-    const getGenres = async () => {
-        const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=ru',{
-            method: 'GET',
-            headers: {
-                accept : 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2Y2I3M2UwZmJlNzkyYjZmZGFlOGQwYTg1YmExNGNmMiIsInN1YiI6IjY1NmI3OWFlODgwNTUxMDBhZWU4Yzk0OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fIILgVPsRFrQZweu3ZQ0-aUnacAzRGBiNTOduh3_92I',
-            },
-        });
-        const valueRequest = await response.json();
-        return valueRequest.genres
-    }
-    useEffect(()=>{
-        getGenres()
-        .then(genres => setGenres(genres));
-    })
-    const listItems = genres.map((item:any) => {
-        return(
-            <li key={item.name}>
-            <input 
-            type="checkbox" 
-            name={item}
-            onChange={onChange()}></input>
-            <label htmlFor={item}>{item.name}</label>
-            </li>
-        )    
-    })
-        return <ul>{listItems}</ul>
-}
+
+
