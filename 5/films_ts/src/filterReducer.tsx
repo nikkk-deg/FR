@@ -1,3 +1,5 @@
+
+
 export function filterReducer(state: any , action: any){
     switch (action.type){
         case 'sort_option':{
@@ -17,12 +19,19 @@ export function filterReducer(state: any , action: any){
                 ...state,
                 sortOption: 'популярности',
                 year: 2023,
+                genres: [],
             }
         }
         case 'choose_genre':{
             return{
                 ...state,
-                genres: action.genre,
+                genres: [...state.genres, action.genre],
+            }
+        }
+        case 'delete_genre':{
+            return{
+                ...state,
+                genres: [...state.genres.filter((item:any) => action.genre !== item)],
             }
         }
         default :{

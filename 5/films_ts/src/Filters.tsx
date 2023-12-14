@@ -1,6 +1,7 @@
 import { useReducer, useEffect, useState } from "react";
 import { filterOptions, initialState, yearsArr, SelectProps, IGenres } from "./initialData";
 import { filterReducer } from "./filterReducer";
+import Genres from './../../films/src/Genres';
 
 
 
@@ -58,20 +59,20 @@ export default function Filters(){
     //     console.log(filters);
     // }
 
-    const handleChooseGenre = (e:any, genre:any) =>{
-        e.target.checked ? (
-            console.log(genre)
-            // dispatch({
-            //     type: 'choose_genre',
-            //     genre: genre,
-            // })
+    const handleChooseGenre = (genre:any) =>{
+        console.log(filters.genres);
+        filters.genres.includes(genre) ? (
+            dispatch({
+                type: 'delete_genre',
+                genre: genre,
+            })
         ) : (
-            console.log(genre)
-            // dispatch({
-            //     type: 'choose_genre',
-            //     genre: arr,
-            // })
+            dispatch({
+                type: 'choose_genre',
+                genre: genre,
+            })
         )
+
     }
 
     function Genres(){
@@ -92,20 +93,20 @@ export default function Filters(){
             .then(genres => setGenres(genres));
         })
         const listItems = genres.map((item:any) => {
-            return(
-                <li key={item.name}>
-                <input 
-                type="checkbox" 
-                name={item}
-                onChange={(e)=>handleChooseGenre(e, item.name)}></input>
-                {item.name}
-                </li>
-            )    
-        })
-            return <ul>{listItems}</ul>
-    }
+              
+            if (filters.genres.includes(item.name)){
+                return(
+                    <li key={item.name}><input onChange={() => handleChooseGenre(item.name)}  defaultChecked={true} type = "checkbox"/>{item.name}</li>
+                );
+            }else{
+                return(
+                    <li key={item.name}><input onChange={() => handleChooseGenre(item.name)}  defaultChecked={false} type = "checkbox"/>{item.name}</li>
+                );
+            }
+    })
+     return <ul>{listItems}</ul>
     
-
+}
 
    
 
