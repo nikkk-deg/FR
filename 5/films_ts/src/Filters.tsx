@@ -1,7 +1,7 @@
 import { useReducer, useEffect, useState } from "react";
-import { filterOptions, initialState, yearsArr, SelectProps, IGenres } from "./initialData";
+import { filterOptions, initialState, yearsArr, SelectProps } from "./initialData";
 import { filterReducer } from "./filterReducer";
-import Genres from './../../films/src/Genres';
+
 
 
 
@@ -22,7 +22,7 @@ export default function Filters(){
         })
     }  
 
-    function showFilters2(arr: any){
+    function showFilters2(arr: Array<object>){
 
         return arr.map((item : any) => {
             return(
@@ -38,7 +38,7 @@ export default function Filters(){
         });
     }
 
-    const handleChangeOption = (option: any) => {
+    const handleChangeOption = (option: String) => {
         dispatch({
             type: 'sort_option',
             option: option,
@@ -51,16 +51,7 @@ export default function Filters(){
         })
     }
 
-    // const handleChooseGenre = (arr: string) => {
-    //     dispatch({
-    //         type: 'choose_genre',
-    //         genre: arr,
-    //     })
-    //     console.log(filters);
-    // }
-
-    const handleChooseGenre = (genre:any) =>{
-        console.log(filters.genres);
+    const handleChooseGenre = (genre:String) =>{
         filters.genres.includes(genre) ? (
             dispatch({
                 type: 'delete_genre',
@@ -148,7 +139,7 @@ export default function Filters(){
 
 
 function Select({name, title, isYearFilter, showOptions, handleChangeYear, handleChangeOption, value} : SelectProps){
-    const handleChangeData = (isYearFilter: boolean, data: any) => {
+    const handleChangeData = (isYearFilter: boolean, data: string) => {
         isYearFilter ? (handleChangeYear(data)) : (handleChangeOption(data));
     }
     

@@ -1,13 +1,16 @@
 import Filters from "./Filters";
+import Header from "./Header";
+
+
 
 
 
 function App() {
-  return (
-    <>
-    <h1>Fuck that place</h1>
-    <Filters/>
-    </>
+  return(
+    <div id="mainContent">
+    <Header></Header>
+    <Filters></Filters>
+    </div>
   );
 }
 
