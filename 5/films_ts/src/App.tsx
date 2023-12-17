@@ -1,5 +1,9 @@
+import { ContextBearer } from "./Context";
 import Filters from "./Filters";
 import Header from "./Header";
+
+
+
 
 
 
@@ -10,6 +14,7 @@ function App() {
     <div id="mainContent">
     <Header></Header>
     <Filters></Filters>
+    
     </div>
   );
 }

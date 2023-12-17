@@ -1,6 +1,9 @@
-import { useReducer, useEffect, useState } from "react";
+import { useReducer, useEffect, useState, useContext } from "react";
 import { filterOptions, initialState, yearsArr, SelectProps } from "./initialData";
 import { filterReducer } from "./filterReducer";
+import { ContextBearer } from "./Context";
+
+
 
 
 
@@ -12,10 +15,12 @@ import { filterReducer } from "./filterReducer";
 export default function Filters(){
 
     const [filters, dispatch] = useReducer(filterReducer, initialState);
+    const BearerToken = useContext(ContextBearer);
 
     function showFilters(arr: Array<string>){
 
         return arr.map((item : string) => {
+            console.log(BearerToken);
             return(
                 <option value={`${item}`} key={`year${item}`}>{item}</option>
             )
@@ -73,7 +78,7 @@ export default function Filters(){
                 method: 'GET',
                 headers: {
                     accept : 'application/json',
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2Y2I3M2UwZmJlNzkyYjZmZGFlOGQwYTg1YmExNGNmMiIsInN1YiI6IjY1NmI3OWFlODgwNTUxMDBhZWU4Yzk0OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fIILgVPsRFrQZweu3ZQ0-aUnacAzRGBiNTOduh3_92I',
+                    Authorization: BearerToken,
                 },
             });
             const valueRequest = await response.json();
