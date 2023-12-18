@@ -1,19 +1,16 @@
-import { ContextBearer } from "./Context";
-import Filters from "./Filters";
+import { FilterProvider } from "./Filters/Context";
+import Filters from "./Filters/Filters";
 import Header from "./Header";
-
-
-
-
-
-
 
 
 function App() {
   return(
     <div id="mainContent">
-    <Header></Header>
-    <Filters></Filters>
+      <FilterProvider>
+        <Header></Header>
+        <Filters></Filters>
+      </FilterProvider>
+      
     
     </div>
   );

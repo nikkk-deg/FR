@@ -1,30 +1,20 @@
-import { createContext, useContext, useReducer, ReactNode, Dispatch  } from 'react';
-import { initialState } from './initialData';
+import { createContext, useContext, useReducer, FC  } from 'react';
+import { initialState } from './initialFilters';
 
 
 
 
 export const ContextBearer = createContext('Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2Y2I3M2UwZmJlNzkyYjZmZGFlOGQwYTg1YmExNGNmMiIsInN1YiI6IjY1NmI3OWFlODgwNTUxMDBhZWU4Yzk0OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fIILgVPsRFrQZweu3ZQ0-aUnacAzRGBiNTOduh3_92I');
 
-interface FilterState {
-    // define your filter state properties here
+  const FilterContext = createContext<any | null>(null);
+
+  const FilterDispatchContext = createContext<any | null>(null);
+
+  interface FilterProviderProps {
+    children: React.ReactNode;
   }
-  
-  type FilterAction = {
-    // define your filter action types here
-  }
-  
-  type FilterDispatch = Dispatch<FilterAction>;
-  
-  const FilterContext = createContext<FilterState | null>(null);
 
-  const FilterDispatchContext = createContext<FilterDispatch | undefined>(undefined);
-
-// const FilterContext = createContext(null)
-
-// const FilterDispatchContext = createContext()
-
-export function FilterProvider(children : React.ReactNode){
+export const FilterProvider : FC<FilterProviderProps> = ({children}) => {
     const [filters, dispatch] = useReducer(
         filterReducer, 
         initialState
@@ -36,6 +26,18 @@ export function FilterProvider(children : React.ReactNode){
             </FilterDispatchContext.Provider>
         </FilterContext.Provider>
     );
+}
+
+export const useToken = () => {
+    return useContext(ContextBearer);
+}
+
+export const useFilter = () => {
+    return useContext(FilterContext);
+}
+
+export const useFitlerDispatch = () => {
+    return useContext(FilterDispatchContext);
 }
 
 

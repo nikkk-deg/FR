@@ -22,14 +22,9 @@ export interface SelectProps {
     title: string;
     name: string;
     isYearFilter: boolean;
-    showOptions: Function;
-    handleChangeYear:Function;
-    handleChangeOption: Function;
     value: string;
 }
 
 export interface IGenres {
     handleChooseGenre: Function;
 }
-
-export{}
