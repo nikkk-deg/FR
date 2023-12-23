@@ -1,33 +1,21 @@
-import { useReducer } from 'react';
-import Chat from './Chat.js';
-import ContactList from './ContactList.js';
-import { initialState, messengerReducer } from './messengerReducer';
+import Box from '@mui/system/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { useState } from 'react';
+
+
 
 export default function App() {
-  const [state, dispatch] = useReducer(messengerReducer, initialState);
-  const message = state.message;
-  const contact = contacts.find((c) => c.id === state.selectedId);
+  const [text, setText] = useState("");
   return (
-    <div>
-      <ContactList
-        contacts={contacts}
-        selectedId={state.selectedId}
-        dispatch={dispatch}
-      />
-      <Chat
-        key={contact.id}
-        message={message}
-        contact={contact}
-        dispatch={dispatch}
-      />
-      <button onClick={()=>console.log(contact)}>push me</button>
-    </div>
+    <Box component="form" sx={{border: '1px dashed grey', backgroundColor: "grey", fontSize: "1px", width: "200px"}}>
+        <TextField
+          required
+          label="Required"
+          defaultValue="Введите текст"
+          onChange={(e) => setText(e.target.value)}
+        />
+        <Button type='submit' onClick={()=>alert(text)}>Отправить</Button>
+    </Box>
   );
 }
-
-
-const contacts = [
-  {id: 0, name: 'Taylor', email: 'taylor@mail.com'},
-  {id: 1, name: 'Alice', email: 'alice@mail.com'},
-  {id: 2, name: 'Bob', email: 'bob@mail.com'},
-];

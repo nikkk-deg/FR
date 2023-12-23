@@ -1,4 +1,5 @@
 import { useFitlerDispatch } from "./Context";
+import Button from '@mui/material/Button';
 
 
 export default function FilterReset(){
@@ -12,10 +13,10 @@ export default function FilterReset(){
     }
 
     return(
-        <button 
-        id="resetFilterButton"
+        <Button
+        variant="contained"
         onClick={handleResetFilters}
         style={{width: "50px", height: "50px"}}
-        >RESET</button>
+        >RESET</Button>
     );
 }
