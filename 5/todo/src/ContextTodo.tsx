@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer, FC  } from 'react';
 
+
 const ToDoContext = createContext<any | null>(null);
 
 const ToDoDispatchContext = createContext<any | null>(null);
@@ -8,7 +9,14 @@ interface FilterProviderProps {
   children: React.ReactNode;
 }
 
-const initialTasks = [
+export interface InitialTask {
+    id: number;
+    text: string;
+    done: boolean;
+}
+
+
+const initialTasks: InitialTask[] = [
     { id: 0, text: 'Philosopher’s Path', done: true },
   ];
 
@@ -48,19 +56,27 @@ export function toDoReducer(tasks: any , action: any){
             }]
         }
         case 'delete': {
-            return{
-
-            }
+            return tasks.filter((t : InitialTask) => t.id !== action.id);
         }
         case 'change':{
-            return{
-
-            }
+            return tasks.map((item: InitialTask) => {
+                if(item.id === action.task.id){
+                    return action.task
+                }
+                else{
+                    return item;
+                }
+            })
         }
         case 'check':{
-            return{
-
-            }
+            return tasks.map((item: InitialTask) => {
+                if(item.id === action.task.id){
+                    return action.task
+                }
+                else{
+                    return item;
+                }
+            })
         }
         default :{
             throw new Error('Unknow action: ' + action.type);

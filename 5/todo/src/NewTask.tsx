@@ -14,17 +14,17 @@ export default function NewTask(){
     const [taskText, setTaskText] = useState('');
 
     const dispatch = useToDoDispatch();
-    const tasks = useToDo();
+    const todo = useToDo();
 
 
     const handleAddTask = (e: any, taskName: string) => {
         e.preventDefault();
-        console.log(tasks);
         dispatch({
             type: 'add',
             taskName: taskName,
-            id: Math.floor(Math.random() *100),//потом поменять когда реализую удаление задач
+            id: todo.length,
         })
+        setTaskText('');
     }
 
 
