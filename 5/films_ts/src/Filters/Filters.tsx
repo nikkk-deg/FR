@@ -3,33 +3,28 @@ import { Genres } from "./Genres";
 import { Select } from "../Select";
 import FilterReset from "./FilterReset";
 
+export default function Filters() {
+  const filters = useFilter();
 
-export default function Filters(){
+  return (
+    <div id="filters">
+      <FilterReset />
 
-    const filters = useFilter();   
-    
+      <Select
+        name={"year_filter"}
+        title={"Выбор года релиза"}
+        isYearFilter={true}
+        value={filters.year}
+      />
 
+      <Select
+        name={"option_filter"}
+        title={"Сортировать по:"}
+        isYearFilter={false}
+        value={filters.sortOption}
+      />
 
-    return(
-        <div id="filters">
-
-            <FilterReset/>
-
-            <Select 
-            name = {"year_filter"} 
-            title = {'Выбор года релиза'} 
-            isYearFilter = {true}
-            value = {filters.year}
-            />
-
-            <Select 
-            name = {"option_filter"} 
-            title = {'Сортировать по:'} 
-            isYearFilter = {false}
-            value = {filters.sortOption}
-            />
-
-            <Genres key={Math.random()}/>
-        </div>
-    );
+      <Genres key={Math.random()} />
+    </div>
+  );
 }
