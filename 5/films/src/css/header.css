@@ -1,0 +1,7 @@
+.header {
+  width: 100%;
+  position: absolute;
+  height: 64px;
+  background-color: #2196f3;
+  margin: -10px -10px -10px -10px;
+}

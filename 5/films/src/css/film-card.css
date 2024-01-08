@@ -1,0 +1,14 @@
+.film-card {
+  background-color: aqua;
+  width: 296px;
+  height: 324px;
+  float: left;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.films-list {
+  margin-left: 350px;
+  float: left;
+  margin-top: 80px;
+}
