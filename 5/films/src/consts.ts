@@ -14,6 +14,8 @@ export const initialState = {
   min: "2010",
   max: lastYear,
   genres: [],
+  page: "1",
+  films: [],
 };
 
 export interface SelectProps {

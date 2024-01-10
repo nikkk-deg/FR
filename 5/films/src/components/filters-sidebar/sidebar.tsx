@@ -4,6 +4,7 @@ import OptionSort from "./option-sort";
 import RangeSlider from "./year-slider";
 import Paper from "@mui/material/Paper";
 import { FilterReset } from "./reset-button";
+import { Pages } from "./page-sort";
 
 export function FilterSidebar() {
   return (
@@ -15,6 +16,7 @@ export function FilterSidebar() {
       <OptionSort></OptionSort>
       <RangeSlider></RangeSlider>
       <GenresFilter></GenresFilter>
+      <Pages></Pages>
     </Paper>
   );
 }

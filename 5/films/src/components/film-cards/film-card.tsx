@@ -5,15 +5,19 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { Link } from "react-router-dom";
 
 interface IFilmCard {
   film: string;
+  img: string;
 }
-export default function FilmCard({ film }: IFilmCard) {
+export default function FilmCard({ film, img }: IFilmCard) {
   return (
     <Card className="film-card">
       <CardActionArea>
-        <CardMedia component="img" height="140" image={film} alt={film} />
+        <Link to={"../../pages/film-page.tsx"}>
+          <CardMedia component="img" height="140" image={img} alt={film} />
+        </Link>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {film}

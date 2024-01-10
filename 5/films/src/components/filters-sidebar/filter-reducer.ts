@@ -31,6 +31,18 @@ export function filterReducer(state: any, action: any) {
         genres: action.genre,
       };
     }
+    case "change_page": {
+      return {
+        ...state,
+        page: action.page,
+      };
+    }
+    case "change_film_list": {
+      return {
+        ...state,
+        films: action.films,
+      };
+    }
     default: {
       throw new Error("Unknow action: " + action.type);
     }
