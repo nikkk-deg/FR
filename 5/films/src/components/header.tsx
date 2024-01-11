@@ -1,7 +1,15 @@
 import { Box } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-export function Header() {
+interface IHeader {
+  film: string;
+}
+
+export function Header({ film }: IHeader) {
+  let title = "Фильмы";
+  if (film !== "") {
+    title = `Фильмы - ${film}`;
+  }
   return (
     <Box className="header">
       <Box
@@ -13,7 +21,7 @@ export function Header() {
           marginTop: "17px",
         }}
       >
-        Фильмы
+        {title}
       </Box>
       <AccountCircleIcon
         sx={{ float: "right", marginTop: "17px", marginRight: "40px" }}

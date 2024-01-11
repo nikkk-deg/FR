@@ -5,13 +5,12 @@ import { FilterSidebar } from "../components/filters-sidebar/sidebar";
 import { Header } from "../components/header";
 import FilmPage from "./film";
 
-
 export default function HomePage() {
   return (
-    <FilterProvider>
-      <Header></Header>
+    <>
+      <Header film=""></Header>
       <FilterSidebar></FilterSidebar>
       <Films></Films>
-    </FilterProvider>
+    </>
   );
 }

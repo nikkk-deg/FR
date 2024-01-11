@@ -1,6 +1,13 @@
 import { Box } from "@mui/material";
-
+import { Header } from "../components/header";
+import { useFilter } from "../components/filters-sidebar/filter-context";
 
 export default function FilmPage() {
-  return <Box sx={{width: '400px', height: '400px', backgroundColor: "red"}}></Box>
+  const fitler = useFilter();
+  console.log(fitler);
+  return (
+    <>
+      <Header film="Матрица"></Header>
+    </>
+  );
 }
