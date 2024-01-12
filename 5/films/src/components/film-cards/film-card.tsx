@@ -14,12 +14,13 @@ import FilmPage from "../../pages/film";
 interface IFilmCard {
   film: string;
   img: string;
+  id: number
 }
-export default function FilmCard({ film, img }: IFilmCard) {
+export default function FilmCard({ film, img, id }: IFilmCard) {
   const navigate = useNavigate();
   return (
     <>
-    <Card onClick = {() =>{navigate('/film')}} className="film-card">
+    <Card onClick = {() =>{navigate(`/film/${id}`)}} className="film-card">
       <CardActionArea>
 
           <CardMedia component="img" height="140" image={img} alt={film} />
