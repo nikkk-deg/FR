@@ -10,12 +10,15 @@ export const filterOptions = [
 ];
 
 export const initialState = {
+  //потом разделить на 3 контекста - filters, films, filmInfo
   sortOption: filterOptions[0].key,
   min: "2010",
   max: lastYear,
   genres: [],
   page: "1",
   films: [],
+  actorInfo: [],
+  filmInfo: [],
 };
 
 export interface SelectProps {

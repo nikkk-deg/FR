@@ -2,7 +2,7 @@ import { token } from "../../consts";
 
 export const topRatedFilms = async (page: string) => {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`,
+    `https://api.themoviedb.org/3/movie/top_rated?language=ru-US&page=${page}`,
     {
       method: "GET",
       headers: {
@@ -17,7 +17,7 @@ export const topRatedFilms = async (page: string) => {
 
 export const popularFilms = async (page: string) => {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`,
+    `https://api.themoviedb.org/3/movie/popular?language=ru-US&page=${page}`,
     {
       method: "GET",
       headers: {

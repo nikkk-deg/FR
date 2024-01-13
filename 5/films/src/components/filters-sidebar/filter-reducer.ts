@@ -43,6 +43,18 @@ export function filterReducer(state: any, action: any) {
         films: action.films,
       };
     }
+    case "set_actor_info": {
+      return {
+        ...state,
+        actorInfo: action.actors,
+      };
+    }
+    case "set_film_info": {
+      return {
+        ...state,
+        filmInfo: action.film,
+      };
+    }
     default: {
       throw new Error("Unknow action: " + action.type);
     }
