@@ -1,15 +1,16 @@
-import { Box } from "@mui/material";
-import { Header } from "../components/header/header";
-import { useFilter, useFilterDispatch } from "../components/filter/context";
-import { getActorInfo, getFilmInfo } from "../components/film-page/get-info";
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Header } from "../components/header";
+import { useFilter, useFilterDispatch } from "../components/filter/context";
+import { getInfo } from "../components/getInfo";
 import Poster from "../components/film-page/poster";
-import Name from "../components/film-page/name";
+import Title from "../components/film-page/title";
 import Actors from "../components/film-page/actors";
 import BackButton from "../components/film-page/back-button";
-import Details from "../components/film-page/overview";
 import Overview from "../components/film-page/overview";
+import { ACTORS_INFO, FILM_INFO_TXT } from "../components/consts";
+
+
 
 export default function FilmPage() {
   const [filmYear, setfilmYear] = useState("");
@@ -19,7 +20,7 @@ export default function FilmPage() {
 
   useEffect(() => {
     try {
-      getFilmInfo(id).then((item) => {
+      getInfo(FILM_INFO_TXT, id).then((item) => {
         dispatch({
           type: "set_film_info",
           film: item,
@@ -30,7 +31,7 @@ export default function FilmPage() {
       console.error(error);
     }
     try {
-      getActorInfo(id).then((item) => {
+      getInfo(ACTORS_INFO, id).then((item) => {
         let actorList = [];
         for (let i = 0; i < 10; i++) {
           actorList.push(item.cast[i]);
@@ -52,10 +53,11 @@ export default function FilmPage() {
         film={`${fitler.filmInfo?.original_title}`}
         img={`https://image.tmdb.org/t/p/w300${fitler.filmInfo?.poster_path}`}
       />
-      <Name name={fitler.filmInfo?.title} year={filmYear} />
+      <Title name={fitler.filmInfo?.title} year={filmYear} />
       <BackButton />
       <Actors />
       <Overview />
     </>
   );
 }
+//сделаит контекст и редьюсер специально для этой страницы

@@ -1,31 +1,22 @@
 import { Box } from "@mui/material";
-import { useState } from "react";
-import { useEffect } from "react";
-import { getActorInfo } from "./get-info";
 import { useFilter } from "../filter/context";
+import { CLASS_ACTOR, CLASS_ACTORS_TITLE, CastMember, TITLE_ACTORS } from "./consts";
+
 
 export default function Actors() {
-  const filter = useFilter();
-  console.log(filter);
+  const filter = useFilter()
 
   return (
     <Box
+      className = {CLASS_ACTOR}
       component={"ul"}
-      sx={{
-        fontSize: "small",
-        listStyleType: "none",
-        position: "absolute",
-        top: "220px",
-        left: "350px",
-        minWidth: "200px",
-      }}
     >
-      <Box component={"u"} sx={{ fontSize: "large" }}>
-        Актерский состав:
+      <Box component={"u"} className={CLASS_ACTORS_TITLE}>
+        {TITLE_ACTORS}
       </Box>
-      {filter.actorInfo.map((item: any) => {
+      {filter.actorInfo.map((item: CastMember) => {
         return (
-          <Box component={"li"} key={item.name}>
+          <Box component={"li"} key={item.id}>
             {item.name}
           </Box>
         );

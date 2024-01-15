@@ -1,4 +1,5 @@
 import { Box, CardMedia } from "@mui/material";
+import { CLASS_POSTER } from './consts';
 
 interface IPoster {
   film: string;
@@ -7,15 +8,7 @@ interface IPoster {
 
 export default function Poster({ img, film }: IPoster) {
   return (
-    <Box
-      sx={{
-        width: "300px",
-        height: "402px",
-        top: "80px",
-        left: "18px",
-        position: "absolute",
-      }}
-    >
+    <Box className={CLASS_POSTER}>
       <CardMedia component="img" image={img} alt={film} />
     </Box>
   );

@@ -2,9 +2,11 @@ import { Box } from "@mui/material";
 import FilmCard from "./card";
 
 import { useFilter, useFilterDispatch } from "../filter/context";
-import { popularFilms, topRatedFilms } from "./get-info";
 import { filterOptions } from "../../consts";
 import { useEffect } from "react";
+import { getInfo } from "../getInfo";
+import { POPULAR, TOP_RATED } from "../consts";
+
 
 export function Films() {
   const filter = useFilter();
@@ -12,21 +14,21 @@ export function Films() {
 
   const getFilms = () => {
     if (filter.sortOption === filterOptions[0].key) {
-      popularFilms(filter.page).then((item) => {
+      getInfo(POPULAR, filter.page).then((item) => {
         dispatch({
           type: "change_film_list",
           films: item,
         });
       });
     } else if (filter.sortOption === filterOptions[1].key) {
-      topRatedFilms(filter.page).then((item) => {
+      getInfo(TOP_RATED, filter.page).then((item) => {
         dispatch({
           type: "change_film_list",
           films: item,
         });
       });
     } else if (filter.sortOption === filterOptions[2].key) {
-      topRatedFilms(filter.page).then((item) => {
+      getInfo(TOP_RATED, filter.page).then((item) => {
         dispatch({
           type: "change_film_list",
           films: item,
@@ -39,6 +41,7 @@ export function Films() {
     getFilms();
   }, [filter.page, filter.sortOption]);
 
+  if(filter.films !== undefined){
   if (filter.films.length !== 0) {
     return (
       <Box className="films-list">
@@ -54,6 +57,7 @@ export function Films() {
         })}
       </Box>
     );
-  }
+  }}
+  return <Box sx = {{fontSize: "xx-large", position: "absolute", top: "220px", left: "400px"}}>НИ-ХУ-Я</Box>
 }
 // backdrop_path

@@ -1,16 +1,17 @@
-import { Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useNavigate } from "react-router-dom";
+import { CLASS_BACK_BUTTON, HOME } from "./consts";
+
 
 export default function BackButton() {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/`);
+    navigate(HOME);
   };
   return (
     <ArrowBackIcon
+    className={CLASS_BACK_BUTTON}
       fontSize="large"
-      sx={{ position: "absolute", top: "180px", left: "350px" }}
       onClick={handleClick}
     ></ArrowBackIcon>
   );

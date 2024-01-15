@@ -2,8 +2,9 @@ import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useEffect, useState } from "react";
-import { getGenres } from "./get-info";
-import { useFilterDispatch } from "../context";
+import { useFilterDispatch } from "./context";
+import { getInfo } from "../getInfo";
+import { GENRES } from "../consts";
 
 interface IGenres {
   id: number;
@@ -14,7 +15,7 @@ export default function GenresFilter() {
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
-    getGenres().then((genres) => setGenres(genres));
+    getInfo(GENRES, "").then((genres) => setGenres(genres));
   }, []);
 
   const dispatch = useFilterDispatch();

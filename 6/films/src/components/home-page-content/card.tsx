@@ -1,12 +1,10 @@
-import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import FilmPage from "../../pages/film";
+import StarBorderIcon from "@mui/icons-material/StarBorder"
+import { CardActionArea, CardActions } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface IFilmCard {
   film: string;

@@ -1,10 +1,12 @@
 import { Box } from "@mui/material";
-import GenresFilter from "./genres-filter/genres-filter";
-import OptionSort from "./option-sort";
-import RangeSlider from "./year-slider";
 import Paper from "@mui/material/Paper";
 import { FilterReset } from "./reset-button";
-import { Pages } from "./page-sort";
+import { Pages } from './pagination';
+import OptionSort from './options';
+import RangeSlider from './slider';
+import GenresFilter from "./genres";
+
+
 
 export function FilterSidebar() {
   return (
