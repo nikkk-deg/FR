@@ -1,0 +1,59 @@
+import { Box } from "@mui/material";
+import FilmCard from "./card";
+
+import { useFilter, useFilterDispatch } from "../filter/context";
+import { popularFilms, topRatedFilms } from "./get-info";
+import { filterOptions } from "../../consts";
+import { useEffect } from "react";
+
+export function Films() {
+  const filter = useFilter();
+  const dispatch = useFilterDispatch();
+
+  const getFilms = () => {
+    if (filter.sortOption === filterOptions[0].key) {
+      popularFilms(filter.page).then((item) => {
+        dispatch({
+          type: "change_film_list",
+          films: item,
+        });
+      });
+    } else if (filter.sortOption === filterOptions[1].key) {
+      topRatedFilms(filter.page).then((item) => {
+        dispatch({
+          type: "change_film_list",
+          films: item,
+        });
+      });
+    } else if (filter.sortOption === filterOptions[2].key) {
+      topRatedFilms(filter.page).then((item) => {
+        dispatch({
+          type: "change_film_list",
+          films: item,
+        });
+      });
+    }
+  };
+
+  useEffect(() => {
+    getFilms();
+  }, [filter.page, filter.sortOption]);
+
+  if (filter.films.length !== 0) {
+    return (
+      <Box className="films-list">
+        {filter.films.map((item: any) => {
+          return (
+            <FilmCard
+              key={item.id}
+              film={item.title}
+              img={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
+              id={item.id}
+            ></FilmCard>
+          );
+        })}
+      </Box>
+    );
+  }
+}
+// backdrop_path
