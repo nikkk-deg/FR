@@ -1,15 +1,15 @@
 import { Box, Typography } from "@mui/material";
-import { useFilter } from "../filter/context";
+import { useFilmInfo } from "./context";
 import { CLASS_OVERVIEW, CLASS_OVERVIEW_TXT, TITLE_OVERVIEW } from "./consts";
 
 export default function Overview() {
-  const filter = useFilter();
+  const filmInfo = useFilmInfo();
 
   return (
     <Box className={CLASS_OVERVIEW}>
       <Typography variant="h3">{TITLE_OVERVIEW}:</Typography>
-      <Typography  className = {CLASS_OVERVIEW_TXT}>
-        {filter.filmInfo.overview}
+      <Typography className={CLASS_OVERVIEW_TXT}>
+        {filmInfo.filmInfo.overview}
       </Typography>
     </Box>
   );

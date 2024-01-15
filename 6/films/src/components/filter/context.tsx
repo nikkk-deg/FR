@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, FC } from "react";
-import { initialState } from "../../consts";
 import { filterReducer } from "./reducer";
+import { INITIAL_STATE } from "./consts";
 
 const FilterContext = createContext<any | null>(null);
 
@@ -19,7 +19,7 @@ interface FilterProviderProps {
 }
 
 export const FilterProvider: FC<FilterProviderProps> = ({ children }) => {
-  const [filters, dispatch] = useReducer(filterReducer, initialState);
+  const [filters, dispatch] = useReducer(filterReducer, INITIAL_STATE);
   return (
     <FilterContext.Provider value={filters}>
       <FilterDispatchContext.Provider value={dispatch}>

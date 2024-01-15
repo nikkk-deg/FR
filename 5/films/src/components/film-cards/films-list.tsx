@@ -46,13 +46,12 @@ export function Films() {
     return (
       <Box className="films-list">
         {filter.films.map((item: any) => {
-
           return (
             <FilmCard
               key={item.id}
               film={item.title}
               img={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
-              id = {item.id}
+              id={item.id}
             ></FilmCard>
           );
         })}

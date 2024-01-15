@@ -38,3 +38,9 @@
   margin-right: 30px;
   cursor: pointer;
 }
+
+.pagination {
+  position: absolute;
+  bottom: 15px;
+  margin-left: 25px;
+}

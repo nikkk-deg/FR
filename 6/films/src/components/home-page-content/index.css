@@ -1,7 +1,7 @@
 .film-card {
   background-color: aqua;
   width: 296px;
-  height: 324px;
+  height: 430px;
   float: left;
   margin-left: 20px;
   margin-top: 20px;
@@ -11,4 +11,16 @@
   margin-left: 350px;
   float: left;
   margin-top: 80px;
+}
+
+.favorite-button {
+  float: right;
+  cursor: pointer;
+}
+
+.network-error {
+  position: absolute;
+  font-size: xx-large;
+  left: 50%;
+  top: 50%;
 }

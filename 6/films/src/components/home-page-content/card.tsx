@@ -2,9 +2,15 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import StarBorderIcon from "@mui/icons-material/StarBorder"
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { CardActionArea, CardActions } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import {
+  CARD_HEIGHT,
+  CLASS_FAVORITE_BUTTON,
+  CLASS_FILM_CARD,
+  FILM_LINK,
+} from "./consts";
 
 interface IFilmCard {
   film: string;
@@ -13,16 +19,22 @@ interface IFilmCard {
 }
 export default function FilmCard({ film, img, id }: IFilmCard) {
   const navigate = useNavigate();
+
   return (
     <>
       <Card
         onClick={() => {
-          navigate(`/film/${id}`);
+          navigate(`${FILM_LINK}${id}`);
         }}
-        className="film-card"
+        className={CLASS_FILM_CARD}
       >
         <CardActionArea>
-          <CardMedia component="img" height="140" image={img} alt={film} />
+          <CardMedia
+            component="img"
+            height={CARD_HEIGHT}
+            image={img}
+            alt={film}
+          />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {film}
@@ -30,7 +42,7 @@ export default function FilmCard({ film, img, id }: IFilmCard) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <StarBorderIcon sx={{ float: "right" }}>Share</StarBorderIcon>
+          <StarBorderIcon className={CLASS_FAVORITE_BUTTON}></StarBorderIcon>
         </CardActions>
       </Card>
     </>

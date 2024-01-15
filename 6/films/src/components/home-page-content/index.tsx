@@ -1,50 +1,35 @@
 import { Box } from "@mui/material";
-import FilmCard from "./card";
-
-import { useFilter, useFilterDispatch } from "../filter/context";
-import { filterOptions } from "../../consts";
 import { useEffect } from "react";
+import { useFilter, useFilterDispatch } from "../filter/context";
 import { getInfo } from "../getInfo";
-import { POPULAR, TOP_RATED } from "../consts";
-
+import FilmCard from "./card";
+import { CLASS_FILM_LIST, CLASS_NETWORK_ERROR, ERROR_MESSAGE } from "./consts";
+import { CHANGE_FILM_LIST } from "../filter/consts";
 
 export function Films() {
   const filter = useFilter();
   const dispatch = useFilterDispatch();
 
-  const getFilms = () => {
-    if (filter.sortOption === filterOptions[0].key) {
-      getInfo(POPULAR, filter.page).then((item) => {
-        dispatch({
-          type: "change_film_list",
-          films: item,
-        });
-      });
-    } else if (filter.sortOption === filterOptions[1].key) {
-      getInfo(TOP_RATED, filter.page).then((item) => {
-        dispatch({
-          type: "change_film_list",
-          films: item,
-        });
-      });
-    } else if (filter.sortOption === filterOptions[2].key) {
-      getInfo(TOP_RATED, filter.page).then((item) => {
-        dispatch({
-          type: "change_film_list",
-          films: item,
-        });
-      });
-    }
-  };
-
   useEffect(() => {
-    getFilms();
+    getInfo(filter.sortOption, filter.page)
+      .then((item) => {
+        dispatch({
+          type: CHANGE_FILM_LIST,
+          films: item.results,
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: CHANGE_FILM_LIST,
+          films: undefined,
+        });
+        console.warn(error);
+      });
   }, [filter.page, filter.sortOption]);
 
-  if(filter.films !== undefined){
-  if (filter.films.length !== 0) {
+  if (filter.films !== undefined) {
     return (
-      <Box className="films-list">
+      <Box className={CLASS_FILM_LIST}>
         {filter.films.map((item: any) => {
           return (
             <FilmCard
@@ -57,7 +42,6 @@ export function Films() {
         })}
       </Box>
     );
-  }}
-  return <Box sx = {{fontSize: "xx-large", position: "absolute", top: "220px", left: "400px"}}>НИ-ХУ-Я</Box>
+  }
+  return <Box className={CLASS_NETWORK_ERROR}>{ERROR_MESSAGE}</Box>;
 }
-// backdrop_path

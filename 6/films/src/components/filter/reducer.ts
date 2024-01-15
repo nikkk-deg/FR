@@ -1,62 +1,59 @@
-import { filterOptions, lastYear } from "../../consts";
+import {
+  CHANGE_FILM_LIST,
+  CHANGE_PAGE,
+  CHOOSE_GENRE,
+  ERROR,
+  RESET_FILTERS,
+  SELECT_YEAR,
+  SORT_OPTION,
+  INITIAL_STATE,
+} from "./consts";
 
 export function filterReducer(state: any, action: any) {
   switch (action.type) {
-    case "sort_option": {
+    case SORT_OPTION: {
       return {
         ...state,
         sortOption: action.option,
       };
     }
-    case "select_year": {
+    case SELECT_YEAR: {
       return {
         ...state,
         min: action.min,
         max: action.max,
       };
     }
-    case "reset_filters": {
+    case RESET_FILTERS: {
       location.reload();
       return {
         ...state,
-        sortOption: filterOptions[0].key,
-        min: "2010",
-        max: lastYear,
-        genres: [],
+        sortOption: INITIAL_STATE.sortOption,
+        min: INITIAL_STATE.min,
+        max: INITIAL_STATE.max,
+        genres: INITIAL_STATE.genres,
       };
     }
-    case "choose_genre": {
+    case CHOOSE_GENRE: {
       return {
         ...state,
         genres: action.genre,
       };
     }
-    case "change_page": {
+    case CHANGE_PAGE: {
       return {
         ...state,
         page: action.page,
       };
     }
-    case "change_film_list": {
+    case CHANGE_FILM_LIST: {
       return {
         ...state,
         films: action.films,
       };
     }
-    case "set_actor_info": {
-      return {
-        ...state,
-        actorInfo: action.actors,
-      };
-    }
-    case "set_film_info": {
-      return {
-        ...state,
-        filmInfo: action.film,
-      };
-    }
     default: {
-      throw new Error("Unknow action: " + action.type);
+      throw new Error(ERROR);
     }
   }
 }

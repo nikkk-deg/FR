@@ -3,7 +3,13 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import { useFilter, useFilterDispatch } from "./context";
-import { filterOptions } from "../../consts";
+import {
+  CLASS_OPTION_SORT,
+  CLASS_OPTION_SORTING,
+  SORT_OPTION,
+  SORT_OPTION_TITLE,
+  FILTER_OPTIONS,
+} from "./consts";
 
 export default function OptionSort() {
   const filter = useFilter();
@@ -11,18 +17,24 @@ export default function OptionSort() {
 
   const handleChangeOption = (e: any) => {
     dispatch({
-      type: "sort_option",
+      type: SORT_OPTION,
       option: e.target.value,
     });
   };
   return (
-    <Box className="option-sorting">
-      <FormControl className="option-sort">
-        <InputLabel>Сортировать по:</InputLabel>
+    <Box className={CLASS_OPTION_SORTING}>
+      <FormControl className={CLASS_OPTION_SORT}>
+        <InputLabel>{SORT_OPTION_TITLE}</InputLabel>
         <NativeSelect onChange={handleChangeOption} value={filter.sortOption}>
-          <option value={filterOptions[0].key}>{filterOptions[0].label}</option>
-          <option value={filterOptions[1].key}>{filterOptions[1].label}</option>
-          <option value={filterOptions[2].key}>{filterOptions[2].label}</option>
+          <option value={FILTER_OPTIONS[0].key}>
+            {FILTER_OPTIONS[0].label}
+          </option>
+          <option value={FILTER_OPTIONS[1].key}>
+            {FILTER_OPTIONS[1].label}
+          </option>
+          <option value={FILTER_OPTIONS[2].key}>
+            {FILTER_OPTIONS[2].label}
+          </option>
         </NativeSelect>
       </FormControl>
     </Box>

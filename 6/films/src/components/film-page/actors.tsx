@@ -1,20 +1,21 @@
 import { Box } from "@mui/material";
-import { useFilter } from "../filter/context";
-import { CLASS_ACTOR, CLASS_ACTORS_TITLE, CastMember, TITLE_ACTORS } from "./consts";
-
+import { useFilmInfo } from "./context";
+import {
+  CLASS_ACTOR,
+  CLASS_ACTORS_TITLE,
+  CastMember,
+  TITLE_ACTORS,
+} from "./consts";
 
 export default function Actors() {
-  const filter = useFilter()
+  const filmInfo = useFilmInfo();
 
   return (
-    <Box
-      className = {CLASS_ACTOR}
-      component={"ul"}
-    >
+    <Box className={CLASS_ACTOR} component={"ul"}>
       <Box component={"u"} className={CLASS_ACTORS_TITLE}>
         {TITLE_ACTORS}
       </Box>
-      {filter.actorInfo.map((item: CastMember) => {
+      {filmInfo.actorInfo.map((item: CastMember) => {
         return (
           <Box component={"li"} key={item.id}>
             {item.name}

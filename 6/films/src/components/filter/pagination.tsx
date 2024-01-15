@@ -1,21 +1,22 @@
 import Pagination from "@mui/material/Pagination";
 import { useFilterDispatch } from "./context";
+import { CHANGE_PAGE, CLASS_PAGINATION, MAX_PAGE_COUNT } from "./consts";
 
 export function Pages() {
   const dispatch = useFilterDispatch();
 
   const handleChangePage = (page: any) => {
     dispatch({
-      type: "change_page",
+      type: CHANGE_PAGE,
       page: page,
     });
   };
 
   return (
     <Pagination
-      count={500}
+      count={MAX_PAGE_COUNT}
       size="small"
-      sx={{ position: "absolute", bottom: "15px", marginLeft: "25px" }}
+      className={CLASS_PAGINATION}
       onChange={(e) => handleChangePage((e.target as HTMLElement).textContent)}
     />
   );
