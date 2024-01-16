@@ -12,12 +12,12 @@ import {
   FILM_LINK,
 } from "./consts";
 
-interface IFilmCard {
+interface FilmCard {
   film: string;
   img: string;
   id: number;
 }
-export default function FilmCard({ film, img, id }: IFilmCard) {
+export default function FilmCard({ film, img, id }: FilmCard) {
   const navigate = useNavigate();
 
   return (

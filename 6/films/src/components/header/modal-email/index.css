@@ -1,25 +1,3 @@
-.header {
-  width: 100%;
-  position: absolute;
-  height: 64px;
-  background-color: #2196f3;
-  margin: -10px -10px -10px -10px;
-}
-
-.header-title {
-  float: left;
-  margin-left: 40px;
-  margin-top: 17px;
-  font-size: x-large;
-}
-
-.login-button {
-  float: right;
-  margin-top: 17px;
-  margin-right: 40px;
-  cursor: pointer;
-}
-
 .email-modal-backdrop {
   display: flex;
   justify-content: center;
