@@ -1,4 +1,5 @@
 export const SORT_OPTION = "sort-option";
+import { Genres } from './../../../../../5/films_ts/src/Filters/Genres';
 export const SELECT_YEAR = "select-year";
 export const RESET_FILTERS = "reset-filters";
 export const CHOOSE_GENRE = "choose-genre";
@@ -38,12 +39,6 @@ export const INITIAL_STATE = {
   films: [],
 };
 
-export interface SelectProps {
-  title: string;
-  name: string;
-  isYearFilter: boolean;
-  value: string;
-}
 
 export const MARKS = [
   {
@@ -63,3 +58,52 @@ export const MARKS = [
     label: "2010",
   },
 ];
+
+export interface SelectProps {
+  title: string;
+  name: string;
+  isYearFilter: boolean;
+  value: string;
+}
+
+interface Genre {
+  id: number;
+  name: string;
+}
+
+interface Film {
+  adult: boolean;
+  backdrop_path: string | null;
+  id: number;
+  genre_ids: number[];
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string | null;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+
+export interface FilmsResponse {
+  films: Film[];
+  genres: Genre[];
+  max: number;
+  min: string;
+  page: string;
+  sortOption: string;
+}
+
+export interface FilterAction{
+  type: string;
+  option: string;
+  min: string;
+  max: string | number;
+  genre: Genre;
+  page: string;
+  films: Film;
+
+}

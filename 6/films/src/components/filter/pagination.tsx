@@ -5,10 +5,10 @@ import { CHANGE_PAGE, CLASS_PAGINATION, MAX_PAGE_COUNT } from "./consts";
 export function Pages() {
   const dispatch = useFilterDispatch();
 
-  const handleChangePage = (page: any) => {
+  const handleChangePage = (newPage: number) => {
     dispatch({
       type: CHANGE_PAGE,
-      page: page,
+      page: newPage,
     });
   };
 
@@ -17,7 +17,7 @@ export function Pages() {
       count={MAX_PAGE_COUNT}
       size="small"
       className={CLASS_PAGINATION}
-      onChange={(e) => handleChangePage((e.target as HTMLElement).textContent)}
+      onChange={(e, newPage) => handleChangePage(newPage)}
     />
   );
 }

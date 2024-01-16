@@ -5,6 +5,7 @@ import { getInfo } from "../getInfo";
 import FilmCard from "./card";
 import { CLASS_FILM_LIST, CLASS_NETWORK_ERROR, ERROR_MESSAGE } from "./consts";
 import { CHANGE_FILM_LIST } from "../filter/consts";
+import { FilmInfo } from "../film-page/consts";
 
 export function Films() {
   const filter = useFilter();
@@ -30,7 +31,7 @@ export function Films() {
   if (filter.films !== undefined) {
     return (
       <Box className={CLASS_FILM_LIST}>
-        {filter.films.map((item: any) => {
+        {filter.films.map((item: FilmInfo) => {
           return (
             <FilmCard
               key={item.id}

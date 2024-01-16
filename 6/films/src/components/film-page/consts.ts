@@ -12,6 +12,12 @@ export const CLASS_FAVORITES = "favorites";
 export const SET_FILM_INFO = "set-film-info";
 export const SET_ACTORS_INFO = "set-actor-info";
 
+
+export const FILM_INFO_STATE = {
+  actorInfo: [],
+  filmInfo: [],
+};
+
 export interface CastMember {
   adult: boolean;
   cast_id: number;
@@ -24,10 +30,83 @@ export interface CastMember {
   order: number;
   original_name: string;
   popularity: number;
-  profile_path: string | null; // Assuming it could be null if no profile picture
+  profile_path: string | null; 
 }
 
-export const FILM_INFO_STATE = {
-  actorInfo: [],
-  filmInfo: [],
-};
+interface Genre {
+  id: number;
+  name: string;
+}
+
+interface ProductionCompany {
+  id: number;
+  logo_path: string | null;
+  name: string;
+}
+
+interface ProductionCountry {
+  iso_3166_1: string;
+  name: string;
+}
+
+interface SpokenLanguage {
+  english_name: string;
+  iso_639_1: string;
+  name: string;
+}
+
+export interface FilmInfo {
+  adult: boolean;
+  backdrop_path: string | null;
+  belongs_to_collection: any; // You might want to define a specific type here
+  budget: number;
+  genres: Genre[];
+  homepage: string;
+  id: number;
+  imdb_id: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string | null;
+  production_companies: ProductionCompany[];
+  production_countries: ProductionCountry[];
+  release_date: string;
+  revenue: number;
+  runtime: number;
+  spoken_languages: SpokenLanguage[];
+  status: string;
+  tagline: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+
+interface ActorInfo {
+  adult: boolean;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  order: number;
+  original_name: string;
+  popularity: number;
+  profile_path: string | null;
+}
+
+
+
+export interface FilmInfoState {
+  actorInfo: FilmInfo[];
+  filmInfo: ActorInfo[];
+}
+
+export interface FilmReducerType {
+  type: string;
+  actors: ActorInfo;
+  film: FilmInfo
+}

@@ -15,7 +15,8 @@ export default function OptionSort() {
   const filter = useFilter();
   const dispatch = useFilterDispatch();
 
-  const handleChangeOption = (e: any) => {
+
+  const handleChangeOption = (e: React.ChangeEventHandler<HTMLSelectElement> | undefined) => {
     dispatch({
       type: SORT_OPTION,
       option: e.target.value,

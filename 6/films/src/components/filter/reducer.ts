@@ -7,9 +7,11 @@ import {
   SELECT_YEAR,
   SORT_OPTION,
   INITIAL_STATE,
+  FilmsResponse,
+  FilterAction,
 } from "./consts";
 
-export function filterReducer(state: any, action: any) {
+export function filterReducer(state: FilmsResponse, action: FilterAction) {
   switch (action.type) {
     case SORT_OPTION: {
       return {

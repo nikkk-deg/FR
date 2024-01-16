@@ -12,6 +12,8 @@ interface Genres {
   name: string;
 }
 
+type SelectedGenres = Genres[];
+
 export default function GenresFilter() {
   const [genres, setGenres] = useState([]);
   const dispatch = useFilterDispatch();
@@ -24,7 +26,7 @@ export default function GenresFilter() {
     }
   }, []);
 
-  const handleChooseGenre = (genre: any) => {
+  const handleChooseGenre = (genre: SelectedGenres) => {
     dispatch({
       type: CHOOSE_GENRE,
       genre: genre,

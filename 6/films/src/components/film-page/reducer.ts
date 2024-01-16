@@ -1,6 +1,6 @@
-import { SET_ACTORS_INFO, SET_FILM_INFO } from "./consts";
+import { FilmInfoState, FilmReducerType, SET_ACTORS_INFO, SET_FILM_INFO } from "./consts";
 
-export function filmInfoReducer(state: any, action: any) {
+export function filmInfoReducer(state: FilmInfoState, action: FilmReducerType) {
   switch (action.type) {
     case SET_ACTORS_INFO: {
       return {
