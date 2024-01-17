@@ -1,6 +1,7 @@
 import { token } from "../consts";
 import { ACTORS_INFO, FILM_INFO_TXT, GENRES } from "./consts";
 import { FILTER_OPTIONS } from "./filter/consts";
+import Cookie from "js-cookie";
 
 const getURL = (type: string, id: string | undefined): string => {
   switch (type) {
@@ -33,9 +34,12 @@ export const getInfo = async (type: string, id: string | undefined) => {
     method: "GET",
     headers: {
       accept: "application/json",
-      authorization: token,
+      authorization: `Bearer ${Cookie.get("token")}`,
     },
   });
   const valueRequest = await response.json();
   return valueRequest;
 };
+
+// export const token =
+//   "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2Y2I3M2UwZmJlNzkyYjZmZGFlOGQwYTg1YmExNGNmMiIsInN1YiI6IjY1NmI3OWFlODgwNTUxMDBhZWU4Yzk0OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fIILgVPsRFrQZweu3ZQ0-aUnacAzRGBiNTOduh3_92I";

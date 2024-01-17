@@ -1,4 +1,4 @@
-.email-modal-backdrop {
+.token-modal-backdrop {
   display: flex;
   justify-content: center;
   position: fixed;
@@ -11,7 +11,7 @@
   backdrop-filter: blur(20px);
 }
 
-.email-modal-content {
+.token-modal-content {
   display: flex;
   flex-direction: column;
   background: white;
@@ -27,15 +27,15 @@
   min-width: 444px;
 }
 
-.email-modal-header .email-modal-content {
+.token-modal-header .token-modal-content {
   display: flex;
   align-items: center;
 }
 
-.email-modal-body .email-modal-content {
+.token-modal-body .token-modal-content {
 }
 
-.email-modal-footer .email-modal-content {
+.token-modal-footer .token-modal-content {
   display: flex;
   justify-content: flex-end;
   gap: 24px;
@@ -43,18 +43,18 @@
   margin-top: 40px;
 }
 
-.email-modal-cancel-button {
+.token-modal-cancel-button {
   position: relative;
   top: 40px;
-  left: 240px;
+  left: 270px;
 }
 
-.email-modal-request-button {
+.token-modal-request-button {
   position: relative;
   top: 40px;
-  left: 260px;
+  left: 290px;
 }
 
-.email-modal-title {
+.token-modal-title {
   font-size: x-large;
 }

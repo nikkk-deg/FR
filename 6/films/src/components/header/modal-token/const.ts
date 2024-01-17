@@ -1,0 +1,13 @@
+export const CLASS_TOKEN_MODAL_BACKDROP = "token-modal-backdrop";
+export const CLASS_TOKEN_MODAL_CONTENT = "token-modal-content";
+export const CLASS_TOKEN_MODAL_HEADER = "token-modal-header";
+export const CLASS_TOKEN_MODAL_BODY = "token-modal-body";
+export const CLASS_TOKEN_MODAL_FOOTER = "token-modal-footer";
+export const CLASS_TOKEN_MODAL_CANCEL_BUTTON = "token-modal-cancel-button";
+export const CLASS_TOKEN_MODAL_REQUEST_BUTTON = "token-modal-request-button";
+export const TOKEN_CANCEL_BUTTON_TITLE = "ОТМЕНА";
+export const TOKEN_REQUEST_BUTTON_TITLE = "ok";
+export const TOKEN_MODAL_TITLE = "Введите токен";
+export const CLASS_TOKEN_MODAL_TITLE = "token-modal-title";
+export const TOKEN_MODAL_FORM_TITLE = "токен";
+export const CLASS_TOKEN_MODAL_FORM = "token-modal-form";
