@@ -7,22 +7,24 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: aliceblue;
+  background-color: #9E9E9E;
   backdrop-filter: blur(20px);
 }
 
 .email-modal-content {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.7);
-  border: 2px solid black;
+  background: white;
+  border: none;
   backdrop-filter: blur(40px);
   padding: 24px 32px;
-  width: 500px;
+  width: 444px;
+  height: 183px;
   margin: auto;
-  border-radius: 25px;
+  border-radius: 10px;
   gap: 20px;
   transition: all 0.2s ease-in-out;
+  min-width: 444px;
 }
 
 .email-modal-header .email-modal-content {
@@ -31,7 +33,6 @@
 }
 
 .email-modal-body .email-modal-content {
-  color: #666;
 }
 
 .email-modal-footer .email-modal-content {
@@ -40,4 +41,20 @@
   gap: 24px;
   align-items: center;
   margin-top: 40px;
+}
+
+.email-modal-cancel-button{
+  position: relative;
+  top: 40px;
+  left: 240px;
+}
+
+.email-modal-request-button{
+  position: relative;
+  top: 40px;
+  left: 260px;
+}
+
+.email-modal-title{
+  font-size: x-large;
 }
