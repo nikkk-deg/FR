@@ -11,6 +11,8 @@ import {
   CLASS_FILM_CARD,
   FILM_LINK,
 } from "./consts";
+import { Favotite } from "../favorites";
+
 
 interface FilmCard {
   film: string;
@@ -23,12 +25,13 @@ export default function FilmCard({ film, img, id }: FilmCard) {
   return (
     <>
       <Card
-        onClick={() => {
-          navigate(`${FILM_LINK}${id}`);
-        }}
+       
         className={CLASS_FILM_CARD}
       >
-        <CardActionArea>
+        <CardActionArea  onClick={() => {
+          navigate(`${FILM_LINK}${id}`);
+        }}>
+          
           <CardMedia
             component="img"
             height={CARD_HEIGHT}
@@ -41,9 +44,7 @@ export default function FilmCard({ film, img, id }: FilmCard) {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <StarBorderIcon className={CLASS_FAVORITE_BUTTON}></StarBorderIcon>
-        </CardActions>
+        <Favotite id={id}/>
       </Card>
     </>
   );

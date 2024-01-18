@@ -15,6 +15,7 @@ import {
   TOKEN_REQUEST_BUTTON_TITLE,
 } from "./const";
 import Cookies from "js-cookie";
+import { getAccId } from "../../account/get-account-id";
 
 interface tokenModal {
   showToken: boolean;
@@ -61,6 +62,7 @@ export function TokenModal({ showToken, onClose }: tokenModal) {
 
   const onConfirmClicked = () => {
     if (tokenInput !== "") {
+      getAccId();//save acc id in Cookie
       Cookies.set("token", tokenInput);
       setTokenInput("");
       onClose();

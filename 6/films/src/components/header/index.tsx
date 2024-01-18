@@ -9,6 +9,11 @@ import {
 import { useState } from "react";
 import { EmailModal } from "./modal-email";
 import { TokenModal } from "./modal-token";
+import { getAccId } from "../account/get-account-id";
+import Cookie from 'js-cookie';
+import { getFavFilms } from "../favorites/getFav";
+import { addDelFavorites } from "../getInfo";
+import { ADD_DELETE_FAVORITES } from "../consts";
 
 interface Header {
   film: string;

@@ -10,6 +10,7 @@ import { useFilter } from "./context";
 
 export function FilterSidebar() {
   const isValidToken = useFilter();
+  console.log(isValidToken);
   if (isValidToken.films !== undefined) {
     return (
       <Paper className={CLASS_FILTER_SIDEBAR}>
