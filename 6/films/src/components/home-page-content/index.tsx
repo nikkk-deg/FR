@@ -28,7 +28,7 @@ export function Films() {
       });
   }, [filter.page, filter.sortOption]);
 
-  if (filter.films !== undefined) {
+  if (filter.films !== undefined ) {
     return (
       <Box className={CLASS_FILM_LIST}>
         {filter.films.map((item: FilmInfo) => {

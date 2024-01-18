@@ -12,26 +12,33 @@ import {
   FILM_LINK,
 } from "./consts";
 import { Favotite } from "../favorites";
-
+import { addDelFavorites } from "../getInfo";
+import { ADD_DELETE_FAVORITES } from "../consts";
+import Cookie from "js-cookie";
 
 interface FilmCard {
   film: string;
   img: string;
-  id: number;
+  id: string | undefined;
 }
 export default function FilmCard({ film, img, id }: FilmCard) {
   const navigate = useNavigate();
+  // const dataDel = {
+  //   media_type: "movie",
+  //   media_id: id,
+  //   favorite: false,
+  // };
+  // addDelFavorites(ADD_DELETE_FAVORITES, Cookie.get("account-id"), dataDel);
+  // delete all favorites
 
   return (
     <>
-      <Card
-       
-        className={CLASS_FILM_CARD}
-      >
-        <CardActionArea  onClick={() => {
-          navigate(`${FILM_LINK}${id}`);
-        }}>
-          
+      <Card className={CLASS_FILM_CARD}>
+        <CardActionArea
+          onClick={() => {
+            navigate(`${FILM_LINK}${id}`);
+          }}
+        >
           <CardMedia
             component="img"
             height={CARD_HEIGHT}
@@ -44,7 +51,7 @@ export default function FilmCard({ film, img, id }: FilmCard) {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <Favotite id={id}/>
+        <Favotite id={id} />
       </Card>
     </>
   );

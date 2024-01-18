@@ -6,6 +6,7 @@ import { getInfo } from "../getInfo";
 import { GENRES } from "../consts";
 import { CHOOSE_GENRE, CLASS_GENRES_FILTER } from "./consts";
 import Autocomplete from "@mui/material/Autocomplete";
+import { Box } from "@mui/material";
 
 interface Genres {
   id: number;
@@ -34,10 +35,11 @@ export default function GenresFilter() {
   };
 
   return (
+    <Box className={CLASS_GENRES_FILTER}>
     <Autocomplete
       size="small"
       multiple
-      className={CLASS_GENRES_FILTER}
+      
       options={genres}
       disableCloseOnSelect
       getOptionLabel={(option: Genres) => option.name}
@@ -54,5 +56,6 @@ export default function GenresFilter() {
         );
       }}
     />
+    </Box>
   );
 }

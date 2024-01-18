@@ -1,5 +1,5 @@
 export const SORT_OPTION = "sort-option";
-import { Genres } from './../../../../../5/films_ts/src/Filters/Genres';
+import { Genres } from "./../../../../../5/films_ts/src/Filters/Genres";
 export const SELECT_YEAR = "select-year";
 export const RESET_FILTERS = "reset-filters";
 export const CHOOSE_GENRE = "choose-genre";
@@ -21,6 +21,7 @@ export const CLASS_YEAR_SLIDER = "year-slider";
 export const CLASS_YEAR_SLIDER_TITLE = "year-slider-text";
 export const SLIDER_TITLE = "Год релиза";
 export const MIN_YEAR = 1940;
+export const CLASS_SEARCH = "search-film";
 
 export const FILTER_OPTIONS = [
   { label: "популярности", key: "popular" },
@@ -38,7 +39,6 @@ export const INITIAL_STATE = {
   page: "1",
   films: [],
 };
-
 
 export const MARKS = [
   {
@@ -97,7 +97,7 @@ export interface FilmsResponse {
   sortOption: string;
 }
 
-export interface FilterAction{
+export interface FilterAction {
   type: string;
   option: string;
   min: string;
@@ -105,5 +105,4 @@ export interface FilterAction{
   genre: Genre;
   page: string;
   films: Film;
-
 }

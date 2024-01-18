@@ -56,7 +56,7 @@ export default function FilmPage() {
         film={`${filmInfo.filmInfo?.original_title}`}
         img={`https://image.tmdb.org/t/p/w300${filmInfo.filmInfo?.poster_path}`}
       />
-      <Title name={filmInfo.filmInfo?.title} year={filmYear} />
+      <Title name={filmInfo.filmInfo?.title} year={filmYear} id={id} />
       <BackButton />
       <Actors />
       <Overview />

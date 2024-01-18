@@ -15,11 +15,12 @@ export default function OptionSort() {
   const filter = useFilter();
   const dispatch = useFilterDispatch();
 
-
-  const handleChangeOption = (e: React.ChangeEventHandler<HTMLSelectElement> | undefined) => {
+  const handleChangeOption = (
+    e: React.ChangeEventHandler<HTMLSelectElement> | undefined
+  ) => {
     dispatch({
       type: SORT_OPTION,
-      option: e.target.value,
+      option: e?.target.value,
     });
   };
   return (

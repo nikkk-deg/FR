@@ -12,7 +12,6 @@ export const CLASS_FAVORITES = "favorites";
 export const SET_FILM_INFO = "set-film-info";
 export const SET_ACTORS_INFO = "set-actor-info";
 
-
 export const FILM_INFO_STATE = {
   actorInfo: [],
   filmInfo: [],
@@ -24,13 +23,13 @@ export interface CastMember {
   character: string;
   credit_id: string;
   gender: number; // Assuming 1 for female, 2 for male
-  id: number;
+  id: string | undefined;
   known_for_department: string;
   name: string;
   order: number;
   original_name: string;
   popularity: number;
-  profile_path: string | null; 
+  profile_path: string | null;
 }
 
 interface Genre {
@@ -62,7 +61,7 @@ export interface FilmInfo {
   budget: number;
   genres: Genre[];
   homepage: string;
-  id: number;
+  id: string;
   imdb_id: string;
   original_language: string;
   original_title: string;
@@ -98,8 +97,6 @@ interface ActorInfo {
   profile_path: string | null;
 }
 
-
-
 export interface FilmInfoState {
   actorInfo: FilmInfo[];
   filmInfo: ActorInfo[];
@@ -108,5 +105,5 @@ export interface FilmInfoState {
 export interface FilmReducerType {
   type: string;
   actors: ActorInfo;
-  film: FilmInfo
+  film: FilmInfo;
 }
