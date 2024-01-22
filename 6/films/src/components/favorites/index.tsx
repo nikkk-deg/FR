@@ -3,7 +3,7 @@ import StarIcon from "@mui/icons-material/Star";
 import { useEffect, useState } from "react";
 import { ADD_DELETE_FAVORITES, FAVORITES_FILMS } from "../consts";
 import Cookie from "js-cookie";
-import { addDelFavorites, getInfo } from "../getInfo";
+import { addDelFavorites, getInfo, getURL } from "../getInfo";
 import { useFilmFav, useFilmFavDispatch } from "./context";
 import { SET_FAV_FILMS } from "./consts";
 import { useFilter } from "../filter/context";
@@ -28,22 +28,39 @@ export function Favotite({ id }: Favotite) {
     favorite: false,
   };
 
-  const getFavFilms = () => {
-    getInfo(FAVORITES_FILMS, Cookie.get("account-id"))
-      .then((item) => {
-        let filmsIds: any[] = [];
-        item.results.map((item: any) => filmsIds.push(item.id));
+  const getFavFilms = async (type: string, id: string | undefined) => {
+    try {
+      const response = await fetch(getURL(type, id), {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          authorization: `Bearer ${Cookie.get("token")}`,
+        },
+      });
 
-        dispatch({
-          type: SET_FAV_FILMS,
-          films: filmsIds,
-        });
-      })
-      .catch((error) => console.warn(error));
+      const valueRequest = await response.json();
+      let filmsIds: any[] = [];
+      valueRequest.results.map((item: any) => filmsIds.push(item.id));
+      if (filmsIds.includes(Number(id))) {
+        setIsFav(true);
+      }
+      dispatch({
+        type: SET_FAV_FILMS,
+        films: filmsIds,
+      });
+    } catch (err) {
+      alert("ошибка сети");
+      if (favFilm.favorites.includes(Number(id))) {
+        setIsFav(true);
+      } else {
+        setIsFav(false);
+      }
+    }
+    // return valueRequest;
   };
 
   useEffect(() => {
-    getFavFilms();
+    getFavFilms(FAVORITES_FILMS, id);
   }, [isFav]);
 
   const handleAddFav = () => {
@@ -56,7 +73,7 @@ export function Favotite({ id }: Favotite) {
     setIsFav(!isFav);
   };
 
-  if (favFilm.favorites.includes(Number(id))) {
+  if (isFav) {
     return <StarIcon sx={{ cursor: "pointer" }} onClick={handleDelFav} />;
   }
   return <StarBorderIcon sx={{ cursor: "pointer" }} onClick={handleAddFav} />;

@@ -11,7 +11,7 @@ import {
 import { FILTER_OPTIONS } from "./filter/consts";
 import Cookie from "js-cookie";
 
-const getURL = (type: string, id: string | undefined): string => {
+export const getURL = (type: string, id: string | undefined): string => {
   switch (type) {
     case FILM_INFO_TXT: {
       return `https://api.themoviedb.org/3/movie/${id}?language=ru-US`;
@@ -57,6 +57,7 @@ export const getInfo = async (type: string, id: string | undefined) => {
       authorization: `Bearer ${Cookie.get("token")}`,
     },
   });
+
   const valueRequest = await response.json();
   return valueRequest;
 };
