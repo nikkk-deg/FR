@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
-import { CLASS_FAVORITES, CLASS_TITLE } from "./consts";
-import { Favotite } from "../favorites";
+import { CLASS_TITLE } from "./consts";
+import { Favorite } from "../favorites";
 
 interface Title {
   name: string;
@@ -13,7 +12,7 @@ export default function Title({ name, year, id }: Title) {
   return (
     <Box className={CLASS_TITLE} component={"p"}>
       {`${name} - (${year})`}
-      <Favotite id={id} />
+      <Favorite id={id} />
     </Box>
   );
 }

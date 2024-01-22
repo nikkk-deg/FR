@@ -1,5 +1,4 @@
 export const SORT_OPTION = "sort-option";
-import { Genres } from "./../../../../../5/films_ts/src/Filters/Genres";
 export const SELECT_YEAR = "select-year";
 export const RESET_FILTERS = "reset-filters";
 export const CHOOSE_GENRE = "choose-genre";

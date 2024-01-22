@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Header } from "../components/header";
-import { getInfo } from "../components/getInfo";
+import { getInfo } from "../API";
 import Poster from "../components/film-page/poster";
 import Title from "../components/film-page/title";
 import Actors from "../components/film-page/actors";
 import BackButton from "../components/film-page/back-button";
 import Overview from "../components/film-page/overview";
-import { ACTORS_INFO, FILM_INFO_TXT } from "../components/consts";
+import { ACTORS_INFO, FILM_INFO_TXT } from "../consts";
 import {
   useFilmInfo,
   useFilmInfoDispatch,

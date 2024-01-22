@@ -1,11 +1,12 @@
 import { Box } from "@mui/material";
 import { useEffect } from "react";
 import { useFilter, useFilterDispatch } from "../filter/context";
-import { getInfo } from "../getInfo";
+import { getInfo, getURL } from "../../API";
 import FilmCard from "./card";
 import { CLASS_FILM_LIST, CLASS_NETWORK_ERROR, ERROR_MESSAGE } from "./consts";
 import { CHANGE_FILM_LIST } from "../filter/consts";
 import { FilmInfo } from "../film-page/consts";
+import { IMG } from "../../consts";
 
 export function Films() {
   const filter = useFilter();
@@ -36,7 +37,7 @@ export function Films() {
             <FilmCard
               key={item.id}
               film={item.title}
-              img={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
+              img = {getURL(IMG, item.poster_path)}
               id={item.id}
             ></FilmCard>
           );

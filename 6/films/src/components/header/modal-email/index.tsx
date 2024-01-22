@@ -1,5 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
+import Cookies from "js-cookie";
 import {
   CANCEL_BUTTON_TITLE,
   CLASS_EMAIL_MODAL_BACKDROP,
@@ -14,7 +15,7 @@ import {
   EMAIL_MODAL_TITLE,
   REQUEST_BUTTON_TITLE,
 } from "./const";
-import Cookies from "js-cookie";
+
 
 interface EmailModal {
   show: boolean;
@@ -26,12 +27,12 @@ export function EmailModal({ show, onClose, isTokenModal }: EmailModal) {
   const [emailInput, setEmailInput] = useState("");
   const modalRef = useRef<HTMLElement | null>(null);
 
-  const closeModalOnClickOut = (e: any) => {
+  const closeModalOnClickOut = (e: MouseEvent) => {
     if (
       show &&
       e.target &&
       modalRef.current &&
-      !modalRef.current.contains(e.target) &&
+      !modalRef.current.contains(e.target as Node) &&
       onClose
     ) {
       onClose();
@@ -69,7 +70,7 @@ export function EmailModal({ show, onClose, isTokenModal }: EmailModal) {
     }
   };
 
-  const handleEmailInput = (e: any) => {
+  const handleEmailInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmailInput(e.target.value);
   };
 
@@ -111,8 +112,8 @@ export function EmailModal({ show, onClose, isTokenModal }: EmailModal) {
         </Box>
       </Box>
     );
-  } else {
+  }
     document.body.style.overflow = "visible";
     return <></>;
-  }
+  
 }

@@ -1,5 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
+import Cookies from "js-cookie";
 import {
   TOKEN_CANCEL_BUTTON_TITLE,
   CLASS_TOKEN_MODAL_BACKDROP,
@@ -14,8 +15,8 @@ import {
   TOKEN_MODAL_TITLE,
   TOKEN_REQUEST_BUTTON_TITLE,
 } from "./const";
-import Cookies from "js-cookie";
-import { getAccId } from "../../account/get-account-id";
+
+import { saveAccountId } from "../../account/get-account-id";
 
 interface tokenModal {
   showToken: boolean;
@@ -26,12 +27,12 @@ export function TokenModal({ showToken, onClose }: tokenModal) {
   const [tokenInput, setTokenInput] = useState("");
   const modalRef = useRef<HTMLElement | null>(null);
 
-  const closeModalOnClickOut = (e: any) => {
+  const closeModalOnClickOut = (e: MouseEvent) => {
     if (
       showToken &&
       e.target &&
       modalRef.current &&
-      !modalRef.current.contains(e.target) &&
+      !modalRef.current.contains(e.target as Node) &&
       onClose
     ) {
       onClose();
@@ -62,7 +63,7 @@ export function TokenModal({ showToken, onClose }: tokenModal) {
 
   const onConfirmClicked = () => {
     if (tokenInput !== "") {
-      getAccId();//save acc id in Cookie
+      saveAccountId();
       Cookies.set("token", tokenInput);
       setTokenInput("");
       onClose();
@@ -70,7 +71,7 @@ export function TokenModal({ showToken, onClose }: tokenModal) {
     }
   };
 
-  const handleTokenInput = (e: any) => {
+  const handleTokenInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTokenInput(e.target.value);
   };
 
@@ -112,8 +113,7 @@ export function TokenModal({ showToken, onClose }: tokenModal) {
         </Box>
       </Box>
     );
-  } else {
+  }
     document.body.style.overflow = "visible";
     return <></>;
-  }
 }

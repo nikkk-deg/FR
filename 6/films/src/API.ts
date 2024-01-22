@@ -1,17 +1,17 @@
-import { token } from "../consts";
 import {
   ACTORS_INFO,
   FILM_INFO_TXT,
   GENRES,
   ACCOUNT_ID,
   FAVORITES_FILMS,
-  ADD_DELETE_FAVORITES,
+  CHANGE_FAVORITES,
   SEARCH_FILMS,
+  IMG,
 } from "./consts";
-import { FILTER_OPTIONS } from "./filter/consts";
+import { FILTER_OPTIONS } from "./components/filter/consts";
 import Cookie from "js-cookie";
 
-export const getURL = (type: string, id: string | undefined): string => {
+export const getURL = (type: string, id: string | undefined | null): string => {
   switch (type) {
     case FILM_INFO_TXT: {
       return `https://api.themoviedb.org/3/movie/${id}?language=ru-US`;
@@ -37,11 +37,14 @@ export const getURL = (type: string, id: string | undefined): string => {
     case FAVORITES_FILMS: {
       return `https://api.themoviedb.org/3/account/${id}/favorite/movies?language=en-US&page=1&sort_by=created_at.asc`;
     }
-    case ADD_DELETE_FAVORITES: {
+    case CHANGE_FAVORITES: {
       return `https://api.themoviedb.org/3/account/${id}/favorite`;
     }
     case SEARCH_FILMS: {
       return `https://api.themoviedb.org/3/search/movie?query=${id}&include_adult=false&language=en-US&page=1`;
+    }
+    case IMG: {
+      return `https://image.tmdb.org/t/p/w300${id}`
     }
     default: {
       throw new Error("Unknow action: " + type);
@@ -62,7 +65,7 @@ export const getInfo = async (type: string, id: string | undefined) => {
   return valueRequest;
 };
 
-export const addDelFavorites = async (
+export const changeFavorites = async (
   type: string,
   id: string | undefined,
   data: any
@@ -79,10 +82,3 @@ export const addDelFavorites = async (
   const valueRequest = await response.json();
   return valueRequest;
 };
-
-// export const token =
-//   "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2Y2I3M2UwZmJlNzkyYjZmZGFlOGQwYTg1YmExNGNmMiIsInN1YiI6IjY1NmI3OWFlODgwNTUxMDBhZWU4Yzk0OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fIILgVPsRFrQZweu3ZQ0-aUnacAzRGBiNTOduh3_92I";
-// curl --request GET \
-//      --url 'https://api.themoviedb.org/3/search/movie?query=13132&include_adult=false&language=en-US&page=1' \
-//      --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2Y2I3M2UwZmJlNzkyYjZmZGFlOGQwYTg1YmExNGNmMiIsInN1YiI6IjY1NmI3OWFlODgwNTUxMDBhZWU4Yzk0OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fIILgVPsRFrQZweu3ZQ0-aUnacAzRGBiNTOduh3_92I' \
-//      --header 'accept: application/json'

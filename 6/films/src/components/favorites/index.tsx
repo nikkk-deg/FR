@@ -1,32 +1,33 @@
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 import { useEffect, useState } from "react";
-import { ADD_DELETE_FAVORITES, FAVORITES_FILMS } from "../consts";
+import { CHANGE_FAVORITES, FAVORITES_FILMS } from "../../consts";
 import Cookie from "js-cookie";
-import { addDelFavorites, getInfo, getURL } from "../getInfo";
+import { changeFavorites, getInfo, getURL } from "../../API";
 import { useFilmFav, useFilmFavDispatch } from "./context";
-import { SET_FAV_FILMS } from "./consts";
-import { useFilter } from "../filter/context";
+import { MovieInfo, SET_FAV_FILMS } from "./consts";
 
-interface Favotite {
+interface Favorite {
   id: string | undefined;
 }
 
-export function Favotite({ id }: Favotite) {
+export function Favorite({ id }: Favorite) {
   const [isFav, setIsFav] = useState(false);
   const favFilm = useFilmFav();
   const dispatch = useFilmFavDispatch();
 
-  const dataAdd = {
+  const addFav = {
     media_type: "movie",
     media_id: id,
     favorite: true,
   };
-  const dataDel = {
+  const delFav = {
     media_type: "movie",
     media_id: id,
     favorite: false,
   };
+
+
 
   const getFavFilms = async (type: string, id: string | undefined) => {
     try {
@@ -37,10 +38,9 @@ export function Favotite({ id }: Favotite) {
           authorization: `Bearer ${Cookie.get("token")}`,
         },
       });
-
       const valueRequest = await response.json();
-      let filmsIds: any[] = [];
-      valueRequest.results.map((item: any) => filmsIds.push(item.id));
+      let filmsIds: number[] = [];
+      valueRequest.results.map((item: MovieInfo) => filmsIds.push(item.id));
       if (filmsIds.includes(Number(id))) {
         setIsFav(true);
       }
@@ -49,14 +49,13 @@ export function Favotite({ id }: Favotite) {
         films: filmsIds,
       });
     } catch (err) {
-      alert("ошибка сети");
+      console.warn('ошибка сети')
       if (favFilm.favorites.includes(Number(id))) {
         setIsFav(true);
       } else {
         setIsFav(false);
       }
     }
-    // return valueRequest;
   };
 
   useEffect(() => {
@@ -64,12 +63,12 @@ export function Favotite({ id }: Favotite) {
   }, [isFav]);
 
   const handleAddFav = () => {
-    addDelFavorites(ADD_DELETE_FAVORITES, Cookie.get("account-id"), dataAdd);
+    changeFavorites(CHANGE_FAVORITES, Cookie.get("account-id"), addFav);
     setIsFav(!isFav);
   };
 
   const handleDelFav = () => {
-    addDelFavorites(ADD_DELETE_FAVORITES, Cookie.get("account-id"), dataDel);
+    changeFavorites(CHANGE_FAVORITES, Cookie.get("account-id"), delFav);
     setIsFav(!isFav);
   };
 

@@ -9,11 +9,7 @@ import {
 import { useState } from "react";
 import { EmailModal } from "./modal-email";
 import { TokenModal } from "./modal-token";
-import { getAccId } from "../account/get-account-id";
-import Cookie from 'js-cookie';
-import { getFavFilms } from "../favorites/getFav";
-import { addDelFavorites } from "../getInfo";
-import { ADD_DELETE_FAVORITES } from "../consts";
+
 
 interface Header {
   film: string;
@@ -23,11 +19,11 @@ export function Header({ film }: Header) {
   const [emailModal, setEmailModal] = useState(false);
   const [tokenModal, setTokenModal] = useState(false);
 
-  const isEmailModalOpen = () => {
+  const isEmailModal = () => {
     setEmailModal(!emailModal);
   };
 
-  const isTokenModalOpen = () => {
+  const isTokenModal = () => {
     setTokenModal(!tokenModal);
   };
 
@@ -46,16 +42,16 @@ export function Header({ film }: Header) {
     <Box className={CLASS_HEADER}>
       <EmailModal
         show={emailModal}
-        onClose={isEmailModalOpen}
+        onClose={isEmailModal}
         isTokenModal={openTokenModal}
       />
-      <TokenModal showToken={tokenModal} onClose={isTokenModalOpen} />
+      <TokenModal showToken={tokenModal} onClose={isTokenModal} />
       <Box className={CLASS_HEADER_TITLE} component={"p"}>
         {setTitle()}
       </Box>
       <AccountCircleIcon
         className={CLASS_LOGIN_BUTTON}
-        onClick={isEmailModalOpen}
+        onClick={isEmailModal}
       ></AccountCircleIcon>
     </Box>
   );
