@@ -10,8 +10,9 @@ import {
   SORT_OPTION_TITLE,
   FILTER_OPTIONS,
 } from "./consts";
+import { memo } from "react";
 
-export default function OptionSort() {
+export default memo(function OptionSort() {
   const filter = useFilter();
   const dispatch = useFilterDispatch();
 
@@ -41,4 +42,4 @@ export default function OptionSort() {
       </FormControl>
     </Box>
   );
-}
+});

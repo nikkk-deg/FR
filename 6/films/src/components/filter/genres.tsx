@@ -1,6 +1,6 @@
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useFilterDispatch } from "./context";
 import { getInfo } from "../../API";
 import { GENRES } from "../../consts";
@@ -15,13 +15,15 @@ interface Genres {
 
 type SelectedGenres = Genres[];
 
-export default function GenresFilter() {
+export default memo(function GenresFilter() {
   const [genres, setGenres] = useState([]);
   const dispatch = useFilterDispatch();
 
   useEffect(() => {
     try {
-      getInfo(GENRES, "").then((genres) => setGenres(genres.genres));
+      getInfo(GENRES, "").then((genres) => {
+        setGenres(genres.genres);
+      });
     } catch (error) {
       console.warn(error);
     }
@@ -34,28 +36,29 @@ export default function GenresFilter() {
     });
   };
 
+  console.log(1234);
+
   return (
     <Box className={CLASS_GENRES_FILTER}>
-    <Autocomplete
-      size="small"
-      multiple
-      
-      options={genres}
-      disableCloseOnSelect
-      getOptionLabel={(option: Genres) => option.name}
-      renderOption={(props, option, { selected }) => (
-        <li {...props}>
-          <Checkbox style={{ marginRight: 8 }} checked={selected} />
-          {option.name}
-        </li>
-      )}
-      onChange={(event, value) => handleChooseGenre(value)}
-      renderInput={(params) => {
-        return (
-          <TextField {...params} label={GENRES} placeholder=""></TextField>
-        );
-      }}
-    />
+      <Autocomplete
+        size="small"
+        multiple
+        options={genres}
+        disableCloseOnSelect
+        getOptionLabel={(option: Genres) => option.name}
+        renderOption={(props, option, { selected }) => (
+          <li {...props}>
+            <Checkbox style={{ marginRight: 8 }} checked={selected} />
+            {option.name}
+          </li>
+        )}
+        onChange={(event, value) => handleChooseGenre(value)}
+        renderInput={(params) => {
+          return (
+            <TextField {...params} label={GENRES} placeholder=""></TextField>
+          );
+        }}
+      />
     </Box>
   );
-}
+});

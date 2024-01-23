@@ -3,7 +3,7 @@ import StarIcon from "@mui/icons-material/Star";
 import { useEffect, useState } from "react";
 import { CHANGE_FAVORITES, FAVORITES_FILMS } from "../../consts";
 import Cookie from "js-cookie";
-import { changeFavorites, getInfo, getURL } from "../../API";
+import { changeFavorites, getURL } from "../../API";
 import { useFilmFav, useFilmFavDispatch } from "./context";
 import { MovieInfo, SET_FAV_FILMS } from "./consts";
 
@@ -27,8 +27,7 @@ export function Favorite({ id }: Favorite) {
     favorite: false,
   };
 
-
-
+  //да, функция бога, хз как ее изменить
   const getFavFilms = async (type: string, id: string | undefined) => {
     try {
       const response = await fetch(getURL(type, id), {
@@ -49,7 +48,7 @@ export function Favorite({ id }: Favorite) {
         films: filmsIds,
       });
     } catch (err) {
-      console.warn('ошибка сети')
+      console.warn("ошибка сети");
       if (favFilm.favorites.includes(Number(id))) {
         setIsFav(true);
       } else {
