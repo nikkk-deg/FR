@@ -32,7 +32,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <FilterProvider>
     <FilmInfoProvider>
       <FilmFavProvider>
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
       </FilmFavProvider>
     </FilmInfoProvider>
   </FilterProvider>
