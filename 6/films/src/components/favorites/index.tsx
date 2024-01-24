@@ -6,7 +6,6 @@ import Cookie from "js-cookie";
 import { changeFavorites, getURL } from "../../API";
 import { useFilmFav, useFilmFavDispatch } from "./context";
 import { MovieInfo, SET_FAV_FILMS } from "./consts";
-import { token } from './../../../../../../review/FR-5/nikita_deg/films/src/consts';
 import { useSelector } from "react-redux";
 
 interface Favorite {
@@ -29,12 +28,8 @@ export function Favorite({ id }: Favorite) {
     favorite: false,
   };
 
-<<<<<<< HEAD
   const token = useSelector(state => state.token);
 
-=======
-  //да, функция бога, хз как ее изменить
->>>>>>> 69cbb9f5e409bea37f996718731e031d15b245e3
   const getFavFilms = async (type: string, id: string | undefined) => {
     try {
       const response = await fetch(getURL(type, id), {
@@ -69,12 +64,12 @@ export function Favorite({ id }: Favorite) {
   }, [isFav]);
 
   const handleAddFav = () => {
-    changeFavorites(CHANGE_FAVORITES, Cookie.get("account-id"), addFav);
+    changeFavorites(CHANGE_FAVORITES, Cookie.get("account-id"), addFav, token);
     setIsFav(!isFav);
   };
 
   const handleDelFav = () => {
-    changeFavorites(CHANGE_FAVORITES, Cookie.get("account-id"), delFav);
+    changeFavorites(CHANGE_FAVORITES, Cookie.get("account-id"), delFav, token);
     setIsFav(!isFav);
   };
 

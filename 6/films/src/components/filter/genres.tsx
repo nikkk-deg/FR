@@ -23,13 +23,7 @@ export default memo(function GenresFilter() {
 
   useEffect(() => {
     try {
-<<<<<<< HEAD
       getInfo(GENRES, "", token).then((genres) => setGenres(genres.genres));
-=======
-      getInfo(GENRES, "").then((genres) => {
-        setGenres(genres.genres);
-      });
->>>>>>> 69cbb9f5e409bea37f996718731e031d15b245e3
     } catch (error) {
       console.warn(error);
     }
@@ -68,11 +62,6 @@ export default memo(function GenresFilter() {
     );
   }
 
-<<<<<<< HEAD
-}
-=======
-  console.log(1234);
-
   return (
     <Box className={CLASS_GENRES_FILTER}>
       <Autocomplete
@@ -97,4 +86,3 @@ export default memo(function GenresFilter() {
     </Box>
   );
 });
->>>>>>> 69cbb9f5e409bea37f996718731e031d15b245e3

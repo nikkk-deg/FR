@@ -1,6 +1,6 @@
-import { Films } from "../components/home-page-content";
 import { FilterSidebar } from "../components/filter";
 import { Header } from "../components/header";
+import Films from './../components/home-page-content/index';
 
 export default function HomePage() {
   return (
