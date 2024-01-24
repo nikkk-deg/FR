@@ -6,6 +6,8 @@ import Cookie from "js-cookie";
 import { changeFavorites, getInfo, getURL } from "../../API";
 import { useFilmFav, useFilmFavDispatch } from "./context";
 import { MovieInfo, SET_FAV_FILMS } from "./consts";
+import { token } from './../../../../../../review/FR-5/nikita_deg/films/src/consts';
+import { useSelector } from "react-redux";
 
 interface Favorite {
   id: string | undefined;
@@ -27,7 +29,7 @@ export function Favorite({ id }: Favorite) {
     favorite: false,
   };
 
-
+  const token = useSelector(state => state.token);
 
   const getFavFilms = async (type: string, id: string | undefined) => {
     try {
@@ -35,7 +37,7 @@ export function Favorite({ id }: Favorite) {
         method: "GET",
         headers: {
           accept: "application/json",
-          authorization: `Bearer ${Cookie.get("token")}`,
+          authorization: `Bearer ${token}`,
         },
       });
       const valueRequest = await response.json();

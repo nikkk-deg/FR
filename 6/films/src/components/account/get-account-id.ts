@@ -5,8 +5,8 @@ import { getInfo } from "../../API";
 
 
 
-export const saveAccountId = () => {
-    getInfo(ACCOUNT_ID, '')
+export const saveAccountId = (token: string) => {
+    getInfo(ACCOUNT_ID, '', token)
     .then(item => Cookie.set('account-id', item.id))
     .catch(error => console.warn(error))
 }

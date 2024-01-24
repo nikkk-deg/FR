@@ -5,6 +5,12 @@ import { FilmInfoProvider } from "./components/film-page/context.tsx";
 import App from "./App.tsx";
 import FilmPage from "./pages/film.tsx";
 import { FilmFavProvider } from "./components/favorites/context.tsx";
+import { createStore } from 'redux'
+import { Provider} from "react-redux";
+import { tokenReducer } from "./redux/reducer.ts";
+
+const store = createStore(tokenReducer);
+
 
 const router = createBrowserRouter([
   {
@@ -22,6 +28,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
+  <Provider store = {store}>
   <FilterProvider>
     <FilmInfoProvider>
       <FilmFavProvider>
@@ -29,4 +36,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       </FilmFavProvider>
     </FilmInfoProvider>
   </FilterProvider>
+  </Provider>
 );

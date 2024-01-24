@@ -9,7 +9,6 @@ import {
   IMG,
 } from "./consts";
 import { FILTER_OPTIONS } from "./components/filter/consts";
-import Cookie from "js-cookie";
 
 export const getURL = (type: string, id: string | undefined | null): string => {
   switch (type) {
@@ -52,12 +51,12 @@ export const getURL = (type: string, id: string | undefined | null): string => {
   }
 };
 
-export const getInfo = async (type: string, id: string | undefined) => {
+export const getInfo = async (type: string, id: string | undefined, token: string) => {
   const response = await fetch(getURL(type, id), {
     method: "GET",
     headers: {
       accept: "application/json",
-      authorization: `Bearer ${Cookie.get("token")}`,
+      authorization: `Bearer ${token}`,
     },
   });
 
@@ -68,14 +67,15 @@ export const getInfo = async (type: string, id: string | undefined) => {
 export const changeFavorites = async (
   type: string,
   id: string | undefined,
-  data: any
+  data: any,
+  token: string,
 ) => {
   const response = await fetch(getURL(type, id), {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
       accept: "application/json",
-      authorization: `Bearer ${Cookie.get("token")}`,
+      authorization: `Bearer ${token}`,
       "content-type": "application/json",
     },
   });

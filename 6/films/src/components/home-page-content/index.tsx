@@ -7,13 +7,15 @@ import { CLASS_FILM_LIST, CLASS_NETWORK_ERROR, ERROR_MESSAGE } from "./consts";
 import { CHANGE_FILM_LIST } from "../filter/consts";
 import { FilmInfo } from "../film-page/consts";
 import { IMG } from "../../consts";
+import { useSelector } from "react-redux";
 
-export function Films() {
+export default function Films() {
   const filter = useFilter();
   const dispatch = useFilterDispatch();
+  const token = useSelector(state => state.token);
 
   useEffect(() => {
-    getInfo(filter.sortOption, filter.page)
+    getInfo(filter.sortOption, filter.page, token)
       .then((item) => {
         dispatch({
           type: CHANGE_FILM_LIST,

@@ -13,16 +13,18 @@ import {
   useFilmInfoDispatch,
 } from "../components/film-page/context";
 import { SET_ACTORS_INFO, SET_FILM_INFO } from "../components/film-page/consts";
+import { useSelector } from "react-redux";
 
 export default function FilmPage() {
   const [filmYear, setFilmYear] = useState("");
   const filmInfo = useFilmInfo();
   const dispatch = useFilmInfoDispatch();
+  const token = useSelector(state => state.token);
   const { id } = useParams();
 
   useEffect(() => {
     try {
-      getInfo(FILM_INFO_TXT, id).then((item) => {
+      getInfo(FILM_INFO_TXT, id, token).then((item) => {
         dispatch({
           type: SET_FILM_INFO,
           film: item,

@@ -5,14 +5,16 @@ import Cookie from "js-cookie";
 import { getInfo } from "../../API";
 import { SEARCH_FILMS } from "../../consts";
 import { useFilterDispatch } from "./context";
+import { useSelector } from "react-redux";
 
 
 export default function Search() {
   const dispatch = useFilterDispatch();
   const [input, setInput] = useState(Cookie.get("search"));
+  const token = useSelector(state => state.token);
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
-    getInfo(SEARCH_FILMS, input).then((item) => {
+    getInfo(SEARCH_FILMS, input, token).then((item) => {
       dispatch({
         type: CHANGE_FILM_LIST,
         films: item.results,

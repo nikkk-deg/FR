@@ -17,6 +17,7 @@ import {
 } from "./const";
 
 import { saveAccountId } from "../../account/get-account-id";
+import { useDispatch, useSelector } from "react-redux";
 
 interface tokenModal {
   showToken: boolean;
@@ -26,6 +27,16 @@ interface tokenModal {
 export function TokenModal({ showToken, onClose }: tokenModal) {
   const [tokenInput, setTokenInput] = useState("");
   const modalRef = useRef<HTMLElement | null>(null);
+  const token = useSelector(state => state.token);
+
+  const dispatch = useDispatch();
+
+  const setToken = (token: string) => {
+    dispatch({
+      type: 'SET_TOKEN',
+      payload: token,
+    })
+  }
 
   const closeModalOnClickOut = (e: MouseEvent) => {
     if (
@@ -63,11 +74,10 @@ export function TokenModal({ showToken, onClose }: tokenModal) {
 
   const onConfirmClicked = () => {
     if (tokenInput !== "") {
-      saveAccountId();
-      Cookies.set("token", tokenInput);
+      saveAccountId(token);
+      setToken(tokenInput);
       setTokenInput("");
       onClose();
-      location.reload();
     }
   };
 
