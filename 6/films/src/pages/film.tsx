@@ -15,11 +15,13 @@ import {
 import { SET_ACTORS_INFO, SET_FILM_INFO } from "../components/film-page/consts";
 import { useSelector } from "react-redux";
 
+
+
 export default function FilmPage() {
   const [filmYear, setFilmYear] = useState("");
   const filmInfo = useFilmInfo();
   const dispatch = useFilmInfoDispatch();
-  const token = useSelector(state => state.token);
+  const token = useSelector((state: any )=> state.token.token);
   const { id } = useParams();
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export default function FilmPage() {
     }
 
     try {
-      getInfo(ACTORS_INFO, id).then((item) => {
+      getInfo(ACTORS_INFO, id, token).then((item) => {
         let actorList = [];
         for (let i = 0; i < 10; i++) {
           actorList.push(item.cast[i]);

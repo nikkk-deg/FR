@@ -5,11 +5,10 @@ import { FilmInfoProvider } from "./components/film-page/context.tsx";
 import App from "./App.tsx";
 import FilmPage from "./pages/film.tsx";
 import { FilmFavProvider } from "./components/favorites/context.tsx";
-import { createStore } from 'redux'
 import { Provider} from "react-redux";
-import { tokenReducer } from "./redux/reducer.ts";
+import { store } from "./store/index.ts";
 
-const store = createStore(tokenReducer);
+
 
 
 const router = createBrowserRouter([

@@ -28,7 +28,7 @@ export function Favorite({ id }: Favorite) {
     favorite: false,
   };
 
-  const token = useSelector(state => state.token);
+  const token = useSelector((state: any) => state.token.token);
 
   const getFavFilms = async (type: string, id: string | undefined) => {
     try {

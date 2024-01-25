@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 export default function Search() {
   const dispatch = useFilterDispatch();
   const [input, setInput] = useState(Cookie.get("search"));
-  const token = useSelector(state => state.token);
+  const token = useSelector((state: any) => state.token.token);
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
     getInfo(SEARCH_FILMS, input, token).then((item) => {
