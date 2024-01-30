@@ -1,6 +1,5 @@
-import { Box } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import { useEffect } from "react";
-import { useFilter, useFilterDispatch } from "../filter/context";
 import { getInfo, getURL } from "../../API";
 import FilmCard from "./card";
 import { CLASS_FILM_LIST, CLASS_NETWORK_ERROR, ERROR_MESSAGE } from "./consts";
@@ -8,7 +7,9 @@ import { CHANGE_FILM_LIST } from "../filter/consts";
 import { FilmInfo } from "../film-page/consts";
 import { IMG } from "../../consts";
 import { useSelector } from "react-redux";
-import { initialState } from "../../store/initialState";
+import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
+import { Film } from "../../store/reducers/filter-slice";
+import { fetchFilmList } from "../../store/reducers/ActionCreators";
 
 
 
@@ -18,37 +19,29 @@ const tokenAPI =
 
 
 export default function Films() {
-  const filter = useFilter();
-  const dispatch = useFilterDispatch();
-  const token = useSelector((state: any) => state.token.token);
+  const token = useAppSelector(state => state.loginReducer.token);
+  const options =  useAppSelector(state => state.filterReducer.sortOption);
+  const page =  useAppSelector(state => state.filterReducer.page);
+  const films =  useAppSelector(state => state.filterReducer.films);
+  const filter = useAppSelector(state => state.filterReducer);
+  const dispatch = useAppDispatch();
+  console.log(filter);
 
+  const token123 = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2Y2I3M2UwZmJlNzkyYjZmZGFlOGQwYTg1YmExNGNmMiIsInN1YiI6IjY1NmI3OWFlODgwNTUxMDBhZWU4Yzk0OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fIILgVPsRFrQZweu3ZQ0-aUnacAzRGBiNTOduh3_92I'
   useEffect(() => {
-    getInfo(filter.sortOption, filter.page, token)
-      .then((item) => {
-        dispatch({
-          type: CHANGE_FILM_LIST,
-          films: item.results,
-        });
-      })
-      .catch((error) => {
-        dispatch({
-          type: CHANGE_FILM_LIST,
-          films: undefined,
-        });
-        console.warn(error);
-      });
-  }, [filter.page, filter.sortOption, token]);
+    dispatch(fetchFilmList(options, page, token123))
+  }, [page, options, token123]);
 
-  if (filter.films !== undefined  && token !== initialState.token) {
+  if (films.length !== 0) {
     return (
       <Box className={CLASS_FILM_LIST}>
-        {filter.films.map((item: FilmInfo) => {
+        {films.map(item => {
           return (
             <FilmCard
               key={item.id}
               film={item.title}
               img = {getURL(IMG, item.poster_path)}
-              id={item.id}
+              id={String(item.id)}
             ></FilmCard>
           );
         })}
@@ -58,6 +51,6 @@ export default function Films() {
   return (
   <>
   <Box className={CLASS_NETWORK_ERROR}>{ERROR_MESSAGE}</Box>
-  <Box sx={{fontSize: 'x-small', position: 'absolute', top: '200px', color: 'red'}}>{`copy me:     ${tokenAPI}`}</Box>
+  <TextField multiline inputProps={{readOnly: true}} label = "Copy me" defaultValue={tokenAPI} sx={{fontSize: 'x-small', position: 'absolute', top: '200px', color: 'red'}}/>
   </>);
 }

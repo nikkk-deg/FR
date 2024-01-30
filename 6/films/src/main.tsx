@@ -5,10 +5,11 @@ import { FilmInfoProvider } from "./components/film-page/context.tsx";
 import App from "./App.tsx";
 import FilmPage from "./pages/film.tsx";
 import { FilmFavProvider } from "./components/favorites/context.tsx";
-import { Provider} from "react-redux";
-import { store } from "./store/index.ts";
+import { Provider } from "react-redux";
+import { setupStore } from "./store/index.ts";
 
 
+const store = setupStore();
 
 
 const router = createBrowserRouter([
@@ -27,13 +28,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <Provider store = {store}>
-  <FilterProvider>
-    <FilmInfoProvider>
-      <FilmFavProvider>
-        <RouterProvider router={router} />
-      </FilmFavProvider>
-    </FilmInfoProvider>
-  </FilterProvider>
-  </Provider>
+<Provider store = {store}>
+  <RouterProvider router={router} />
+</Provider>
+   
+
 );

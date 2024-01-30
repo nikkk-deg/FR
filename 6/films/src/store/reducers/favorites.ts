@@ -1,5 +1,5 @@
-import { SET_FAV_FILMS } from "./const";
-import { FAVORITES_DEFAULT_STATE } from "./initial-state";
+import { SET_FAV_FILMS } from "../const";
+import { FAVORITES_DEFAULT_STATE } from "../initial-state";
 
 export function favoritesReducer(state = FAVORITES_DEFAULT_STATE, action: any) {
   switch (action.type) {

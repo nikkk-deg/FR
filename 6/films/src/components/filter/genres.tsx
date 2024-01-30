@@ -1,13 +1,13 @@
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import { memo, useEffect, useState } from "react";
-import { useFilterDispatch } from "./context";
 import { getInfo } from "../../API";
 import { GENRES } from "../../consts";
 import { CHOOSE_GENRE, CLASS_GENRES_FILTER } from "./consts";
 import Autocomplete from "@mui/material/Autocomplete";
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
+import { useAppSelector } from "../../store/hooks/redux";
 
 interface Genres {
   id: number;
@@ -18,8 +18,7 @@ type SelectedGenres = Genres[];
 
 export default memo(function GenresFilter() {
   const [genres, setGenres] = useState([]);
-  const dispatch = useFilterDispatch();
-  const token = useSelector((state: any) => state.token.token);
+  const token = useAppSelector(state => state.loginReducer.token);
 
   useEffect(() => {
     try {
@@ -30,11 +29,9 @@ export default memo(function GenresFilter() {
   }, []);
 
   const handleChooseGenre = (genre: SelectedGenres) => {
-    dispatch({
-      type: CHOOSE_GENRE,
-      genre: genre,
-    });
+
   };
+
   if(genres !== undefined){
     return (
       <Box className={CLASS_GENRES_FILTER}>

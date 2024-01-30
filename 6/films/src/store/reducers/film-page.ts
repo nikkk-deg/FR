@@ -1,5 +1,5 @@
-import { SET_ACTORS_INFO, SET_FILM_INFO } from "./const";
-import { FILM_INFO_DEFAULT_STATE } from "./initial-state";
+import { SET_ACTORS_INFO, SET_FILM_INFO } from "../const";
+import { FILM_INFO_DEFAULT_STATE } from "../initial-state";
 
 
 export function filmPageReducer(state = FILM_INFO_DEFAULT_STATE, action: any) {

@@ -1,11 +1,22 @@
-import { combineReducers } from 'redux';
-import { legacy_createStore as createStore} from 'redux'
-import { tokenReducer } from './login-reducer';
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import  loginReducer from "./reducers/login-slice"
+import filterReducer from "./reducers/filter-slice"
+
 
 const rootReducer = combineReducers({
-    token: tokenReducer,
+   loginReducer,
+   filterReducer,
 
 })
 
-export const store = createStore(rootReducer);
+export const setupStore = () => {
+    return configureStore({
+        reducer: rootReducer
+    })
+}
+
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore['dispatch'];
 

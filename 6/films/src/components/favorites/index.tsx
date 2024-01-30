@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { CHANGE_FAVORITES, FAVORITES_FILMS } from "../../consts";
 import Cookie from "js-cookie";
 import { changeFavorites, getURL } from "../../API";
-import { useFilmFav, useFilmFavDispatch } from "./context";
 import { MovieInfo, SET_FAV_FILMS } from "./consts";
 import { useSelector } from "react-redux";
+import { useAppSelector } from "../../store/hooks/redux";
 
 interface Favorite {
   id: string | undefined;
@@ -14,8 +14,6 @@ interface Favorite {
 
 export function Favorite({ id }: Favorite) {
   const [isFav, setIsFav] = useState(false);
-  const favFilm = useFilmFav();
-  const dispatch = useFilmFavDispatch();
 
   const addFav = {
     media_type: "movie",
@@ -28,7 +26,7 @@ export function Favorite({ id }: Favorite) {
     favorite: false,
   };
 
-  const token = useSelector((state: any) => state.token.token);
+  const token = useAppSelector(state => state.loginReducer.token)
 
   const getFavFilms = async (type: string, id: string | undefined) => {
     try {
@@ -45,17 +43,17 @@ export function Favorite({ id }: Favorite) {
       if (filmsIds.includes(Number(id))) {
         setIsFav(true);
       }
-      dispatch({
-        type: SET_FAV_FILMS,
-        films: filmsIds,
-      });
+      // dispatch({
+      //   type: SET_FAV_FILMS,
+      //   films: filmsIds,
+      // });
     } catch (err) {
-      console.warn("ошибка сети");
-      if (favFilm.favorites.includes(Number(id))) {
-        setIsFav(true);
-      } else {
-        setIsFav(false);
-      }
+      // console.warn("ошибка сети");
+      // if (favFilm.favorites.includes(Number(id))) {
+      //   setIsFav(true);
+      // } else {
+      //   setIsFav(false);
+      // }
     }
   };
 

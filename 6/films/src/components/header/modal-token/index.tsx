@@ -19,6 +19,8 @@ import {
 import { saveAccountId } from "../../account/get-account-id";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_TOKEN_ACTION } from "../../../store/actions";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks/redux";
+import { fetchAccountID } from "../../../store/reducers/ActionCreators";
 
 interface tokenModal {
   showToken: boolean;
@@ -28,12 +30,12 @@ interface tokenModal {
 export function TokenModal({ showToken, onClose }: tokenModal) {
   const [tokenInput, setTokenInput] = useState("");
   const modalRef = useRef<HTMLElement | null>(null);
-  const token = useSelector((state: any) => state.token.token);
+  const token = useAppSelector(state => state.loginReducer.token);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const setToken = (token: string) => {
-    dispatch(SET_TOKEN_ACTION(token));
+    dispatch(fetchAccountID(token))
   }
 
   const closeModalOnClickOut = (e: MouseEvent) => {
@@ -72,7 +74,7 @@ export function TokenModal({ showToken, onClose }: tokenModal) {
 
   const onConfirmClicked = () => {
     if (tokenInput !== "") {
-      saveAccountId(token);
+      saveAccountId('token');
       setToken(tokenInput);
       setTokenInput("");
       onClose();

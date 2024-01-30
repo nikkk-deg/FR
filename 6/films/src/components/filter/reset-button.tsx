@@ -1,14 +1,12 @@
 import CloseIcon from "@mui/icons-material/Close";
-import { useFilterDispatch } from "./context";
 import { CLASS_FILTER_RESET, RESET_FILTERS } from "./consts";
 
 export function FilterReset() {
-  const dispatch = useFilterDispatch();
 
   const handleResetFilters = () => {
-    dispatch({
-      type: RESET_FILTERS,
-    });
+    // dispatch({
+    //   type: RESET_FILTERS,
+    // });
   };
 
   return (

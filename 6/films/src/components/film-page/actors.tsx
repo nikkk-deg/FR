@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { useFilmInfo } from "./context";
 import {
   CLASS_ACTOR,
   CLASS_ACTORS_TITLE,
@@ -8,20 +7,19 @@ import {
 } from "./consts";
 
 export default function Actors() {
-  const filmInfo = useFilmInfo();
 
   return (
     <Box className={CLASS_ACTOR} component={"ul"}>
       <Box component={"u"} className={CLASS_ACTORS_TITLE}>
         {TITLE_ACTORS}
       </Box>
-      {filmInfo.actorInfo.map((item: CastMember) => {
+      {f`ilmInfo.actorInfo.map((item: CastMember) => {
         return (
           <Box component={"li"} key={item.id}>
             {item.name}
           </Box>
         );
-      })}
+      })`}
     </Box>
   );
 }

@@ -6,13 +6,13 @@ import OptionSort from "./options";
 import RangeSlider from "./slider";
 import GenresFilter from "./genres";
 import { CLASS_FILM_TXT, CLASS_FILTER_SIDEBAR, SIDEBAR_TITLE } from "./consts";
-import { useFilter } from "./context";
 import Search from "./search";
 import Title from "./title";
+import { useAppSelector } from "../../store/hooks/redux";
 
 export function FilterSidebar() {
-  const isValidToken = useFilter();
-  if (isValidToken.films !== undefined) {
+  const isValidToken = useAppSelector(state => state.filterReducer.films);
+  if (true) {
     return (
       <Paper className={CLASS_FILTER_SIDEBAR}>
         <Title></Title>

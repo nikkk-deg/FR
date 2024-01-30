@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { useFilmInfo } from "./context";
 import { CLASS_OVERVIEW, CLASS_OVERVIEW_TXT, TITLE_OVERVIEW } from "./consts";
 
 export default function Overview() {

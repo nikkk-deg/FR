@@ -1,8 +1,5 @@
 import { FILTER_OPTIONS, LAST_YEAR } from "./const";
 
-export const TOKEN_DEFAULT_STATE = {
-    token: '',
-}
 
 export const FILER_DEFAULT_STATE = {
     sortOption: FILTER_OPTIONS[0].key,
